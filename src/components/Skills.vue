@@ -54,11 +54,6 @@
             {{e.text}}<br>
           </template>
 
-          <template slot="list" v-for="(e2, index2) in e.items" >
-            <skill-list-item :name="e2.name" :rating="e2.rating" :noDivider="e2.noDivider" :key="index2">
-            {{e2.text}}<br>
-            </skill-list-item>
-          </template>
         </skill>
       </template>
     </v-flex>
@@ -68,10 +63,9 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Skill from './Skill.vue';
-import SkillListItem from './SkillListItem.vue';
 @Component({
   components: {
-    Skill, SkillListItem
+    Skill
   }
 })
 export default class Skills extends Vue {
