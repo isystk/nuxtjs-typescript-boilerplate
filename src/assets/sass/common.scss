@@ -1,0 +1,36 @@
+
+.profile-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.vertical-center {
+  display: flex;
+  align-items: center;
+}
+
+.jumbotron-title {
+  font-family: $font-family;
+  border-bottom: solid 1px white;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+}
+
+.discription {
+  color:#000;
+}
+
+.rating-standard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.subheading {
+  padding: 0 4px;
+  //background-color: rgb(0, 0, 0, 0.5);
+  border-radius: 4px;
+}

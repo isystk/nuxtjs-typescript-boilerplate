@@ -1,0 +1,28 @@
+{
+  "name": "Nuxtjs-Vue-Chartjs",
+  "description": "Nuxt.js、TypeScript、Vue.js を利用したサンプルです。",
+  "version": "2.10.2",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt-ts",
+    "build": "nuxt-ts build",
+    "start": "nuxt-ts start",
+    "generate": "nuxt-ts generate"
+  },
+  "dependencies": {
+    "@nuxt/typescript-runtime": "0.2.2",
+    "@nuxtjs/axios": "5.8.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.19",
+    "install": "^0.13.0",
+    "node-sass": "^4.13.0",
+    "nuxt": "2.10.2",
+    "nuxt-property-decorator": "2.5.0",
+    "sass-loader": "^8.0.0",
+    "vuex-class": "0.3.2",
+    "admin-lte": "^3.0.2"
+  },
+  "devDependencies": {
+    "@nuxt/typescript-build": "0.3.2",
+    "loglevel": "^1.6.7"
+  }
+}
