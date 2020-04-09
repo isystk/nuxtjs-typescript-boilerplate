@@ -1,6 +1,6 @@
 {
-  "name": "Nuxtjs-Vue-Chartjs",
-  "description": "Nuxt.js、TypeScript、Vue.js を利用したサンプルです。",
+  "name": "nuxtjs-adminlte",
+  "description": "Nuxt.js、TypeScript、AdminLTE3 を利用したサンプルです。",
   "version": "2.10.2",
   "private": true,
   "scripts": {

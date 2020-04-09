@@ -1,5 +1,4 @@
 const pkg = require("./package")
-import webpack from "webpack"
 
 export default {
   srcDir: "src/",
