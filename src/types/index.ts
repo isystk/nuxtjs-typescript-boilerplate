@@ -1,35 +1,33 @@
-export * from './state';
 
-// export interface Profile {
-//   imageUrl: string;
-//   message: string;
-//   email: string;
-// }
+export interface SupportedCurrencies {
+  currency: string;
+  country: string;
+}
 
-// export interface SkillItem {
-//   name: string;
-//   rating: number;
-//   noDivider?: boolean;
-//   text: string;
-// }
+export interface Currentprice {
+  updatedISO?: Date;
+  code?: string;
+  rate_float?: number;
+  usd?: {
+    code: string;
+    rate_float: number;
+  };
+}
 
-// export interface Skill {
-//   title: string;
-//   color: string;
-//   rating: number;
-//   text: string;
-//   items: SkillItem[];
-// }
+export interface Historical {
+  currency?: string;
+  start?: Date;
+  end?: Date;
+  historicals?: Historicals[];
+}
 
-// export interface Work {
-//   title: string;
-//   text: string;
-//   url: string;
-//   imageUrl: string;
-// }
+export interface Historicals {
+  updated: Date;
+  rate_float: number;
+}
 
-// export interface Contact {
-//   name: string;
-//   linkUrl: string;
-//   icon: string;
-// }
+// state's interface
+export interface ICounterState {
+  incrementCounter: number; // 数字が増えてくカウンター
+  decrementCounter: number; // 数字が減ってくカウンター
+}

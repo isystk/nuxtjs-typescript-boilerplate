@@ -41,6 +41,7 @@ export default {
       { src: "/plugins/jquery/jquery.min.js", body: true},
       { src: "/plugins/bootstrap/js/bootstrap.bundle.min.js", body: true},
       { src: "/js/adminlte.min.js", body: true},
+      { src: "/js/common.js", body: true},
     ],
   },
   // loading: { color: "#fff" },
