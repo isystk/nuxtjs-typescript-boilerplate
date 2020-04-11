@@ -12,17 +12,20 @@
   "dependencies": {
     "@nuxt/typescript-runtime": "0.2.2",
     "@nuxtjs/axios": "5.8.0",
+    "@nuxtjs/moment": "^1.6.0",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "@types/chart.js": "^2.9.19",
     "@types/lodash": "^4.14.149",
     "admin-lte": "^3.0.2",
     "chart.js": "^2.9.3",
     "install": "^0.13.0",
+    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "nuxt": "2.10.2",
     "nuxt-property-decorator": "2.5.1",
     "sass-loader": "^8.0.0",
     "vue-chartjs": "^3.5.0",
+    "vue-property-decorator": "^8.4.1",
     "vuex-class": "0.3.2"
   },
   "devDependencies": {

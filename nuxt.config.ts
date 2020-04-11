@@ -56,7 +56,8 @@ export default {
   ],
   modules: [
     "@nuxtjs/axios",
-    "@nuxtjs/pwa"
+    "@nuxtjs/pwa",
+    ['@nuxtjs/moment', ['ja']]
   ],
   plugins: [
     "@plugins/filter.js"

@@ -25,13 +25,7 @@
             <!-- LINE CHART -->
             <div class="card card-info">
               <div class="card-header">
-                <h3 class="card-title">Line Chart</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                  </button>
-                  <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i></button>
-                </div>
+                <h3 class="card-title">{{fromDate | formatDate('MM月DD日')}}～{{toDate | formatDate('MM月DD日')}}</h3>
               </div>
               <div class="card-body">
                 <div class="chart">
@@ -59,14 +53,6 @@ import Chart from "chart.js";
 import { Line } from 'vue-chartjs'
 import LineChartComponent from './parts/LineChartComponent.vue'
 
-const FONT_COLOR = "rgba(255, 255, 255, 1)";
-const GRID_LINES_SETTING = {
-  display: true,
-  drawOnChartArea: false,
-  color: "rgba(255, 255, 255, .5)",
-  zeroLineColor: "rgba(255, 255, 255, 1)"
-};
-
 @Component({
   components: {
     LineChartComponent
@@ -74,86 +60,36 @@ const GRID_LINES_SETTING = {
 })
 export default class ListItem extends Mixins(Line) {
 
+  fromDate = new Date();
+  toDate = new Date();
   public chartData: Chart.ChartData = {};
   public chartOptions: Chart.ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
-    legend: {
-      // display: false
-      onClick(event, legendItem) {
-        return;
-      },
-      fullWidth: false,
-      labels: {
-        boxWidth: 20,
-        fontColor: FONT_COLOR
-      },
-    },
-    layout: {
-      padding: {
-        top: 20,
-        left: 20,
-        bottom: 20,
-        right: 20
-      }
+    title: {
+      display: true,
+      text: '気温（8月1日~8月7日）'
     },
     scales: {
-      xAxes: [
-        {
-          gridLines: GRID_LINES_SETTING,
-          ticks: {
-            autoSkip: true,
-            fontColor: FONT_COLOR,
-            fontSize: 14
-          },
-          scaleLabel: {
-            display: true,
-            fontColor: FONT_COLOR,
-            labelString: "月",
-          },
-        },
-      ],
-      yAxes: [
-        {
-          id: "yAxis_1",
-          type: "linear",
-          gridLines: GRID_LINES_SETTING,
-          scaleLabel: {
-            display: true,
-            fontColor: FONT_COLOR,
-            labelString: "湿度(%)"
-          },
-          ticks: {
-            autoSkip: true,
-            fontColor: FONT_COLOR,
-            fontSize: 14,
-            min: 0,
-            max: 100
-          },
-        },
-        {
-          id: "yAxis_2",
-          type: "linear",
-          gridLines: GRID_LINES_SETTING,
-          scaleLabel: {
-            display: true,
-            fontColor: FONT_COLOR,
-            labelString: "温度(℃)"
-          },
-          ticks: {
-            autoSkip: true,
-            fontColor: FONT_COLOR,
-            fontSize: 14,
-            min: 0,
-            max: 40
-          },
-          position: "right"
+      yAxes: [{
+        ticks: {
+          suggestedMax: 40,
+          suggestedMin: 0,
+          stepSize: 10,
+          callback: function(value, index, values){
+            return  value +  '度'
+          }
         }
-      ],
+      }]
     }
   };
+
   get getSelectedCurrency() {
     return currencyModule.selecedCurrency;
+  }
+
+  public created() {
+    this.createChartData();
   }
 
   @Watch('getSelectedCurrency', { immediate: true })
@@ -163,42 +99,33 @@ export default class ListItem extends Mixins(Line) {
     }
     var historicalData = await currencyModule.searchHistorical({});
     console.log(historicalData);
-    
+
+    this.createChartData();
+  }
+
+  public createChartData() {
     this.chartData = {
-      labels: ["1", "2", "3", "4", "5"],
+      labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
       datasets: [
         {
-          yAxisID: "yAxis_1",
           type: "line",
-          label: "湿度",
+          label: '最高気温(度）',
+          data: [35, 34, 37, 35, 34, 35, 34, 25],
           backgroundColor: "#6090EF",
           borderColor: "#6090EF",
           fill: false,
-          data: this.craeteRamdomValue(100)
         },
         {
-          yAxisID: "yAxis_2",
           type: "bar",
-          label: "温度",
-          backgroundColor: "#F87979",
-          borderColor: "#F87979",
-          fill: false,
-          data: this.craeteRamdomValue(40)
+          label: '最低気温(度）',
+          data: [25, 27, 27, 25, 26, 27, 25, 21],
+          backgroundColor: "#fd98b0",
+          borderColor: "#fd98b0",
         }
-      ]
+      ],
     };
-    
-    // this.renderChart(this.chartData, this.chartOptions);
-
   }
 
-  public craeteRamdomValue(baseNumber: number) {
-    const arr: number[] = [];
-    for (let i = 0; i < 5; i++) {
-      arr.push(Math.floor(Math.random() * baseNumber));
-    }
-    return arr;
-  }
 }
 </script>
 
