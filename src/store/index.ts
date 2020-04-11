@@ -18,3 +18,4 @@ export const actions: Actions<RootState, RootState> = {
   async nuxtServerInit({ commit }, context) {
   }
 }
+

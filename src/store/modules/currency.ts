@@ -1,8 +1,9 @@
 import { Mutation, MutationAction, Action, VuexModule, getModule, Module } from "vuex-module-decorators";
-import store from "../store"; // デコレータでstoreを指定するためimportする必要あり
 import { CurrencyState, SupportedCurrencies } from "../../types/currency";
-import axios from 'axios'
-import supportedCurrenciesData from '../../static/data/supported-currencies.json'
+import store from "../store"; // デコレータでstoreを指定するためimportする必要あり
+import axiosUtil from "../util/axiosUtil"; // デコレータでstoreを指定するためimportする必要あり
+import supportedCurrenciesData from '../../static/data/supported-currencies.json';
+import historicalCloseData from '../../static/data/historical-close.json';
 
 @Module({ dynamic: true, store, name: "counter", namespaced: true })
 class Currency extends VuexModule implements CurrencyState{
@@ -23,11 +24,18 @@ class Currency extends VuexModule implements CurrencyState{
   // サポートする通貨を返却します
   @MutationAction({mutate: ["supportedCurrencies"]})
   async loadSupportedCurrencies() {
-    // const { data } = await axios.get("https://api.coindesk.com/v1/bpi/supported-currencies.json");
-    // const { data } = await axios.get("/data/supported-currencies.json");
-    var data = supportedCurrenciesData;
-    // console.log(data);
+    // const data = axiosUtil('supported-currencies.json');
+    const data = supportedCurrenciesData;
     return ({ supportedCurrencies: data });
+  }
+  
+  // 指定した通貨の履歴データを返却します
+  @Action({})
+  async searchHistorical(params: any) {
+    console.log(params);
+    // const data = axiosUtil('supported-currencies.json');
+    const data = historicalCloseData;
+    return data.bpi;
   }
 }
 
