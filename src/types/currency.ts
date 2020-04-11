@@ -27,7 +27,7 @@ export interface Historicals {
 }
 
 // state's interface
-export interface ICounterState {
-  incrementCounter: number; // 数字が増えてくカウンター
-  decrementCounter: number; // 数字が減ってくカウンター
+export interface CurrencyState {
+  supportedCurrencies: SupportedCurrencies[];
+  selecedCurrency: SupportedCurrencies;
 }

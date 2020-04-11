@@ -16,8 +16,8 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { counterModule } from "../store/modules/counter"; // モジュールクラスをインポート
-import { SupportedCurrencies } from '../types';
+import { currencyModule } from "../store/modules/currency"; // モジュールクラスをインポート
+import { SupportedCurrencies } from '../types/currency';
 
 import SelectBox from './parts/SelectBox.vue';
 @Component({
@@ -30,7 +30,7 @@ export default class Header extends Vue {
   selectedCurrency = '';
 
   get currencySelectList() {
-    let supportedCurrencies = counterModule.supportedCurrencies;
+    let supportedCurrencies = currencyModule.supportedCurrencies;
     var selectList:any[] = [];
     supportedCurrencies.forEach(function(e) {
       selectList.push({
@@ -41,7 +41,7 @@ export default class Header extends Vue {
     return selectList;
   }
   created() {
-    counterModule.loadSupportedCurrencies();
+    currencyModule.loadSupportedCurrencies();
   }
 
   @Watch('selectedCurrency', { immediate: true })
@@ -49,7 +49,7 @@ export default class Header extends Vue {
     if (code === '') {
       return;
     }
-    counterModule.SET_SELECTED_CURRENCY(code);
+    currencyModule.SET_SELECTED_CURRENCY(code);
   }
 
 }

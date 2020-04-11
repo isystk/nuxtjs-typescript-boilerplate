@@ -252,13 +252,13 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { counterModule } from "../store/modules/counter"; // モジュールクラスをインポート
-import { SupportedCurrencies } from '../types';
+import { currencyModule } from "../store/modules/currency"; // モジュールクラスをインポート
+import { SupportedCurrencies } from '../types/currency';
 @Component
 export default class ListItem extends Vue {
 
   get getSelectedCurrency() {
-    return counterModule.selecedCurrency;
+    return currencyModule.selecedCurrency;
   }
 
 }

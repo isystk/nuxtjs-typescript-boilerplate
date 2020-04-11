@@ -1,18 +1,17 @@
 import { Mutation, MutationAction, Action, VuexModule, getModule, Module } from "vuex-module-decorators";
 import store from "../store"; // デコレータでstoreを指定するためimportする必要あり
-import { ICounterState, SupportedCurrencies } from "../../types";
+import { CurrencyState, SupportedCurrencies } from "../../types/currency";
 import axios from 'axios'
 import supportedCurrenciesData from '../../static/data/supported-currencies.json'
 
 @Module({ dynamic: true, store, name: "counter", namespaced: true })
-class Counter extends VuexModule implements ICounterState {
+class Currency extends VuexModule implements CurrencyState{
   // state
-  incrementCounter: number = 0;
-  decrementCounter: number = 1000;
-  supportedCurrencies: SupportedCurrencies[] = [];
-  selecedCurrency: SupportedCurrencies = {};
+  supportedCurrencies:SupportedCurrencies[] = [];
+  selecedCurrency:SupportedCurrencies = {};
 
   // mutation
+  // 通貨セレクトボックス変更にstore内データを更新します。
   @Mutation
   public SET_SELECTED_CURRENCY(code: String) {
     var selecedCurrencies = this.supportedCurrencies.filter(data => data.currency === code);
@@ -21,8 +20,8 @@ class Counter extends VuexModule implements ICounterState {
     }
   }
   
-  @MutationAction({mutate: ["supportedCurrencies"]})
   // サポートする通貨を返却します
+  @MutationAction({mutate: ["supportedCurrencies"]})
   async loadSupportedCurrencies() {
     // const { data } = await axios.get("https://api.coindesk.com/v1/bpi/supported-currencies.json");
     // const { data } = await axios.get("/data/supported-currencies.json");
@@ -32,4 +31,4 @@ class Counter extends VuexModule implements ICounterState {
   }
 }
 
-export const counterModule = getModule(Counter);
+export const currencyModule = getModule(Currency);
