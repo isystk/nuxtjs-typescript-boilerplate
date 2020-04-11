@@ -1,7 +1,7 @@
 <template>
 <div class="wrapper">
   <Header></Header>
-  <SideMenu></SideMenu>
+  <SideMenu :group="'coin'" :item="'history'"></SideMenu>
   <div class="content-wrapper">
     <div class="content-header">
       <div class="container-fluid">
@@ -18,7 +18,7 @@
         </div>
       </div>
     </div>
-    <ItemList></ItemList>
+    <Corrency></Corrency>
   </div>
   <Footer></Footer>
 </div>
@@ -31,11 +31,11 @@ import { State } from "vuex-class"
 import Header from '../../components/Header.vue';
 import Footer from '../../components/Footer.vue';
 import SideMenu from '../../components/SideMenu.vue';
-import ItemList from '../../components/ItemList.vue';
+import Corrency from '../../components/Corrency.vue';
 
 @Component({
   components: {
-    Header, Footer, SideMenu, ItemList
+    Header, Footer, SideMenu, Corrency
   }
 })
 export default class extends Vue {

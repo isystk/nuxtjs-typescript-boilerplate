@@ -16,7 +16,7 @@
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link active">
+            <a href="#" v-bind:class="[group == 'coin'?'active':'', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
                 仮想通貨
@@ -25,22 +25,10 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <nuxt-link to="/coin" class="nav-link active">
+                <nuxt-link to="/corrency" v-bind:class="[item == 'history'?'active':'', 'nav-link']">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>COIN</p>
+                  <p>履歴</p>
                 </nuxt-link>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>XXXXX</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>XXXXX</p>
-                </a>
               </li>
             </ul>
           </li>
@@ -79,10 +67,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop } from 'vue-property-decorator';
 
 @Component
 export default class SideMenu extends Vue {
+
+  @Prop() 
+  group!: String;
+
+  @Prop() 
+  item!: String;
+
+
 }
 </script>
 

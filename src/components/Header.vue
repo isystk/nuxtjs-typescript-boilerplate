@@ -29,6 +29,7 @@ export default class Header extends Vue {
 
   selectedCurrency = '';
 
+  // 通貨の種類選択用リストボックスデータをStoreから取得する
   get currencySelectList() {
     let supportedCurrencies = currencyModule.supportedCurrencies;
     var selectList:any[] = [];
@@ -40,7 +41,9 @@ export default class Header extends Vue {
     })
     return selectList;
   }
+
   created() {
+    // 通貨の種類データを生成してStoreに保存
     currencyModule.loadSupportedCurrencies();
   }
 
