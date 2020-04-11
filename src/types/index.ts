@@ -1,7 +1,7 @@
 
 export interface SupportedCurrencies {
-  currency: string;
-  country: string;
+  currency?: string;
+  country?: string;
 }
 
 export interface Currentprice {

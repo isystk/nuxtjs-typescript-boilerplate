@@ -15,7 +15,7 @@
             <!-- form start -->
             <form role="form">
               <div class="card-body">
-                
+                {{getSelectedCurrency}}
                 <div class="form-group">
                   <div class="control-group" id="userName">
                       <label class="col-sm-2 control-label">氏名</label>
@@ -251,9 +251,16 @@
 </template>
 
 <script lang="ts">
-import { Prop, Component, Vue } from 'vue-property-decorator';
+import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
+import { counterModule } from "../store/modules/counter"; // モジュールクラスをインポート
+import { SupportedCurrencies } from '../types';
 @Component
 export default class ListItem extends Vue {
-  
+
+  get getSelectedCurrency() {
+    return counterModule.selecedCurrency;
+  }
+
 }
 </script>
+

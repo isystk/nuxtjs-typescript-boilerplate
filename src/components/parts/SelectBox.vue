@@ -6,8 +6,8 @@
         aria-expanded="false">
       {{ value }}
     </button>
-    <div class="dropdown-menu dropdown-menu-right " aria-labelledby="dropdown1" style="max-height: 300px; overflow: scroll;">
-        <a v-for="(e, index) in values" :key="index" class="dropdown-item" href="#" @click="select(index)">{{e.value}}</a>
+    <div class="dropdown-menu dropdown-menu-right " style="max-height: 300px; overflow: scroll;">
+      <a v-for="(e, index) in values" :key="index" class="dropdown-item" href="#" @click.prevent="select(index)">{{e.value}}</a>
     </div>
   </div>
 </template>
@@ -38,11 +38,10 @@ export default class SelectBox extends Vue {
   }
   
   @Watch('code', { immediate: true })
-  onChangeCode(code) {
+  onChangeCode(code: String) {
     if (code === '') {
       return;
     }
-    console.log('Change Code!!:%s', code);
     this.value =  _.filter(this.values, {'code': code })[0].value;
   }
 
