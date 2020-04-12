@@ -1,7 +1,7 @@
 import { MutationTree, ActionTree, ActionContext } from "vuex";
 import { Context as AppContext } from "@nuxt/types";
 
-interface RootState {
+export interface RootState {
 }
 
 export const state = (): RootState => ({

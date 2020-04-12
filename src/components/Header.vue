@@ -16,8 +16,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from 'vue-property-decorator';
-import { currencyModule } from "@/store/modules/currency"; // モジュールクラスをインポート
-import { SupportedCurrencies } from '@/types/currency';
+import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
 
 import SelectBox from '@/components/parts/SelectBox.vue';
 @Component({

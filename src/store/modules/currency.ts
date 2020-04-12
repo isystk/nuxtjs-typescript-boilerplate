@@ -1,15 +1,15 @@
 import { Mutation, MutationAction, Action, VuexModule, getModule, Module } from "vuex-module-decorators";
-import store from "../store"; // デコレータでstoreを指定するためimportする必要あり
-import axiosUtil from "../util/axiosUtil"; // デコレータでstoreを指定するためimportする必要あり
-import supportedCurrenciesData from '../../static/data/supported-currencies.json';
-import historicalCloseData from '../../static/data/historical-close.json';
+import store from "@/store/store"; // デコレータでstoreを指定するためimportする必要あり
+import axiosUtil from "@/store/util/axiosUtil"; // デコレータでstoreを指定するためimportする必要あり
+import supportedCurrenciesData from '@/static/data/supported-currencies.json';
+import historicalCloseData from '@/static/data/historical-close.json';
 
-interface SupportedCurrencies {
+export interface SupportedCurrencies {
   currency?: string;
   country?: string;
 }
 
-interface Currentprice {
+export interface Currentprice {
   updatedISO?: Date;
   code?: string;
   rate_float?: number;
@@ -19,20 +19,20 @@ interface Currentprice {
   };
 }
 
-interface Historical {
+export interface Historical {
   currency?: string;
   start?: Date;
   end?: Date;
   historicals?: Historicals[];
 }
 
-interface Historicals {
+export interface Historicals {
   updated: Date;
   rate_float: number;
 }
 
 // state's interface
-interface CurrencyState {
+export interface CurrencyState {
   supportedCurrencies: SupportedCurrencies[];
   selecedCurrency: SupportedCurrencies;
 }
