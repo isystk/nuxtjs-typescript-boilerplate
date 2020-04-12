@@ -1,9 +1,41 @@
 import { Mutation, MutationAction, Action, VuexModule, getModule, Module } from "vuex-module-decorators";
-import { CurrencyState, SupportedCurrencies } from "../../types/currency";
 import store from "../store"; // デコレータでstoreを指定するためimportする必要あり
 import axiosUtil from "../util/axiosUtil"; // デコレータでstoreを指定するためimportする必要あり
 import supportedCurrenciesData from '../../static/data/supported-currencies.json';
 import historicalCloseData from '../../static/data/historical-close.json';
+
+interface SupportedCurrencies {
+  currency?: string;
+  country?: string;
+}
+
+interface Currentprice {
+  updatedISO?: Date;
+  code?: string;
+  rate_float?: number;
+  usd?: {
+    code: string;
+    rate_float: number;
+  };
+}
+
+interface Historical {
+  currency?: string;
+  start?: Date;
+  end?: Date;
+  historicals?: Historicals[];
+}
+
+interface Historicals {
+  updated: Date;
+  rate_float: number;
+}
+
+// state's interface
+interface CurrencyState {
+  supportedCurrencies: SupportedCurrencies[];
+  selecedCurrency: SupportedCurrencies;
+}
 
 @Module({ dynamic: true, store, name: "counter", namespaced: true })
 class Currency extends VuexModule implements CurrencyState{
