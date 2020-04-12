@@ -15,11 +15,11 @@
     "@nuxtjs/moment": "^1.6.0",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "@types/chart.js": "^2.9.19",
+    "@types/jest": "^25.2.1",
     "@types/lodash": "^4.14.149",
     "admin-lte": "^3.0.2",
     "chart.js": "^2.9.3",
     "install": "^0.13.0",
-    "moment": "^2.24.0",
     "node-sass": "^4.13.0",
     "nuxt": "2.10.2",
     "nuxt-property-decorator": "2.5.1",
@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@nuxt/typescript-build": "0.3.2",
-    "lodash": "^4.17.15",
     "loglevel": "^1.6.7",
     "vuex-module-decorators": "^0.16.1"
   }

@@ -29,7 +29,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <lineChartComponent :chartData="chartData" :chartOptions="chartOptions"></lineChartComponent>
+                  <LineChart :chartData="chartData" :chartOptions="chartOptions"></LineChart>
                 </div>
               </div>
               <!-- /.card-body -->
@@ -47,15 +47,15 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch, Mixins } from 'vue-property-decorator';
-import { currencyModule } from "../store/modules/currency"; // モジュールクラスをインポート
-import { SupportedCurrencies } from '../types/currency';
+import { currencyModule } from "@/store/modules/currency"; // モジュールクラスをインポート
+import { SupportedCurrencies } from '@/types/currency';
 import Chart from "chart.js";
 import { Line } from 'vue-chartjs'
-import LineChartComponent from './parts/LineChartComponent.vue'
+import LineChart from '@/components/parts/LineChart.vue'
 
 @Component({
   components: {
-    LineChartComponent
+    LineChart
   }
 })
 export default class ListItem extends Mixins(Line) {

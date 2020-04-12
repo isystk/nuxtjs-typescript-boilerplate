@@ -1,6 +1,7 @@
-const pkg = require("./package")
+const pkg = require("./package");
 
 export default {
+  mode: 'universal',
   srcDir: "src/",
 
   /**
@@ -66,7 +67,7 @@ export default {
    * Build configuration
    * webpack のビルドに関する設定はここに書く
    */
-  build: {
+  buildcd: {
   },
   buildModules: ["@nuxt/typescript-build"],
   manifest: {

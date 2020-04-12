@@ -38,13 +38,13 @@ export default class SelectBox extends Vue {
   }
   
   // 親のコンポーネントでcodeが変更された場合に同期したい場合
-  // @Watch('code', { immediate: true })
-  // onChangeCode(code: String) {
-  //   if (code === '') {
-  //     return;
-  //   }
-  //   this.value =  _.filter(this.values, {'code': code })[0].value;
-  // }
+  @Watch('code', { immediate: true })
+  onChangeCode(code: String) {
+    if (code === '') {
+      return;
+    }
+    this.value =  _.filter(this.values, {'code': code })[0].value;
+  }
 
 }
 </script>
