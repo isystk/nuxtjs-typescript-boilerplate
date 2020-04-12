@@ -1,8 +1,7 @@
 {
   "name": "nuxt-typescript-vuechart",
-  "version": "1.0.0",
   "description": "nuxt-typescript-vuechart",
-  "author": "iseyoshitaka",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
@@ -12,8 +11,9 @@
     "test": "jest"
   },
   "dependencies": {
-    "@nuxt/typescript-runtime": "0.2.2",
-    "@nuxtjs/axios": "5.8.0",
+    "@nuxt/types": "^0.7.4",
+    "@nuxt/typescript-runtime": "0.4.5",
+    "@nuxtjs/axios": "5.9.7",
     "@nuxtjs/moment": "^1.6.0",
     "@nuxtjs/pwa": "^3.0.0-beta.19",
     "@types/chart.js": "^2.9.19",
@@ -23,7 +23,7 @@
     "chart.js": "^2.9.3",
     "install": "^0.13.0",
     "node-sass": "^4.13.0",
-    "nuxt": "2.10.2",
+    "nuxt": "2.12.2",
     "nuxt-property-decorator": "2.5.1",
     "sass-loader": "^8.0.0",
     "vue-chartjs": "^3.5.0",
@@ -31,7 +31,7 @@
     "vuex-class": "0.3.2"
   },
   "devDependencies": {
-    "@nuxt/typescript-build": "0.3.2",
+    "@nuxt/typescript-build": "0.6.5",
     "loglevel": "^1.6.7",
     "vuex-module-decorators": "^0.16.1"
   }
