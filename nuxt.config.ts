@@ -1,6 +1,5 @@
-const pkg = require("./package");
 
-export default {
+const config = {
   mode: 'universal',
   srcDir: "src/",
 
@@ -9,7 +8,6 @@ export default {
    * ビルド時に渡される env の値は、ここに記載することで文字列に置換される
    */
   env: {
-    STATIC_PATH: "/",
   },
   
   router: {
@@ -23,11 +21,11 @@ export default {
     host: "0.0.0.0" // デフォルト: localhost
   },
   head: {
-    title: "Nuxtjs-Vue-Chartjs",
+    title: "nuxt-typescript-vuechart",
     meta: [
       { hid: "charset", charset: "utf-8" },
       { hid: "viewport", name: "viewport", content: "width=device-width, initial-scale=1" },
-      { hid: "description", name: "description", content: pkg.description },
+      { hid: "description", name: "description", content: "nuxt-typescript-vuechart" },
       { hid: "noydir", name: "robots", content: "noydir" },
       { hid: "noodp", name: "robots", content: "noodp" },
       { hid: "index,follow", name: "robots", content: "index,follow" },
@@ -71,10 +69,10 @@ export default {
   },
   buildModules: ["@nuxt/typescript-build"],
   manifest: {
-    name: pkg.name,
-    title: "Nuxtjs-Vue-Chartjs",
-    "og:title": "Nuxtjs-Vue-Chartjs",
-    description: pkg.description,
+    name: "nuxt-typescript-vuechart",
+    title: "nuxt-typescript-vuechart",
+    "og:title": "nuxt-typescript-vuechart",
+    description: "nuxt-typescript-vuechart",
     lang: "ja",
     theme_color: "#fff",
     background_color: "#fff",
@@ -89,3 +87,5 @@ export default {
     // See https://github.com/nuxt-community/axios-module#options
   }
 }
+
+module.exports = config

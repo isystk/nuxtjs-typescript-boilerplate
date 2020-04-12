@@ -1,14 +1,14 @@
-Nuxt.js TypeScript AdminLTE3 サンプル
+nuxt-typescript-vuechart
 ====
 
-![GitHub issues](https://img.shields.io/github/issues/isystk/kotlin-springboot-sample)
-![GitHub forks](https://img.shields.io/github/forks/isystk/kotlin-springboot-sample)
-![GitHub stars](https://img.shields.io/github/stars/isystk/kotlin-springboot-sample)
-![GitHub license](https://img.shields.io/github/license/isystk/kotlin-springboot-sample)
+![GitHub issues](https://img.shields.io/github/issues/isystk/nuxt-typescript-vuechart)
+![GitHub forks](https://img.shields.io/github/forks/isystk/nuxt-typescript-vuechart)
+![GitHub stars](https://img.shields.io/github/stars/isystk/nuxt-typescript-vuechart)
+![GitHub license](https://img.shields.io/github/license/isystk/nuxt-typescript-vuechart)
 
 ====
 
-Nuxt.js、TypeScript、AdminLTE3 を利用したサンプルです。
+Nuxt.js、TypeScript、VueChart を利用したサンプルです。
 
 ## Demo
 
@@ -41,7 +41,7 @@ $ curl http://localhost:3000/
 
 ## Licence
 
-[MIT](https://github.com/isystk/nuxtjs-adminlte/LICENCE)
+[MIT](https://github.com/isystk/nuxt-typescript-vuechart/LICENCE)
 
 ## Author
 

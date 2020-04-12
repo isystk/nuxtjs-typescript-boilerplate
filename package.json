@@ -1,13 +1,15 @@
 {
-  "name": "nuxtjs-adminlte",
-  "description": "Nuxt.js、TypeScript、AdminLTE3 を利用したサンプルです。",
-  "version": "2.10.2",
+  "name": "nuxt-typescript-vuechart",
+  "version": "1.0.0",
+  "description": "nuxt-typescript-vuechart",
+  "author": "iseyoshitaka",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate"
+    "generate": "nuxt-ts generate",
+    "test": "jest"
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "0.2.2",
