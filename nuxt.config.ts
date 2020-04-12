@@ -1,5 +1,6 @@
+import NuxtConfiguration from '@nuxt/config'
 
-const config = {
+const nuxtConfig: NuxtConfiguration = {
   mode: 'universal',
   srcDir: "src/",
 
@@ -88,4 +89,4 @@ const config = {
   }
 }
 
-module.exports = config
+export default nuxtConfig
