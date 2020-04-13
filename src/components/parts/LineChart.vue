@@ -6,10 +6,10 @@ import { Line, Bar, mixins } from "vue-chartjs";
 
 @Component({})
 export default class LineChartComponent extends Mixins(Line, Bar, mixins.reactiveProp) {
-  @Prop() public chartData!: Chart.ChartData;
-  @Prop() public chartOptions!: Chart.ChartOptions;
+  @Prop() chartData!: Chart.ChartData;
+  @Prop() chartOptions!: Chart.ChartOptions;
 
-  public mounted() {
+  mounted() {
     console.log(this);
     this.renderChart(this.chartData, this.chartOptions);
   }

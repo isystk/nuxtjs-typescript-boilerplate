@@ -61,8 +61,8 @@ export default class ListItem extends Mixins(Line) {
 
   fromDate = new Date();
   toDate = new Date();
-  public chartData: Chart.ChartData = {};
-  public chartOptions: Chart.ChartOptions = {
+  chartData: Chart.ChartData = {};
+  chartOptions: Chart.ChartOptions = {
     responsive: true,
     maintainAspectRatio: false,
     title: {
@@ -87,7 +87,7 @@ export default class ListItem extends Mixins(Line) {
     return currencyModule.selecedCurrency;
   }
 
-  public created() {
+  created() {
     this.createChartData();
   }
 
@@ -102,7 +102,7 @@ export default class ListItem extends Mixins(Line) {
     this.createChartData();
   }
 
-  public createChartData() {
+  createChartData() {
     this.chartData = {
       labels: ['8月1日', '8月2日', '8月3日', '8月4日', '8月5日', '8月6日', '8月7日'],
       datasets: [
