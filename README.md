@@ -34,7 +34,12 @@ $ yarn install
 
 # ビルド&起動
 $ yarn run dev
-$ curl http://localhost:3000/
+$ open http://localhost:3000/
+```
+``` bash
+# サーバー起動
+$ node ./tools/server.js
+$ curl http://localhost:5000/
 ```
 
 ## Contribution
