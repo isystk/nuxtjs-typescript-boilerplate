@@ -23,6 +23,7 @@
     "sourceMap": true,
     "strictNullChecks": true,
     "noImplicitThis": true,
+    "resolveJsonModule": true,
     "target": "esnext",
     "types": [
       "@types/node",

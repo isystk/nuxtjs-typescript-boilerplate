@@ -91,7 +91,7 @@ export default class ListItem extends Mixins(Line) {
     }
   };
 
-  get getSelectedCurrency(): SelecedCurrency {
+  get getSelectedCurrency(): any {
     return currencyModule.selecedCurrency;
   }
 
@@ -100,7 +100,7 @@ export default class ListItem extends Mixins(Line) {
   }
 
   @Watch("getSelectedCurrency", { immediate: true })
-  async onChangeCurrency(code: string): void {
+  async onChangeCurrency(code: string): Promise<any> {
     if (code === "") {
       return;
     }
