@@ -2,15 +2,15 @@
  * @file キャンセルトークンを扱うユーティリティ
  */
 
-import axios, { CancelToken, CancelTokenSource } from 'axios'
+import axios, { CancelToken, CancelTokenSource } from "axios";
 
 export class CancelTokenMap {
   /** キャンセルトークンを登録するマップ */
-  private cancelTokenMap: Map<any, CancelTokenSource>
+  private cancelTokenMap: Map<any, CancelTokenSource>;
 
   /** @constructor */
   public constructor() {
-    this.cancelTokenMap = new Map()
+    this.cancelTokenMap = new Map();
   }
 
   /**
@@ -18,9 +18,9 @@ export class CancelTokenMap {
    * @param key キーにする値
    */
   public create(key: any): void {
-    if (this.cancelTokenMap.has(key)) return
+    if (this.cancelTokenMap.has(key)) return;
 
-    this.cancelTokenMap.set(key, axios.CancelToken.source())
+    this.cancelTokenMap.set(key, axios.CancelToken.source());
   }
 
   /**
@@ -28,13 +28,13 @@ export class CancelTokenMap {
    * @param key キーにする値
    */
   public getToken(key: any, autoCreate = true): CancelToken | undefined {
-    autoCreate && this.create(key)
+    autoCreate && this.create(key);
 
-    const cancelTokenSource = this.cancelTokenMap.get(key)
+    const cancelTokenSource = this.cancelTokenMap.get(key);
 
-    if (cancelTokenSource == null) return
+    if (cancelTokenSource == null) return;
 
-    return cancelTokenSource.token
+    return cancelTokenSource.token;
   }
 
   /**
@@ -43,11 +43,11 @@ export class CancelTokenMap {
    * @param message キャンセルメッセージ
    */
   public cancel(key: any, message?: string): void {
-    const cancelTokenSource = this.cancelTokenMap.get(key)
+    const cancelTokenSource = this.cancelTokenMap.get(key);
 
-    if (cancelTokenSource == null) return
+    if (cancelTokenSource == null) return;
 
-    cancelTokenSource.cancel(message)
+    cancelTokenSource.cancel(message);
   }
 
   /**
@@ -56,9 +56,9 @@ export class CancelTokenMap {
    */
   public cancelAll(keys: any[], message?: string): void {
     keys.forEach((key): void => {
-      this.cancel(key, message)
-    })
+      this.cancel(key, message);
+    });
   }
 }
 
-export const cancelToken = new CancelTokenMap()
+export const cancelToken = new CancelTokenMap();

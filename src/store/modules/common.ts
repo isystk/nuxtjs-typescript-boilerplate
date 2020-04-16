@@ -1,6 +1,4 @@
-
 export interface SelectBox<T> {
-  value: String;
+  value: string;
   code: T;
 }
-

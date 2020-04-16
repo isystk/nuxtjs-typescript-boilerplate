@@ -1,6 +1,5 @@
-
-import axios from 'axios';
-const baseURL = 'https://api.coindesk.com/v1/bpi/';
+import axios from "axios";
+const baseURL = "https://api.coindesk.com/v1/bpi/";
 
 export const client = axios.create({
   baseURL: "",

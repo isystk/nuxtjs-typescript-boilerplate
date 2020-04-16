@@ -1,12 +1,12 @@
-import Vue from 'vue'
-import { AxiosRequestConfig } from 'axios'
-import { ILoginPayload, IUser } from '@/interfaces/api/User/ILogin'
+import Vue from "vue";
+import { AxiosRequestConfig } from "axios";
+import { ILoginPayload, IUser } from "@/interfaces/api/User/ILogin";
 import {
   ILoginCheckPayload,
   ILoginCheck
-} from '@/interfaces/api/User/ILoginCheck'
-import { ILogoutPayload, ILogout } from '@/interfaces/api/User/ILogout'
-import { cancelToken } from '@/utilities/'
+} from "@/interfaces/api/User/ILoginCheck";
+import { ILogoutPayload, ILogout } from "@/interfaces/api/User/ILogout";
+import { cancelToken } from "@/utilities/";
 
 /**
  * store 用インターフェイス
@@ -15,24 +15,24 @@ export interface IState {
   /**
    * ユーザー情報
    */
-  authUser: IUser | null
+  authUser: IUser | null;
   /**
    * ログイン中かどうか
    */
-  loggedIn: boolean
+  loggedIn: boolean;
   /**
    * ログイントークン
    */
-  token: string | null
+  token: string | null;
   /**
    * ローディング
    */
   busy: {
-    register: boolean
-    login: boolean
-    loginCheck: boolean
-    logout: boolean
-  }
+    register: boolean;
+    login: boolean;
+    loginCheck: boolean;
+    logout: boolean;
+  };
 }
 
 /**
@@ -48,19 +48,19 @@ export const state = (): IState => ({
     loginCheck: false,
     logout: false
   }
-})
+});
 
 /**
  * getters
  */
 export const getters = {
   isAuthenticated(state: IState): boolean {
-    return !!state.loggedIn
+    return !!state.loggedIn;
   },
   getToken(state: IState): string | null {
-    return state.token
+    return state.token;
   }
-}
+};
 
 /**
  * mutations
@@ -70,32 +70,32 @@ export const mutations = {
    * ユーザー情報を更新する
    */
   SET_USER: function(state: IState, user: IUser): void {
-    state.authUser = user
+    state.authUser = user;
   },
   /**
    * ログイン状態を更新する
    */
   updateLoginStatus(state: IState, status: boolean): void {
-    state.loggedIn = status
+    state.loggedIn = status;
   },
   /**
    * ログイントークンを更新する
    */
   updateLoginToken(state: IState, token: string | null): void {
-    state.token = token
+    state.token = token;
   },
   /**
    * 処理中ステータスを更新する
    */
   updateBusyStatus(
     state: IState,
-    payload: [keyof IState['busy'], boolean]
+    payload: [keyof IState["busy"], boolean]
   ): void {
-    const [key, status] = payload
+    const [key, status] = payload;
 
-    Vue.set(state.busy, key, status)
+    Vue.set(state.busy, key, status);
   }
-}
+};
 
 /**
  * actions
@@ -112,16 +112,16 @@ export const actions = {
     { state, commit }: any,
     payload: ILoginPayload
   ): Promise<IUser | void> {
-    console.log('login payload:', payload)
+    console.log("login payload:", payload);
 
     // ログイン中、またはすでにログイン済みなら処理を抜ける
     if (state.busy.login || state.loggedIn) {
-      return
+      return;
     }
 
     // TODO: payload の validation はここかな
 
-    commit('updateBusyStatus', ['login', true])
+    commit("updateBusyStatus", ["login", true]);
 
     try {
       const { data, headers } = await this.$axios.post<IUser>(
@@ -133,21 +133,21 @@ export const actions = {
         {
           cancelToken: cancelToken.getToken(payload)
         } as AxiosRequestConfig
-      )
-      const token = headers[this.$C.ACCESS_TOKEN_NAME]
+      );
+      const token = headers[this.$C.ACCESS_TOKEN_NAME];
 
       // ログイン状態を更新
-      commit('updateLoginStatus', data.loggedIn)
+      commit("updateLoginStatus", data.loggedIn);
       // ログイントークンを更新
-      commit('updateLoginToken', token)
+      commit("updateLoginToken", token);
       // ユーザー情報をストアに保存
-      commit('SET_USER', data)
+      commit("SET_USER", data);
 
-      return data
-    } catch (err) {
-      throw err
+      return data;
+      // } catch (err) {
+      //   throw err;
     } finally {
-      commit('updateBusyStatus', ['login', false])
+      commit("updateBusyStatus", ["login", false]);
     }
   },
 
@@ -162,14 +162,14 @@ export const actions = {
     { state, commit }: any,
     payload: ILogoutPayload
   ): Promise<ILogout | void> {
-    console.log('logout')
+    console.log("logout");
 
     // 処理中、未ログインなら中断
     if (state.busy.logout) {
-      return
+      return;
     }
 
-    commit('updateBusyStatus', ['logout', true])
+    commit("updateBusyStatus", ["logout", true]);
 
     try {
       const { data } = await this.$axios.post<ILogout>(
@@ -178,18 +178,18 @@ export const actions = {
         {
           cancelToken: cancelToken.getToken(payload)
         } as AxiosRequestConfig
-      )
+      );
 
       // ログイン状態を更新
-      commit('updateLoginStatus', data.loggedIn)
+      commit("updateLoginStatus", data.loggedIn);
       // ログイントークンを更新
-      commit('updateLoginToken', null)
+      commit("updateLoginToken", null);
 
-      return data
-    } catch (err) {
-      throw err
+      return data;
+      // } catch (err) {
+      //   throw err;
     } finally {
-      commit('updateBusyStatus', ['logout', false])
+      commit("updateBusyStatus", ["logout", false]);
     }
   },
 
@@ -204,9 +204,9 @@ export const actions = {
     { state, commit }: any,
     payload: ILoginCheckPayload
   ): Promise<ILoginCheck | void> {
-    console.log('loginCheck', payload)
+    console.log("loginCheck", payload);
 
-    commit('updateBusyStatus', ['loginCheck', true])
+    commit("updateBusyStatus", ["loginCheck", true]);
 
     try {
       const { data, headers } = await this.$axios.post<ILoginCheck>(
@@ -215,19 +215,19 @@ export const actions = {
         {
           cancelToken: cancelToken.getToken(payload)
         } as AxiosRequestConfig
-      )
-      const token = headers[this.$C.ACCESS_TOKEN_NAME]
+      );
+      const token = headers[this.$C.ACCESS_TOKEN_NAME];
 
       // ログイン状態を更新
-      commit('updateLoginStatus', data.loggedIn)
+      commit("updateLoginStatus", data.loggedIn);
       // ログイントークンを更新
-      commit('updateLoginToken', token)
+      commit("updateLoginToken", token);
 
-      return data
-    } catch (err) {
-      throw err
+      return data;
+      // } catch (err) {
+      //   throw err;
     } finally {
-      commit('updateBusyStatus', ['loginCheck', false])
+      commit("updateBusyStatus", ["loginCheck", false]);
     }
   }
-}
+};

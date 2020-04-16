@@ -1,8 +1,7 @@
 const Env = {
-  envName: 'local',
-  internalEndpointUrl: 'http://localhost:5000',
-  externalEndpointUrl: 'http://localhost:5000',
-  gtmContainerId: 'GTM-56L94CP'
-}
+  envName: "local",
+  internalEndpointUrl: "http://localhost:5000",
+  externalEndpointUrl: "http://localhost:5000"
+};
 
-export default Env
+export default Env;

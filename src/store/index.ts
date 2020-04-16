@@ -1,13 +1,13 @@
-import { ActionContext } from 'vuex'
-import { ILoginCheckPayload } from '@/interfaces/api/User/ILoginCheck'
-import { setToken, unsetToken } from '@/utilities/'
+import { ActionContext } from "vuex";
+import { ILoginCheckPayload } from "@/interfaces/api/User/ILoginCheck";
+import { setToken, unsetToken } from "@/utilities/";
 
 /**
  * store 用インターフェイス
  */
 export interface StateInterface {
-  isServerInitCalled: boolean
-  isClientInitCalled: boolean
+  isServerInitCalled: boolean;
+  isClientInitCalled: boolean;
 }
 
 /**
@@ -17,31 +17,31 @@ export interface StateInterface {
 export const state = (): StateInterface => ({
   isServerInitCalled: false,
   isClientInitCalled: false
-})
+});
 
 /**
  * getters
  */
 export const getters = {
   isServerInitCalled(state: StateInterface): boolean {
-    return state.isServerInitCalled
+    return state.isServerInitCalled;
   },
   isClientInitCalled(state: StateInterface): boolean {
-    return state.isClientInitCalled
+    return state.isClientInitCalled;
   }
-}
+};
 
 /**
  * mutations
  */
 export const mutations = {
   setIsServerInitCalled(state: StateInterface): void {
-    state.isServerInitCalled = true
+    state.isServerInitCalled = true;
   },
   setIsClientInitCalled(state: StateInterface): void {
-    state.isClientInitCalled = true
+    state.isClientInitCalled = true;
   }
-}
+};
 
 /**
  * actions
@@ -56,28 +56,28 @@ export const actions = {
     // @ts-ignore
     { req, res, error }
   ): Promise<void> {
-    await console.log('nuxtServerInit')
-    commit('setIsServerInitCalled')
+    await console.log("nuxtServerInit");
+    commit("setIsServerInitCalled");
 
     // ログインチェック
-    await dispatch('auth/loginCheck', {} as ILoginCheckPayload)
+    await dispatch("auth/loginCheck", {} as ILoginCheckPayload);
   },
   /**
    * クライアント初期化時の処理
    */
   // @ts-ignore
   nuxtClientInit({ commit, getters }: ActionContext<any, any>, { app }): void {
-    console.log('nuxtClientInit')
-    commit('setIsClientInitCalled')
+    console.log("nuxtClientInit");
+    commit("setIsClientInitCalled");
 
     // nuxtServerInit でログインチェックした state を元に token を cookie にセットし直す
-    const token = getters['auth/getToken']
-    const loggedIn = getters['auth/isAuthenticated']
-    console.log('token', getters['auth/getToken'], 'loggedIn:', loggedIn)
+    const token = getters["auth/getToken"];
+    const loggedIn = getters["auth/isAuthenticated"];
+    console.log("token", getters["auth/getToken"], "loggedIn:", loggedIn);
     if (token && loggedIn) {
-      setToken(token)
+      setToken(token);
     } else {
-      unsetToken()
+      unsetToken();
     }
   }
-}
+};

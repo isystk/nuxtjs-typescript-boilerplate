@@ -4,5 +4,5 @@
 export interface ILogoutPayload {}
 
 export interface ILogout {
-  loggedIn: boolean
+  loggedIn: boolean;
 }
