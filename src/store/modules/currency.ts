@@ -7,7 +7,6 @@ import {
   Module
 } from "vuex-module-decorators";
 import store from "@/store/store"; // デコレータでstoreを指定するためimportする必要あり
-import axiosUtil from "@/store/util/axiosUtil"; // デコレータでstoreを指定するためimportする必要あり
 import supportedCurrenciesData from "@/static/data/supported-currencies.json";
 import historicalCloseData from "@/static/data/historical-close.json";
 

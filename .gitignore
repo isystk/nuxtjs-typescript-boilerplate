@@ -1,11 +1,33 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
 # dependencies
 node_modules
 
-# logs
-npm-debug.log
+# Optional npm cache directory
+.npm
 
-# Nuxt build
+# parcel-bundler cache (https://parceljs.org/)
+.cache
+
+# next.js build output
+.next
+
+# nuxt.js build output
 .nuxt
 
 # Nuxt generate
 dist
+
+# IDE
+.idea
+
+# Service worker
+sw.*
+
+/.settings/
+/.project

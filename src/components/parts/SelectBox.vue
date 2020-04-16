@@ -40,7 +40,7 @@ export default class SelectBox extends Vue {
   @PropSync("selectedCode", { type: String, default: "" })
   code!: string;
 
-  value: string = "-----";
+  value = "-----";
 
   @Prop()
   values!: SelectList[];
@@ -56,7 +56,7 @@ export default class SelectBox extends Vue {
     if (code === "") {
       return;
     }
-    this.value = _.filter(this.values, { code: code })[0].value;
+    this.value = _.filter(this.values, { code })[0].value;
   }
 }
 </script>

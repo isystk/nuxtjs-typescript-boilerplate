@@ -69,7 +69,7 @@ export const mutations = {
   /**
    * ユーザー情報を更新する
    */
-  SET_USER: function(state: IState, user: IUser): void {
+  SET_USER(state: IState, user: IUser): void {
     state.authUser = user;
   },
   /**

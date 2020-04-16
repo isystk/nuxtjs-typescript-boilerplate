@@ -54,9 +54,9 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch, Mixins } from "vue-property-decorator";
-import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
 import Chart from "chart.js";
 import { Line } from "vue-chartjs";
+import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
 import LineChart from "@/components/parts/LineChart.vue";
 
 @Component({
@@ -82,7 +82,7 @@ export default class ListItem extends Mixins(Line) {
             suggestedMax: 40,
             suggestedMin: 0,
             stepSize: 10,
-            callback: function(value, index, values) {
+            callback(value, index, values) {
               return value + "度";
             }
           }

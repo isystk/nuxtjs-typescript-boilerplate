@@ -7,7 +7,7 @@
 // https://issus.me/projects/100/issues/60
 // https://forum.vuejs.org/t/typescript-mixins-methods-data/28374
 // $C を使う先、たとえば Vue インスタンスの mounted メソッドで thi.$C で型のエラーになるので、 Vue を拡張する
-import { Context } from "@nuxt/vue-app";
+import { Context } from "@nuxt/types";
 import * as C from "@/common/constants/";
 
 // Vue インスタンスだけで使いたい場合はこちら
