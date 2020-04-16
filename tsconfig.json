@@ -2,7 +2,6 @@
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
-    "resolveJsonModule": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
     "lib": [
@@ -29,7 +28,7 @@
       "@types/node",
       "@types/jest",
       "@types/webpack",
-      "@nuxt/types"
+      "@nuxt/vue-app"
     ],
     "strict": false,
     "noImplicitAny": false,
@@ -40,7 +39,8 @@
     "src/**/*.vue"
   ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "stories"
   ]
 }
 

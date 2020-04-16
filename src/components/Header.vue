@@ -33,7 +33,7 @@ export default class Header extends Vue {
   selectedCurrency = "";
 
   // 通貨の種類選択用リストボックスデータをStoreから取得する
-  get currencySelectList() {
+  get currencySelectList(): any[] {
     const supportedCurrencies = currencyModule.supportedCurrencies;
     const selectList: any[] = [];
     if (supportedCurrencies) {
@@ -47,13 +47,13 @@ export default class Header extends Vue {
     return selectList;
   }
 
-  created() {
+  created(): void {
     // 通貨の種類データを生成してStoreに保存
     currencyModule.loadSupportedCurrencies();
   }
 
   @Watch("selectedCurrency", { immediate: true })
-  onChangeCurrency(code: string) {
+  onChangeCurrency(code: string): void {
     if (code === "") {
       return;
     }

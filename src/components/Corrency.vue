@@ -53,10 +53,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch, Mixins } from "vue-property-decorator";
+import { Component, Watch, Mixins } from "vue-property-decorator";
 import Chart from "chart.js";
 import { Line } from "vue-chartjs";
-import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
+import { currencyModule } from "@/store/modules/currency"; // モジュールクラスをインポート
 import LineChart from "@/components/parts/LineChart.vue";
 
 @Component({
@@ -82,7 +82,7 @@ export default class ListItem extends Mixins(Line) {
             suggestedMax: 40,
             suggestedMin: 0,
             stepSize: 10,
-            callback(value, index, values) {
+            callback(value): string {
               return value + "度";
             }
           }
@@ -91,16 +91,16 @@ export default class ListItem extends Mixins(Line) {
     }
   };
 
-  get getSelectedCurrency() {
+  get getSelectedCurrency(): SelecedCurrency {
     return currencyModule.selecedCurrency;
   }
 
-  created() {
+  created(): void {
     this.createChartData();
   }
 
   @Watch("getSelectedCurrency", { immediate: true })
-  async onChangeCurrency(code: string) {
+  async onChangeCurrency(code: string): void {
     if (code === "") {
       return;
     }
@@ -110,7 +110,7 @@ export default class ListItem extends Mixins(Line) {
     this.createChartData();
   }
 
-  createChartData() {
+  createChartData(): void {
     this.chartData = {
       labels: [
         "8月1日",

@@ -12,7 +12,7 @@ export default class LineChartComponent extends Mixins(
   @Prop() chartData!: Chart.ChartData;
   @Prop() chartOptions!: Chart.ChartOptions;
 
-  mounted() {
+  mounted(): void {
     console.log(this);
     this.renderChart(this.chartData, this.chartOptions);
   }

@@ -18,10 +18,10 @@ export interface SupportedCurrencies {
 export interface Currentprice {
   updatedISO?: Date;
   code?: string;
-  rate_float?: number;
+  rateFloat?: number;
   usd?: {
     code: string;
-    rate_float: number;
+    rateFloat: number;
   };
 }
 
@@ -34,7 +34,7 @@ export interface Historical {
 
 export interface Historicals {
   updated: Date;
-  rate_float: number;
+  rateFloat: number;
 }
 
 // state's interface
@@ -73,6 +73,10 @@ class Currency extends VuexModule implements CurrencyState {
   @Action({})
   public searchHistorical(params: any): any {
     console.log(params);
+    const aa = {
+      b: 1
+    };
+    console.log(aa["b"]);
     // const data = axiosUtil('supported-currencies.json');
     const data = historicalCloseData;
     return data.bpi;

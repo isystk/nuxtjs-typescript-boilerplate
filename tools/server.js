@@ -157,7 +157,7 @@ app.post("/login", (req, res) => {
  * post '/logout'
  */
 app.post("/logout", (req, res) => {
-  const body = req.body;
+  // const body = req.body;
 
   console.log("logout succeeded");
 
