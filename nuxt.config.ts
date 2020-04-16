@@ -1,6 +1,6 @@
-import NuxtConfiguration from '@nuxt/config'
+import {Configuration} from '@nuxt/types'
 
-const nuxtConfig: NuxtConfiguration = {
+const nuxtConfig: Configuration = {
   mode: 'universal',
   srcDir: "src/",
 
@@ -52,7 +52,7 @@ const nuxtConfig: NuxtConfiguration = {
    * 他の scss ファイルに依存しない scss はこちらに
    */
   css: [
-    { src: "@/assets/sass/app.scss", lang: "scss" },
+    "@/assets/sass/app.scss",
   ],
   modules: [
     "@nuxtjs/axios",
@@ -60,6 +60,8 @@ const nuxtConfig: NuxtConfiguration = {
     ['@nuxtjs/moment', ['ja']]
   ],
   plugins: [
+    '@/plugins/constants-inject.ts',
+    '@/plugins/env-inject.ts',
     "@plugins/filter.js"
   ],
   /**
