@@ -29,6 +29,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
+import SelectBoxList from "@/interfaces/app/Form";
 
 @Component
 export default class SelectBox extends Vue {
