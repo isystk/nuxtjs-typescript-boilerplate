@@ -24,7 +24,7 @@ import Corrency from "@/components/Corrency.vue";
     SideMenu,
     Corrency
   },
-  middleware: ["authenticated", "anonymous"]
+  middleware: ["authenticated"]
 })
 export default class extends Vue {}
 </script>

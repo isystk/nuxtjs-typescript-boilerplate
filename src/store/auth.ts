@@ -136,6 +136,8 @@ export const actions = {
       );
       const token = headers[this.$C.ACCESS_TOKEN_NAME];
 
+      console.log("token:%s,loggedIn:%s", token, data.loggedIn);
+
       // ログイン状態を更新
       commit("updateLoginStatus", data.loggedIn);
       // ログイントークンを更新

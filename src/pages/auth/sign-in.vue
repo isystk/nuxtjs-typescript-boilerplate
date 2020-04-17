@@ -66,7 +66,8 @@ import { ILoginPayload, IUser } from "@/interfaces/api/User/ILogin";
     Header,
     Footer,
     SideMenu
-  }
+  },
+  middleware: ["anonymous"]
 })
 export default class extends Vue {
   public username = "";
@@ -80,7 +81,7 @@ export default class extends Vue {
         password: this.password
       } as ILoginPayload);
 
-      this.$router.push("/example");
+      this.$router.push("/");
     } catch (e) {
       this.error = e.message;
     }

@@ -9,7 +9,7 @@ import { ILoginCheckPayload } from "@/interfaces/api/User/ILoginCheck";
 export default async function({ store, redirect }): Promise<void> {
   console.log("authenticated");
 
-  await store.dispatch("auth/loginCheck", {} as ILoginCheckPayload);
+  // await store.dispatch("auth/loginCheck", {} as ILoginCheckPayload);
 
   if (!store.getters["auth/isAuthenticated"]) {
     await redirect("/auth/sign-in");

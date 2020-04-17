@@ -10,6 +10,12 @@
       </li>
     </ul>
     <div class="ml-auto form-inline">
+      <div v-if="!isAuthenticated">
+        未ログイン
+      </div>
+      <div v-if="isAuthenticated">
+        ログイン中
+      </div>
       通貨：
       <SelectBox
         :values="currencySelectList"
@@ -31,6 +37,16 @@ import SelectBox from "@/components/parts/SelectBox.vue";
 })
 export default class Header extends Vue {
   selectedCurrency = "";
+
+  get isAuthenticated(): boolean {
+    return this.$store.getters["auth/isAuthenticated"];
+  }
+
+  public asyncData(): any {
+    return {
+      isAuthenticated: this.$store.getters["auth/isAuthenticated"]
+    };
+  }
 
   // 通貨の種類選択用リストボックスデータをStoreから取得する
   get currencySelectList(): any[] {
