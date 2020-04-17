@@ -19,7 +19,7 @@ app.use((req, res, next) => {
   // CORSリクエストでクレデンシャル(≒クッキー)を必要とする場合の注意点 - Qiita - https://qiita.com/kawaz/items/1e51c374b7a13c21b7e2
   // * だと withCredentials が動かない
   // res.header('Access-Control-Allow-Origin', '*')
-  res.header("Access-Control-Allow-Origin", "http://localhost:4000");
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
   res.header("Access-Control-Allow-Credentials", true);
 
   res.header(
