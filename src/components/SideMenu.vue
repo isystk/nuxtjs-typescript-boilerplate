@@ -4,8 +4,8 @@
     <!-- Brand Logo -->
     <nuxt-link to="/" class="brand-link">
       <img
-        src="~/assets/img/AdminLTELogo.png"
-        alt="AdminSample Logo"
+        src="~/assets/img/github-icon.svg"
+        alt="github Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: .8"
       />
@@ -23,21 +23,21 @@
           data-accordion="false"
         >
           <li class="nav-item has-treeview">
-            <a href="#" :class="[group == 'coin' ? 'active' : '', 'nav-link']">
+            <a href="#" :class="[group == 'chart' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                仮想通貨
+                VueChart
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/corrency"
-                  :class="[item == 'history' ? 'active' : '', 'nav-link']"
+                  to="/chart"
+                  :class="[item == 'line' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>履歴</p>
+                  <p>折れ線グラフ</p>
                 </nuxt-link>
               </li>
             </ul>
@@ -46,7 +46,7 @@
             <a href="#" class="nav-link">
               <i class="fa fa-cogs"></i>
               <p>
-                システム設定
+                リッチクライアント
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -54,13 +54,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-envelope"></i>
-                  <p>メールテンプレート</p>
+                  <p>画像スライダー</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-file"></i>
-                  <p>ファイル管理</p>
+                  <p>オーバーレイ</p>
                 </a>
               </li>
             </ul>

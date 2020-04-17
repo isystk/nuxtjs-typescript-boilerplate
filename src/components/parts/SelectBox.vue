@@ -16,7 +16,7 @@
       <a
         v-for="(e, index) in values"
         :key="index"
-        class="dropdown-item"
+        class="dropdown-item text-muted"
         href="#"
         @click.prevent="select(index)"
       >
@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
-import SelectBoxList from "@/interfaces/app/Form";
+import { SelectBoxList } from "@/interfaces/api/Form";
 
 @Component
 export default class SelectBox extends Vue {

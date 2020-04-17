@@ -32,6 +32,12 @@
                     toDate | formatDate("MM月DD日")
                   }}
                 </h3>
+                <div class="float-sm-right">
+                  <SelectBox
+                    :values="currencySelectList"
+                    :selected-code.sync="selectedCurrency"
+                  />
+                </div>
               </div>
               <div class="card-body">
                 <div class="chart">
@@ -58,13 +64,17 @@ import Chart from "chart.js";
 import { Line } from "vue-chartjs";
 import { currencyModule } from "@/store/modules/currency"; // モジュールクラスをインポート
 import LineChart from "@/components/parts/LineChart.vue";
+import SelectBox from "@/components/parts/SelectBox.vue";
 
 @Component({
   components: {
-    LineChart
-  }
+    LineChart,
+    SelectBox
+  },
+  middleware: ["authenticated"]
 })
-export default class ListItem extends Mixins(Line) {
+export default class extends Mixins(Line) {
+  selectedCurrency = "";
   fromDate = new Date();
   toDate = new Date();
   chartData: Chart.ChartData = {};
@@ -97,10 +107,13 @@ export default class ListItem extends Mixins(Line) {
 
   created(): void {
     this.createChartData();
+
+    // 通貨の種類データを生成してStoreに保存
+    currencyModule.loadSupportedCurrencies();
   }
 
   @Watch("getSelectedCurrency", { immediate: true })
-  async onChangeCurrency(code: string): Promise<any> {
+  async getCurrency(code: string): Promise<any> {
     if (code === "") {
       return;
     }
@@ -108,6 +121,14 @@ export default class ListItem extends Mixins(Line) {
     console.log(historicalData);
 
     this.createChartData();
+  }
+
+  @Watch("selectedCurrency", { immediate: true })
+  onChangeCurrency(code: string): void {
+    if (code === "") {
+      return;
+    }
+    currencyModule.SET_SELECTED_CURRENCY(code);
   }
 
   createChartData(): void {
@@ -139,6 +160,21 @@ export default class ListItem extends Mixins(Line) {
         }
       ]
     };
+  }
+
+  // 通貨の種類選択用リストボックスデータをStoreから取得する
+  get currencySelectList(): any[] {
+    const supportedCurrencies = currencyModule.supportedCurrencies;
+    const selectList: any[] = [];
+    if (supportedCurrencies) {
+      supportedCurrencies.forEach(function(e) {
+        selectList.push({
+          code: e.currency,
+          value: e.currency
+        });
+      });
+    }
+    return selectList;
   }
 }
 </script>

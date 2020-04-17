@@ -16,11 +16,6 @@
           ログアウト
         </nuxt-link>
       </div>
-      通貨：
-      <SelectBox
-        :values="currencySelectList"
-        :selected-code.sync="selectedCurrency"
-      />
     </div>
   </nav>
 </template>
@@ -29,46 +24,11 @@
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
 
-import SelectBox from "@/components/parts/SelectBox.vue";
-@Component({
-  components: {
-    SelectBox
-  }
-})
+@Component
 export default class Header extends Vue {
-  selectedCurrency = "";
-
   // ログイン状態
   get isAuthenticated(): boolean {
     return this.$store.getters["auth/isAuthenticated"];
-  }
-
-  // 通貨の種類選択用リストボックスデータをStoreから取得する
-  get currencySelectList(): any[] {
-    const supportedCurrencies = currencyModule.supportedCurrencies;
-    const selectList: any[] = [];
-    if (supportedCurrencies) {
-      supportedCurrencies.forEach(function(e) {
-        selectList.push({
-          code: e.currency,
-          value: e.currency
-        });
-      });
-    }
-    return selectList;
-  }
-
-  created(): void {
-    // 通貨の種類データを生成してStoreに保存
-    currencyModule.loadSupportedCurrencies();
-  }
-
-  @Watch("selectedCurrency", { immediate: true })
-  onChangeCurrency(code: string): void {
-    if (code === "") {
-      return;
-    }
-    currencyModule.SET_SELECTED_CURRENCY(code);
   }
 }
 </script>

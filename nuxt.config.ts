@@ -67,7 +67,7 @@ const nuxtConfig: Configuration = {
   plugins: [
     "@/plugins/constants-inject.ts",
     "@/plugins/env-inject.ts",
-    "@plugins/filter.js"
+    "@plugins/filter.ts"
   ],
   /**
    * Build configuration
