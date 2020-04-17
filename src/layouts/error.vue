@@ -1,13 +1,14 @@
 <template>
   <div class="wrapper">
     <Header />
-    <div>
-      <h1 v-if="error.statusCode === 404">
+    <SideMenu v-show="false" />
+    <div v-if="error.statusCode === 404">
+      <h1>
         ページが見つかりません
       </h1>
-      <h1 v-else>
-エラーが発生しました {{ error.message }}
-</h1>
+    </div>
+    <div v-else>
+      <h1>エラーが発生しました {{ error.message }}</h1>
     </div>
     <nuxt-link to="/">
       ホーム

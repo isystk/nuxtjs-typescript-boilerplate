@@ -56,7 +56,7 @@ export default class extends Vue {
   public password = "";
   public error: string | null = null;
 
-  public async login(): void {
+  public async login(): Promise<any> {
     try {
       const res: IUser = await this.$store.dispatch("auth/login", {
         username: this.username,

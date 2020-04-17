@@ -30,11 +30,6 @@
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
 
-export interface SelectList {
-  value: string;
-  code: string;
-}
-
 @Component
 export default class SelectBox extends Vue {
   @PropSync("selectedCode", { type: String, default: "" })
@@ -43,7 +38,7 @@ export default class SelectBox extends Vue {
   value = "-----";
 
   @Prop()
-  values!: SelectList[];
+  values!: SelectBoxList[];
 
   select(index: number): void {
     this.code = this.values[index].code;

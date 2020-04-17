@@ -72,11 +72,6 @@ class Currency extends VuexModule implements CurrencyState {
   // 指定した通貨の履歴データを返却します
   @Action({})
   public searchHistorical(params: any): any {
-    console.log(params);
-    const aa = {
-      b: 1
-    };
-    console.log(aa["b"]);
     // const data = axiosUtil('supported-currencies.json');
     const data = historicalCloseData;
     return data.bpi;

@@ -36,7 +36,7 @@ import { ILogoutPayload } from "@/interfaces/api/User/ILogout";
   layout: "loginLayout"
 })
 export default class SignOff extends Vue {
-  public async mounted(): void {
+  public async mounted(): Promise<any> {
     await this.$store.dispatch("auth/logout", {} as ILogoutPayload);
 
     this.$router.replace("/auth/sign-in/");

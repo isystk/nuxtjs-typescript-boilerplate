@@ -5,13 +5,13 @@
   >
     <ul v-if="isAuthenticated" class="navbar-nav">
       <li class="nav-item">
-        <nuxt-link to="/" class="nav-link js-pushmenu" data-widget="pushmenu">
+        <a href="#" class="nav-link js-pushmenu" data-widget="pushmenu">
           <i class="fas fa-bars"></i>
-        </nuxt-link>
+        </a>
       </li>
     </ul>
-    <div class="ml-auto form-inline">
-      <div v-if="isAuthenticated">
+    <div v-if="isAuthenticated" class="ml-auto form-inline">
+      <div>
         <nuxt-link to="/auth/sign-off">
           ログアウト
         </nuxt-link>

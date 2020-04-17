@@ -2,15 +2,15 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-purple elevation-4">
     <!-- Brand Logo -->
-    <a href="/" class="brand-link">
+    <nuxt-link to="/" class="brand-link">
       <img
         src="~/assets/img/AdminLTELogo.png"
         alt="AdminSample Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: .8"
       />
-      <span class="brand-text font-weight-light">AdminLTE Sample</span>
-    </a>
+      <span class="brand-text font-weight-light">Nuxt-Typescript</span>
+    </nuxt-link>
 
     <!-- Sidebar -->
     <div class="sidebar">

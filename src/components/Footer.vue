@@ -1,6 +1,9 @@
 <template>
   <!-- Main Footer -->
-  <footer class="main-footer" :class="[isAuthenticated ? '' : 'ml-0']">
+  <footer
+    class="main-footer text-center"
+    :class="[isAuthenticated ? '' : 'ml-0']"
+  >
     <strong>Copyright &copy; 2019-2020 <a href="#">isystk.com</a>.</strong> All
     rights reserved.
   </footer>

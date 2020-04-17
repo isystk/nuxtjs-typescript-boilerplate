@@ -20,16 +20,8 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { State } from "vuex-class";
-import Header from "@/components/Header.vue";
-import Footer from "@/components/Footer.vue";
-import SideMenu from "@/components/SideMenu.vue";
 
 @Component({
-  components: {
-    Header,
-    Footer,
-    SideMenu
-  },
   middleware: ["authenticated"]
 })
 export default class extends Vue {}
