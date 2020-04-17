@@ -1,7 +1,6 @@
 <template>
   <!-- Main Footer -->
-  <footer class="main-footer">
-    <!-- Default to the left -->
+  <footer class="main-footer" :class="[isAuthenticated ? '' : 'ml-0']">
     <strong>Copyright &copy; 2019-2020 <a href="#">isystk.com</a>.</strong> All
     rights reserved.
   </footer>
@@ -11,5 +10,10 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Footer extends Vue {}
+export default class Footer extends Vue {
+  // ログイン状態
+  get isAuthenticated(): boolean {
+    return this.$store.getters["auth/isAuthenticated"];
+  }
+}
 </script>

@@ -1,20 +1,20 @@
 <template>
-  <!-- Navbar -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <!-- Left navbar links -->
-    <ul class="navbar-nav">
+  <nav
+    class="main-header navbar navbar-expand navbar-white navbar-light"
+    :class="[isAuthenticated ? '' : 'ml-0']"
+  >
+    <ul v-if="isAuthenticated" class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link js-pushmenu" data-widget="pushmenu" href="#">
+        <nuxt-link to="/" class="nav-link js-pushmenu" data-widget="pushmenu">
           <i class="fas fa-bars"></i>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
     <div class="ml-auto form-inline">
-      <div v-if="!isAuthenticated">
-        未ログイン
-      </div>
       <div v-if="isAuthenticated">
-        ログイン中
+        <nuxt-link to="/auth/sign-off">
+          ログアウト
+        </nuxt-link>
       </div>
       通貨：
       <SelectBox
@@ -38,14 +38,9 @@ import SelectBox from "@/components/parts/SelectBox.vue";
 export default class Header extends Vue {
   selectedCurrency = "";
 
+  // ログイン状態
   get isAuthenticated(): boolean {
     return this.$store.getters["auth/isAuthenticated"];
-  }
-
-  public asyncData(): any {
-    return {
-      isAuthenticated: this.$store.getters["auth/isAuthenticated"]
-    };
   }
 
   // 通貨の種類選択用リストボックスデータをStoreから取得する
