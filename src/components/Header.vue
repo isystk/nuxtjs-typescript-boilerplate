@@ -22,7 +22,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import { currencyModule, SupportedCurrencies } from "@/store/modules/currency"; // モジュールクラスをインポート
+import { currencyModule, SupportedCurrencies } from "@/store/currency"; // モジュールクラスをインポート
 
 @Component
 export default class Header extends Vue {

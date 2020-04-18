@@ -62,7 +62,7 @@
 import { Component, Watch, Mixins } from "vue-property-decorator";
 import Chart from "chart.js";
 import { Line } from "vue-chartjs";
-import { currencyModule } from "@/store/modules/currency"; // モジュールクラスをインポート
+import { currencyModule } from "@/store/currency"; // モジュールクラスをインポート
 import LineChart from "@/components/parts/LineChart.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 

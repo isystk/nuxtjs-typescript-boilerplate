@@ -29,7 +29,7 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
-import { SelectBoxList } from "@/interfaces/api/Form";
+import { ISelectBox } from "@/interfaces/api/Form/ISelectBox";
 
 @Component
 export default class SelectBox extends Vue {
@@ -39,7 +39,7 @@ export default class SelectBox extends Vue {
   value = "-----";
 
   @Prop()
-  values!: SelectBoxList[];
+  values!: ISelectBox<string>[];
 
   select(index: number): void {
     this.code = this.values[index].code;
