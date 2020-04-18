@@ -11,7 +11,7 @@
           </p>
           <div class="box-body">
             <div class="form-group">
-              <span>ユーザー名</span>
+              <span>メールアドレス</span>
               <input
                 v-model="username"
                 class="form-control"

@@ -43,7 +43,7 @@ export interface CurrencyState {
   selecedCurrency: SupportedCurrencies;
 }
 
-@Module({ dynamic: true, store, name: "counter", namespaced: true })
+@Module({ dynamic: true, store, name: "currency", namespaced: true })
 class Currency extends VuexModule implements CurrencyState {
   // state
   public supportedCurrencies: SupportedCurrencies[] = [];

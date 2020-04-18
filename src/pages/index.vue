@@ -24,5 +24,9 @@ import { State } from "vuex-class";
 @Component({
   middleware: ["authenticated"]
 })
-export default class extends Vue {}
+export default class extends Vue {
+  public mounted(): void {
+    this.$router.replace("/form/basic/");
+  }
+}
 </script>

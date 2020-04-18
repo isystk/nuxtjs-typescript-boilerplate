@@ -23,6 +23,26 @@
           data-accordion="false"
         >
           <li class="nav-item has-treeview">
+            <a href="#" :class="[group == 'form' ? 'active' : '', 'nav-link']">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                フォーム
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <nuxt-link
+                  to="/form/basic/"
+                  :class="[item == 'basic' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>基本</p>
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
             <a href="#" :class="[group == 'chart' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
@@ -70,18 +90,30 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
+    {{ $data }}
   </aside>
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from "vue-property-decorator";
+import { Component, Vue, Prop, Watch } from "vue-property-decorator";
+import { sideMenuModule } from "@/store/sideMenu";
 
 @Component
 export default class SideMenu extends Vue {
-  @Prop()
-  group!: string;
+  group = "";
+  item = "";
 
-  @Prop()
-  item!: string;
+  get currentMenu(): any {
+    return sideMenuModule.currentMenu;
+  }
+
+  @Watch("currentMenu", { immediate: true })
+  onChangeCurrentMenu(val, old): void {
+    console.log("change currentMenu new:%s old:%s", val, old);
+    if (val) {
+      this.group = val.group;
+      this.item = val.item;
+    }
+  }
 }
 </script>

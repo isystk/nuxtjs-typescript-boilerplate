@@ -1,24 +1,6 @@
 <template>
   <div>
-    <div class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>{{ getSelectedCurrency.currency }}</h1>
-          </div>
-          <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item">
-                <a href="#">Home</a>
-              </li>
-              <li class="breadcrumb-item">
-                仮想通貨一覧
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </div>
+    <ContentHeader :current="{ title: '仮想通貨一覧', url: '/chart/' }" />
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -62,12 +44,15 @@
 import { Component, Watch, Mixins } from "vue-property-decorator";
 import Chart from "chart.js";
 import { Line } from "vue-chartjs";
-import { currencyModule } from "@/store/currency"; // モジュールクラスをインポート
+import { sideMenuModule } from "@/store/sideMenu";
+import { currencyModule } from "@/store/currency";
+import ContentHeader from "@/components/ContentHeader.vue";
 import LineChart from "@/components/parts/LineChart.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 
 @Component({
   components: {
+    ContentHeader,
     LineChart,
     SelectBox
   },
@@ -106,6 +91,12 @@ export default class extends Mixins(Line) {
   }
 
   created(): void {
+    // 選択中のサイドメニューをアクティブに変更
+    sideMenuModule.setCurrentMenu({
+      group: "chart",
+      item: "line"
+    });
+
     this.createChartData();
 
     // 通貨の種類データを生成してStoreに保存
