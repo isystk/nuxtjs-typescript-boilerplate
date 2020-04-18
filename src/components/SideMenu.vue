@@ -109,7 +109,7 @@ export default class SideMenu extends Vue {
 
   @Watch("currentMenu", { immediate: true })
   onChangeCurrentMenu(val, old): void {
-    console.log("change currentMenu new:%s old:%s", val, old);
+    // console.log("change currentMenu new:%s old:%s", val, old);
     if (val) {
       this.group = val.group;
       this.item = val.item;
