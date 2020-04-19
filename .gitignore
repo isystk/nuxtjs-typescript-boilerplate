@@ -21,7 +21,7 @@ node_modules
 .nuxt
 
 # Nuxt generate
-dist
+# dist
 
 # IDE
 .idea
