@@ -11,7 +11,7 @@
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
-                  入力
+                  入力フォーム
                 </h3>
               </div>
               <div class="card-body">
@@ -57,6 +57,18 @@
                         :checked-code.sync="checkboxval"
                       />
                     </div>
+                    <div class="form-group">
+                      <label class="control-label">ラジオボタン</label>
+                      <RadioBotton
+                        :items="
+                          this.$_.map(this.$C.SEX_LABEL, (value, key) => ({
+                            value,
+                            code: key
+                          }))
+                        "
+                        :radio-code.sync="radioval"
+                      />
+                    </div>
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary btn-block">
                         登録する
@@ -92,12 +104,14 @@ import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/ContentHeader.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 import CheckBox from "@/components/parts/CheckBox.vue";
+import RadioBotton from "@/components/parts/RadioBotton.vue";
 
 @Component({
   components: {
     ContentHeader,
     SelectBox,
-    CheckBox
+    CheckBox,
+    RadioBotton
   },
   middleware: ["authenticated"]
 })
@@ -106,6 +120,7 @@ export default class extends Vue {
   public textval = "";
   public selectval = "";
   public checkboxval = [];
+  public radioval = "";
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更
