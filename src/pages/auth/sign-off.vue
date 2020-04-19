@@ -17,6 +17,12 @@ import { ILogoutPayload } from "@/interfaces/api/User/ILogout";
   layout: "loginLayout"
 })
 export default class SignOff extends Vue {
+  head(): any {
+    return {
+      title: "ログアウト"
+    };
+  }
+
   public async mounted(): Promise<any> {
     await this.$store.dispatch("auth/logout", {} as ILogoutPayload);
 

@@ -52,6 +52,12 @@ import { ILoginPayload, IUser } from "@/interfaces/api/User/ILogin";
   layout: "loginLayout"
 })
 export default class extends Vue {
+  head(): any {
+    return {
+      title: "ログイン"
+    };
+  }
+
   public username = "";
   public password = "";
   public error: string | null = null;

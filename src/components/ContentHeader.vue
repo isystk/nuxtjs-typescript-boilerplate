@@ -21,6 +21,12 @@ import Breadcrumb from "@/components/Breadcrumb.vue";
   }
 })
 export default class ContentHeader extends Vue {
+  head(): any {
+    return {
+      title: this.current.title
+    };
+  }
+
   @Prop()
   current: {
     url: string;

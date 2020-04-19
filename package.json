@@ -1,13 +1,13 @@
 {
-  "name": "nuxt-typescript-vuechart",
-  "description": "nuxt-typescript-vuechart",
+  "name": "nuxtjs-typescript-boilerplate",
+  "description": "Nuxtjs、Typescriptを利用したボイラープレートです",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "cross-env BASE_URL=/nuxt-typescript-vuechart/ nuxt-ts generate",
+    "generate": "cross-env BASE_URL=/nuxtjs-typescript-boilerplate/ nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lintfix": "eslint --fix --ext .js,.ts,.vue .",
     "precommit": "npm run lint",

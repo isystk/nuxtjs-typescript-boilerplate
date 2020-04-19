@@ -17,9 +17,10 @@ import nuxt_plugin_moment_666ee48d from 'nuxt_plugin_moment_666ee48d' // Source:
 import nuxt_plugin_axios_c0880b2a from 'nuxt_plugin_axios_c0880b2a' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_sanitizehtml_2c7303e8 from 'nuxt_plugin_sanitizehtml_2c7303e8' // Source: ../src/plugins/libraries/sanitize-html.ts (mode: 'all')
 import nuxt_plugin_lodash_53c55d0e from 'nuxt_plugin_lodash_53c55d0e' // Source: ../src/plugins/libraries/lodash.ts (mode: 'all')
+import nuxt_plugin_moment_6a977a7a from 'nuxt_plugin_moment_6a977a7a' // Source: ../src/plugins/libraries/moment.ts (mode: 'all')
+import nuxt_plugin_axios_1ed6fea1 from 'nuxt_plugin_axios_1ed6fea1' // Source: ../src/plugins/libraries/axios.ts (mode: 'all')
 import nuxt_plugin_constantsinject_5b5d368a from 'nuxt_plugin_constantsinject_5b5d368a' // Source: ../src/plugins/constants-inject.ts (mode: 'all')
 import nuxt_plugin_envinject_0cf04cb0 from 'nuxt_plugin_envinject_0cf04cb0' // Source: ../src/plugins/env-inject.ts (mode: 'all')
-import nuxt_plugin_filter_92e7d988 from 'nuxt_plugin_filter_92e7d988' // Source: ../src/plugins/filter.ts (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -66,7 +67,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"nuxt-typescript-vuechart","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"nuxt-typescript-vuechart"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxt-typescript-vuechart"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxt-typescript-vuechart"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxt-typescript-vuechart"},{"hid":"og:description","name":"og:description","property":"og:description","content":"nuxt-typescript-vuechart"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"\u002Fplugins\u002Ffontawesome-free\u002Fcss\u002Fall.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fadminlte.min.css"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.8dc659b8.json"}],"script":[{"src":"\u002Fplugins\u002Fjquery\u002Fjquery.min.js","body":true},{"src":"\u002Fplugins\u002Fbootstrap\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"src":"\u002Fjs\u002Fadminlte.min.js","body":true},{"src":"\u002Fjs\u002Fcommon.js","body":true}],"style":[],"htmlAttrs":{"lang":"en"}},
+    head: {"titleTemplate":"%s | nuxtjs-typescript-boilerplate","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxtjs-typescript-boilerplate"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"stylesheet","href":"\u002Fplugins\u002Ffontawesome-free\u002Fcss\u002Fall.min.css"},{"rel":"stylesheet","href":"\u002Fcss\u002Fadminlte.min.css"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.9e113507.json"}],"script":[{"src":"\u002Fplugins\u002Fjquery\u002Fjquery.min.js","body":true},{"src":"\u002Fplugins\u002Fbootstrap\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"src":"\u002Fjs\u002Fadminlte.min.js","body":true},{"src":"\u002Fjs\u002Fcommon.js","body":true}],"style":[],"title":"nuxtjs-typescript-boilerplate","htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -201,16 +202,20 @@ async function createApp (ssrContext) {
     await nuxt_plugin_lodash_53c55d0e(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_moment_6a977a7a === 'function') {
+    await nuxt_plugin_moment_6a977a7a(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_axios_1ed6fea1 === 'function') {
+    await nuxt_plugin_axios_1ed6fea1(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_constantsinject_5b5d368a === 'function') {
     await nuxt_plugin_constantsinject_5b5d368a(app.context, inject)
   }
 
   if (typeof nuxt_plugin_envinject_0cf04cb0 === 'function') {
     await nuxt_plugin_envinject_0cf04cb0(app.context, inject)
-  }
-
-  if (typeof nuxt_plugin_filter_92e7d988 === 'function') {
-    await nuxt_plugin_filter_92e7d988(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

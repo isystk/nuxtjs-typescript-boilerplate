@@ -1,5 +1,7 @@
 import { Configuration } from "@nuxt/types";
 
+const pkg = require("./package");
+
 const BASE_URL = process.env.BASE_URL || "/";
 
 const nuxtConfig: Configuration = {
@@ -23,7 +25,7 @@ const nuxtConfig: Configuration = {
     host: "0.0.0.0" // デフォルト: localhost
   },
   head: {
-    title: "nuxt-typescript-vuechart",
+    titleTemplate: "%s | " + pkg.name,
     meta: [
       { hid: "charset", charset: "utf-8" },
       {
@@ -34,7 +36,7 @@ const nuxtConfig: Configuration = {
       {
         hid: "description",
         name: "description",
-        content: "nuxt-typescript-vuechart"
+        content: pkg.description
       },
       { hid: "noydir", name: "robots", content: "noydir" },
       { hid: "noodp", name: "robots", content: "noodp" },
@@ -75,9 +77,10 @@ const nuxtConfig: Configuration = {
   plugins: [
     "@/plugins/libraries/sanitize-html.ts",
     "@/plugins/libraries/lodash.ts",
+    "@/plugins/libraries/moment.ts",
+    "@/plugins/libraries/axios.ts",
     "@/plugins/constants-inject.ts",
-    "@/plugins/env-inject.ts",
-    "@plugins/filter.ts"
+    "@/plugins/env-inject.ts"
   ],
   /**
    * Build configuration

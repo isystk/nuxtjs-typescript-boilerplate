@@ -53,7 +53,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/chart"
+                  to="/chart/line/"
                   :class="[item == 'line' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
