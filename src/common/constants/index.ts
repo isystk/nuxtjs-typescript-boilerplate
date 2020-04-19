@@ -13,3 +13,6 @@ export * from "./prefecture";
 
 // * 性別
 export * from "./sex";
+
+// * プログラム言語
+export * from "./programLang";

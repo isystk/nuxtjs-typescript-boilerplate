@@ -1,8 +1,8 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '基本', url: '/form/basic/' }"
-      :breadcrumb-list="[{ title: 'フォーム', url: '/form/' }]"
+      :current="{ title: '基本フォーム', url: '/form/basic/' }"
+      :breadcrumb-list="[{ title: '入力フォーム', url: '/form/' }]"
     />
     <div class="content">
       <div class="container-fluid">
@@ -49,12 +49,15 @@
                       <label class="control-label">チェックボックス</label>
                       <CheckBox
                         :items="
-                          this.$_.map(this.$C.SEX_LABEL, (value, key) => ({
-                            value,
-                            code: key
-                          }))
+                          this.$_.map(
+                            this.$C.PROGRAM_LANG_LABEL,
+                            (value, key) => ({
+                              value,
+                              code: key
+                            })
+                          )
                         "
-                        :checked-code.sync="checkboxval"
+                        :selected-code.sync="checkboxval"
                       />
                     </div>
                     <div class="form-group">
@@ -66,8 +69,12 @@
                             code: key
                           }))
                         "
-                        :radio-code.sync="radioval"
+                        :selected-code.sync="radioval"
                       />
+                    </div>
+                    <div class="form-group">
+                      <label class="control-label">テキストエリア</label>
+                      <Textarea :inputvalue.sync="textareaval" :rows="3" />
                     </div>
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary btn-block">
@@ -105,13 +112,15 @@ import ContentHeader from "@/components/ContentHeader.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 import CheckBox from "@/components/parts/CheckBox.vue";
 import RadioBotton from "@/components/parts/RadioBotton.vue";
+import Textarea from "@/components/parts/Textarea.vue";
 
 @Component({
   components: {
     ContentHeader,
     SelectBox,
     CheckBox,
-    RadioBotton
+    RadioBotton,
+    Textarea
   },
   middleware: ["authenticated"]
 })
@@ -121,6 +130,7 @@ export default class extends Vue {
   public selectval = "";
   public checkboxval = [];
   public radioval = "";
+  public textareaval = "";
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更

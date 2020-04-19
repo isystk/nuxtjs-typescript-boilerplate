@@ -26,7 +26,7 @@ import { ICheckBox } from "@/interfaces/api/Form/ICheckBox";
 
 @Component
 export default class CheckBox extends Vue {
-  @PropSync("checkedCode")
+  @PropSync("selectedCode")
   codes!: string[];
 
   @Prop()

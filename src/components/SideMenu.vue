@@ -26,7 +26,7 @@
             <a href="#" :class="[group == 'form' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                フォーム
+                入力フォーム
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -37,7 +37,7 @@
                   :class="[item == 'basic' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>基本</p>
+                  <p>基本フォーム</p>
                 </nuxt-link>
               </li>
             </ul>

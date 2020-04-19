@@ -3,7 +3,7 @@
     <div
       v-for="(e, index) in items"
       :key="index"
-      class="custom-control custom-checkbox"
+      class="custom-control custom-radio"
     >
       <input
         :id="'radio' + e.code"
@@ -22,15 +22,15 @@
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
-import { ICheckBox } from "@/interfaces/api/Form/ICheckBox";
+import { IRadioBotton } from "@/interfaces/api/Form/IRadioBotton";
 
 @Component
 export default class RadioBotton extends Vue {
-  @PropSync("radioCode")
+  @PropSync("selectedCode")
   codes!: string[];
 
   @Prop()
-  items!: ICheckBox<string>[];
+  items!: IRadioBotton<string>[];
 
   @Prop()
   classObject: {};

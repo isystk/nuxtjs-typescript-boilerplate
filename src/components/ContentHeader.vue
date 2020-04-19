@@ -5,10 +5,7 @@
         <div class="col-sm-6">
           <h1>{{ current.title }}</h1>
         </div>
-        <Breadcrumb
-          :current="current.title"
-          :breadcrumb-list="breadcrumbList"
-        />
+        <Breadcrumb :current="current" :breadcrumb-list="breadcrumbList" />
       </div>
     </div>
   </div>
