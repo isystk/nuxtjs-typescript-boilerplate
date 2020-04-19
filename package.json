@@ -7,7 +7,7 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "cross-env BASE_URL=/nuxt-typescript-vuechart/ nuxt-ts generate --spa --no-lock",
+    "generate": "cross-env BASE_URL=/nuxt-typescript-vuechart/ nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lintfix": "eslint --fix --ext .js,.ts,.vue .",
     "precommit": "npm run lint",
