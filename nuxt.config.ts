@@ -1,6 +1,6 @@
 import { Configuration } from "@nuxt/types";
 
-const publicPath = "/nuxtjs-typescript-boilerplate";
+const BASE_URL = process.env.BASE_URL || "/";
 
 const nuxtConfig: Configuration = {
   mode: "universal",
@@ -13,7 +13,7 @@ const nuxtConfig: Configuration = {
   env: {},
 
   router: {
-    base: publicPath
+    base: BASE_URL
   },
 
   // https://ja.nuxtjs.org/faq/host-port/
@@ -46,21 +46,21 @@ const nuxtConfig: Configuration = {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: publicPath + "/favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: BASE_URL + "favicon.ico" },
       {
         rel: "stylesheet",
-        href: publicPath + "/plugins/fontawesome-free/css/all.min.css"
+        href: BASE_URL + "plugins/fontawesome-free/css/all.min.css"
       },
-      { rel: "stylesheet", href: publicPath + "/css/adminlte.min.css" }
+      { rel: "stylesheet", href: BASE_URL + "css/adminlte.min.css" }
     ],
     script: [
-      { src: publicPath + "/plugins/jquery/jquery.min.js", body: true },
+      { src: BASE_URL + "plugins/jquery/jquery.min.js", body: true },
       {
-        src: publicPath + "/plugins/bootstrap/js/bootstrap.bundle.min.js",
+        src: BASE_URL + "plugins/bootstrap/js/bootstrap.bundle.min.js",
         body: true
       },
-      { src: publicPath + "/js/adminlte.min.js", body: true },
-      { src: publicPath + "/js/common.js", body: true }
+      { src: BASE_URL + "js/adminlte.min.js", body: true },
+      { src: BASE_URL + "js/common.js", body: true }
     ]
   },
   // loading: { color: "#fff" },

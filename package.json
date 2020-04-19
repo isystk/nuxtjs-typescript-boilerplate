@@ -2,17 +2,25 @@
   "name": "nuxt-typescript-vuechart",
   "description": "nuxt-typescript-vuechart",
   "version": "1.0.0",
-  "author": "iseyoshitaka",
   "private": true,
   "scripts": {
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "nuxt-ts generate",
+    "generate": "cross-env BASE_URL=/nuxt-typescript-vuechart/ nuxt-ts generate --spa --no-lock",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lintfix": "eslint --fix --ext .js,.ts,.vue .",
     "precommit": "npm run lint",
     "test": "jest"
+  },
+  "author": {
+    "name": "isystk",
+    "email": "isystk@gmail.com",
+    "url": "https://profile.isystk.com/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com:isystk/nuxtjs-typescript-boilerplate.git"
   },
   "dependencies": {
     "@nuxt/typescript": "^2.8.1",

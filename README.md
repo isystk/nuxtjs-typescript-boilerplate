@@ -72,7 +72,7 @@ $ yarn run dev
 
 | 接続先| URL|
 | :-----| :---------------------------------------|
-| DEMO画面| http://localhost:8080/|
+| DEMO画面| http://localhost:3000/|
 
 ## Install
 
