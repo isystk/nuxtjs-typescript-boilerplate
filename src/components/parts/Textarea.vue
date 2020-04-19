@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-12">
       <textarea v-model="value" class="form-control" :rows="rows"></textarea>
-      <div class="col-3 ml-auto">
+      <div class="text-right">
         <span :class="{ 'text-danger': maxlength < inputLength }">{{
           inputLength
         }}</span>

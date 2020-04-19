@@ -46,7 +46,7 @@
             <a href="#" :class="[group == 'chart' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                VueChart
+                チャート
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
