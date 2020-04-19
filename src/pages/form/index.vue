@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: 'HOME', url: '/form/basic/' }"
+    :current="{ title: 'フォーム', url: '/form/' }"
     :breadcrumb-list="[]"
   />
 </template>

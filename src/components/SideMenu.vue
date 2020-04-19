@@ -90,7 +90,6 @@
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-    {{ $data }}
   </aside>
 </template>
 

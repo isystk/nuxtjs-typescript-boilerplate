@@ -65,6 +65,8 @@ const nuxtConfig: Configuration = {
   css: ["@/assets/sass/app.scss"],
   modules: ["@nuxtjs/axios", "@nuxtjs/pwa", ["@nuxtjs/moment", ["ja"]]],
   plugins: [
+    "@/plugins/libraries/sanitize-html.ts",
+    "@/plugins/libraries/lodash.ts",
     "@/plugins/constants-inject.ts",
     "@/plugins/env-inject.ts",
     "@plugins/filter.ts"

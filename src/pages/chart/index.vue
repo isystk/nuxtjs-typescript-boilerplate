@@ -1,6 +1,9 @@
 <template>
   <div>
-    <ContentHeader :current="{ title: '仮想通貨一覧', url: '/chart/' }" />
+    <ContentHeader
+      :current="{ title: '仮想通貨一覧', url: '/chart/' }"
+      :breadcrumb-list="[]"
+    />
     <!-- Main content -->
     <div class="content">
       <div class="container-fluid">
@@ -18,6 +21,10 @@
                   <SelectBox
                     :values="currencySelectList"
                     :selected-code.sync="selectedCurrency"
+                    :class-object="{
+                      isMenuRight: true,
+                      btnColor: 'btn-secondary'
+                    }"
                   />
                 </div>
               </div>

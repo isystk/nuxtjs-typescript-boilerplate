@@ -2,7 +2,8 @@
   <div class="dropdown">
     <button
       type="button"
-      class="btn btn-secondary dropdown-toggle"
+      class="btn dropdown-toggle"
+      :class="[dataClassObject.btnColor]"
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
@@ -10,7 +11,8 @@
       {{ value }}
     </button>
     <div
-      class="dropdown-menu dropdown-menu-right "
+      :class="{ 'dropdown-menu-right': dataClassObject.isMenuRight }"
+      class="dropdown-menu"
       style="max-height: 300px; overflow: scroll;"
     >
       <a
@@ -36,10 +38,21 @@ export default class SelectBox extends Vue {
   @PropSync("selectedCode", { type: String, default: "" })
   code!: string;
 
-  value = "-----";
-
   @Prop()
   values!: ISelectBox<string>[];
+
+  @Prop()
+  classObject: {};
+
+  value = "-----";
+
+  get dataClassObject(): any {
+    const defaultClassObject = {
+      isMenuRight: false,
+      btnColor: "btn-default"
+    };
+    return _.defaults(this.classObject, defaultClassObject);
+  }
 
   select(index: number): void {
     this.code = this.values[index].code;
@@ -49,7 +62,7 @@ export default class SelectBox extends Vue {
   // 親のコンポーネントでcodeが変更された場合に同期したい場合
   @Watch("code", { immediate: true })
   onChangeCode(code: string): void {
-    if (code === "") {
+    if (!code) {
       return;
     }
     this.value = _.filter(this.values, { code })[0].value;
