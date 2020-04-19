@@ -1,5 +1,15 @@
 <template>
-  <textarea v-model="value" class="form-control" :rows="rows"></textarea>
+  <div class="row">
+    <div class="col-12">
+      <textarea v-model="value" class="form-control" :rows="rows"></textarea>
+      <div class="col-3 ml-auto">
+        <span :class="{ 'text-danger': maxlength < inputLength }">{{
+          inputLength
+        }}</span>
+        /{{ maxlength }}
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -12,7 +22,10 @@ export default class Textarea extends Vue {
   value!: string;
 
   @Prop()
-  rows!: number;
+  rows?: number;
+
+  @Prop({ default: 500 })
+  maxlength?: number;
 
   @Prop()
   classObject: {};
@@ -22,6 +35,10 @@ export default class Textarea extends Vue {
       btnColor: ""
     };
     return _.defaults(this.classObject, defaultClassObject);
+  }
+
+  get inputLength(): number {
+    return this.value.length;
   }
 }
 </script>

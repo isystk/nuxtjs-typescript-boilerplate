@@ -74,7 +74,11 @@
                     </div>
                     <div class="form-group">
                       <label class="control-label">テキストエリア</label>
-                      <Textarea :inputvalue.sync="textareaval" :rows="3" />
+                      <Textarea
+                        :inputvalue.sync="textareaval"
+                        :rows="3"
+                        :maxlength="100"
+                      />
                     </div>
                     <div class="form-group text-center">
                       <button type="submit" class="btn btn-primary btn-block">
