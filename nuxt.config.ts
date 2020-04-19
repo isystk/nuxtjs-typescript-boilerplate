@@ -11,7 +11,7 @@ const nuxtConfig: Configuration = {
   env: {},
 
   router: {
-    base: "/"
+    base: "/nuxtjs-typescript-boilerplate/"
   },
 
   // https://ja.nuxtjs.org/faq/host-port/
