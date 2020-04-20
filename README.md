@@ -1,4 +1,4 @@
-# nuxtjs-typescript-boilerplate
+# 🌙 nuxtjs-typescript-boilerplate
 
 ![GitHub issues](https://img.shields.io/github/issues/isystk/nuxtjs-typescript-boilerplate)
 ![GitHub forks](https://img.shields.io/github/forks/isystk/nuxtjs-typescript-boilerplate)
@@ -13,7 +13,7 @@ Nuxtjs・Typescript を利用したボイラープレートです。
 3. 画像カルーセル
 4. オーバーレイ
 
-## Description
+## 📗 Description
 
 ### ディレクトリ構造
 ```
@@ -40,7 +40,7 @@ Nuxtjs・Typescript を利用したボイラープレートです。
 └── tsconfig.json
 ```
 
-## VS. 
+## 🖊️ VS. 
 
 ### 利用している技術
 - Nuxtjs 2.12.2
@@ -50,15 +50,15 @@ Nuxtjs・Typescript を利用したボイラープレートです。
 - VueChart
 - AdminLTE3
 
-## Demo
+## 🌐 Demo
 
 ![DEMO](./demo.jpg "DEMO")
 
-## Requirement
+## :art: Requirement
 
 推奨するNodeのバージョン v13.13.0
 
-## Usage
+## 💬 Usage
 
 ```bash
 $ cd /path/to/nuxtjs-typescript-boilerplate
@@ -75,7 +75,7 @@ $ yarn run dev
 | :-----| :---------------------------------------|
 | DEMO画面| http://localhost:3000/|
 
-## Install
+## 📦 Install
 
 ```bash
 $ cd /path/to/nuxtjs-typescript-boilerplate
@@ -87,7 +87,7 @@ $ node install -g yarn
 $ yarn
 ```
 
-## Contribution
+## 🔧 Contribution
 
 1. Fork it ( http://github.com/isystk/nuxtjs-typescript-boilerplate/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
@@ -95,17 +95,18 @@ $ yarn
 4. Push to the branch (git push origin my-new-feature)
 5. Create new Pull Request
 
-## 参考
+## 🔗 参考
 
 | プロジェクト| 概要|
 | :---------------------------------------| :-------------------------------|
 | [公式ドキュメント - Nuxt.js](https://ja.nuxtjs.org/guide/)| 公式ドキュメント - Nuxt.js|
+| [公式ドキュメント - TypeScript](https://www.typescriptlang.org/docs/home)| 公式ドキュメント - TypeScript|
 | [仕事ですぐに使えるTypeScript](https://future-architect.github.io/typescript-guide/)| 仕事ですぐに使えるTypeScript|
 
-## Licence
+## 🎫 Licence
 
 [MIT](https://github.com/isystk/nuxtjs-typescript-boilerplate/blob/master/LICENSE)
 
-## Author
+## 👀 Author
 
 [isystk](https://github.com/isystk)
