@@ -21,14 +21,14 @@ export default class Textarea extends Vue {
   @PropSync("inputvalue")
   value!: string;
 
-  @Prop()
-  rows?: number;
+  @Prop({ default: 3 })
+  rows!: number;
 
   @Prop({ default: 500 })
-  maxlength?: number;
+  maxlength!: number;
 
   @Prop()
-  classObject: {};
+  classObject?: any;
 
   get dataClassObject(): any {
     const defaultClassObject = {

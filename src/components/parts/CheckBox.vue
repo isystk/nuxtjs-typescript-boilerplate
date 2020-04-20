@@ -33,7 +33,7 @@ export default class CheckBox extends Vue {
   items!: ICheckBox<string>[];
 
   @Prop()
-  classObject: {};
+  classObject?: {};
 
   get dataClassObject(): any {
     const defaultClassObject = {

@@ -33,7 +33,7 @@ export default class RadioBotton extends Vue {
   items!: IRadioBotton<string>[];
 
   @Prop()
-  classObject: {};
+  classObject?: {};
 
   get dataClassObject(): any {
     const defaultClassObject = {

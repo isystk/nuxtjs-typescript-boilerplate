@@ -27,18 +27,15 @@ export default class ContentHeader extends Vue {
     };
   }
 
-  @Prop()
-  current: {
-    url: string;
-    title: string;
-  };
+  @Prop({
+    default: {
+      url: "",
+      title: ""
+    }
+  })
+  current!: any;
 
   @Prop()
-  breadcrumbList: [
-    {
-      url: string;
-      title: string;
-    }
-  ];
+  breadcrumbList?: any[];
 }
 </script>

@@ -27,18 +27,15 @@ import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 
 @Component
 export default class Breadcrumb extends Vue {
-  @Prop()
-  current: {
-    url: string;
-    title: string;
-  };
+  @Prop({
+    default: {
+      url: "",
+      title: ""
+    }
+  })
+  current: any;
 
   @Prop()
-  breadcrumbList: [
-    {
-      url: string;
-      title: string;
-    }
-  ];
+  breadcrumbList?: any[];
 }
 </script>

@@ -42,7 +42,7 @@ export default class SelectBox extends Vue {
   values!: ISelectBox<string>[];
 
   @Prop()
-  classObject: {};
+  classObject?: {};
 
   value = "-----";
 
