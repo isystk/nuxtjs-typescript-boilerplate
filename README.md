@@ -7,13 +7,13 @@
 
 ====
 
+## 📗 Description
+
 Nuxtjs・Typescript を利用したボイラープレートです。
 1. 入力フォーム
 2. チャート
 3. 画像カルーセル
 4. オーバーレイ
-
-## 📗 Description
 
 ### ディレクトリ構造
 ```
@@ -54,7 +54,7 @@ Nuxtjs・Typescript を利用したボイラープレートです。
 
 ![DEMO](./demo.jpg "DEMO")
 
-## :art: Requirement
+## 🎨 Requirement
 
 推奨するNodeのバージョン v13.13.0
 
