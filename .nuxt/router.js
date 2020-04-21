@@ -7,6 +7,7 @@ const _69789992 = () => interopDefault(import('../src/pages/chart/index.vue' /* 
 const _1131ed61 = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
 const _a2759130 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
 const _5c94c3bc = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
+const _11944d38 = () => interopDefault(import('../src/pages/chart/bar.vue' /* webpackChunkName: "pages/chart/bar" */))
 const _59f42bc2 = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
 const _47e6ea86 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
 const _2a517aa8 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
@@ -43,6 +44,10 @@ export const routerOptions = {
     path: "/auth/sign-off",
     component: _5c94c3bc,
     name: "auth-sign-off"
+  }, {
+    path: "/chart/bar",
+    component: _11944d38,
+    name: "chart-bar"
   }, {
     path: "/chart/line",
     component: _59f42bc2,

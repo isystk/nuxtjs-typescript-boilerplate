@@ -4,11 +4,14 @@
 
 import { AxiosError, AxiosRequestConfig } from "axios";
 import Vue from "vue";
-import { Plugin } from "@nuxt/types";
-import { setToken, unsetToken, getTokenFromCookie } from "@/utilities/";
-import { initializeAxios } from "@/utilities/api";
+import {
+  setToken,
+  unsetToken,
+  getTokenFromCookie,
+  initializeAxios
+} from "@/utilities/";
 
-export const accessor: Plugin = ({ $axios, app, req, error }): void => {
+const accessor = ({ $axios, app, req, error }): void => {
   /**
    * $axios.onRequest
    */
@@ -58,7 +61,7 @@ export const accessor: Plugin = ({ $axios, app, req, error }): void => {
     }
   });
 
-  initializeAxios($axios);
+  return initializeAxios($axios);
 };
 
 export default accessor;
