@@ -7,7 +7,7 @@
     "dev": "nuxt-ts",
     "build": "nuxt-ts build",
     "start": "nuxt-ts start",
-    "generate": "cross-env BASE_URL=/nuxtjs-typescript-boilerplate/ nuxt-ts generate",
+    "generate": "cross-env PUBLIC_PATH=/nuxtjs-typescript-boilerplate/ nuxt-ts generate",
     "lint": "eslint --ext .js,.ts,.vue .",
     "lintfix": "eslint --fix --ext .js,.ts,.vue .",
     "precommit": "npm run lint",

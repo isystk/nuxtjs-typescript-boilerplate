@@ -2,7 +2,7 @@ import { Configuration } from "@nuxt/types";
 
 const pkg = require("./package");
 
-const BASE_URL = process.env.BASE_URL || "/";
+const PUBLIC_PATH = process.env.PUBLIC_PATH || "/";
 
 const nuxtConfig: Configuration = {
   mode: "universal",
@@ -15,7 +15,7 @@ const nuxtConfig: Configuration = {
   env: {},
 
   router: {
-    base: BASE_URL
+    base: PUBLIC_PATH
   },
 
   // https://ja.nuxtjs.org/faq/host-port/
@@ -48,21 +48,21 @@ const nuxtConfig: Configuration = {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: BASE_URL + "favicon.ico" },
+      { rel: "icon", type: "image/x-icon", href: PUBLIC_PATH + "favicon.ico" },
       {
         rel: "stylesheet",
-        href: BASE_URL + "plugins/fontawesome-free/css/all.min.css"
+        href: PUBLIC_PATH + "plugins/fontawesome-free/css/all.min.css"
       },
-      { rel: "stylesheet", href: BASE_URL + "css/adminlte.min.css" }
+      { rel: "stylesheet", href: PUBLIC_PATH + "css/adminlte.min.css" }
     ],
     script: [
-      { src: BASE_URL + "plugins/jquery/jquery.min.js", body: true },
+      { src: PUBLIC_PATH + "plugins/jquery/jquery.min.js", body: true },
       {
-        src: BASE_URL + "plugins/bootstrap/js/bootstrap.bundle.min.js",
+        src: PUBLIC_PATH + "plugins/bootstrap/js/bootstrap.bundle.min.js",
         body: true
       },
-      { src: BASE_URL + "js/adminlte.min.js", body: true },
-      { src: BASE_URL + "js/common.js", body: true }
+      { src: PUBLIC_PATH + "js/adminlte.min.js", body: true },
+      { src: PUBLIC_PATH + "js/common.js", body: true }
     ]
   },
   // loading: { color: "#fff" },
@@ -86,6 +86,51 @@ const nuxtConfig: Configuration = {
    * Build configuration
    * webpack のビルドに関する設定はここに書く
    */
+  build: {
+    // vue-devtools を許可するかどうかを設定します
+    // https://ja.nuxtjs.org/api/configuration-build/#devtools
+    devtools: true,
+
+    /**
+     * You can extend webpack config here
+     */
+    extend(
+      config: WebpackConfiguration,
+      ctx: {
+        isDev: boolean;
+        isClient: boolean;
+        isServer: boolean;
+        loaders: any;
+      }
+    ): void {
+      // ホットリロード時にESLintを実行させる
+      if (ctx.isDev && process.client) {
+        if (config.module) {
+          config.module.rules.push({
+            enforce: "pre",
+            test: /\.(js|ts|vue)$/,
+            loader: "eslint-loader",
+            exclude: /(node_modules)/
+          });
+        }
+      }
+    },
+    // extractCSS: isProduction,
+
+    // ビルドを爆速にする
+    // https://qiita.com/toaru/items/0690a9110c94052bb479
+    hardSource: true,
+
+    terser: {
+      terserOptions: {
+        compress: {
+          // nuxt buildでproductionビルドするときにconsole.logを削除する
+          // https://www.lancard.com/blog/2019/04/05/delete_console-log_at_nuxt_build/
+          drop_console: process.env.envName === "production" // eslint-disable-line @typescript-eslint/camelcase
+        }
+      }
+    }
+  },
   buildcd: {},
   buildModules: ["@nuxt/typescript-build"],
   /**

@@ -75,8 +75,7 @@
   },
   // "files": [],                             /* tsconfig.jsonに 'files'または 'include'プロパティがない場合、コンパイラはデフォルトで 'exclude'で指定されたディレクトリとサブディレクトリ以外のすべてのファイルを含むようにします。が指定されている場合、それらのファイルと 'include'で指定されたファイルのみが含まれます。 */
   "exclude": [
-    "node_modules",
-    "stories"
+    "node_modules"
   ],                                          /* コンパイルから除外するファイルのリストを指定します。 'exclude'プロパティは 'include'プロパティに含まれるファイルのみに影響し、 'files'プロパティには影響しません。 */
   "include": [
     "src/**/*.ts",
