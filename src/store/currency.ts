@@ -64,7 +64,7 @@ class Currency extends VuexModule implements CurrencyState {
   @MutationAction({ mutate: ["supportedCurrencies"] })
   async fetchSupportedCurrencies(): Promise<any> {
     const { data } = await $axios.get<SupportedCurrencies[]>(
-      "/api/v1/bpi/supported-currencies.json",
+      "/coindesk/v1/bpi/supported-currencies.json",
       {}
     );
     return { supportedCurrencies: data };

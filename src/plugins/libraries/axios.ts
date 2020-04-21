@@ -61,7 +61,7 @@ const accessor = ({ $axios, app, req, error }): void => {
     }
   });
 
-  return initializeAxios($axios);
+  initializeAxios($axios);
 };
 
 export default accessor;

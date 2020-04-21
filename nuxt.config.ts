@@ -158,9 +158,9 @@ const nuxtConfig: NuxtConfiguration = {
     // See https://github.com/nuxt-community/axios-module#options
   },
   proxy: {
-    "/api/": {
+    "/coindesk/": {
       target: "http://api.coindesk.com",
-      pathRewrite: { "^/api/": "/" }
+      pathRewrite: { "^/coindesk/": "/" }
     }
   }
 };
