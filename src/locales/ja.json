@@ -1,0 +1,30 @@
+{
+  "text": {
+    "header": {
+      "title": "Nuxt-Typescript",
+      "logout": "ログアウト"
+    },
+    "sideMenu": {
+      "form": "入力フォーム",
+      "basic": "基本フォーム",
+      "chart": "チャート",
+      "line": "折れ線グラフ",
+      "ria": "リッチクライアント",
+      "carousel": "リッチクライアント",
+      "overlay": "オーバーレイ"
+    },
+    "login": {
+      "title": "ログイン",
+      "headMessage": "メールアドレスとパスワードを入力して下さい",
+      "logout": "ログアウト",
+      "username": "メールアドレス",
+      "password": "パスワード",
+      "login": "ログイン"
+    }
+  },
+  "error": {
+    "home": {
+      "errorMessage": "これはエラーメッセージです"
+    }
+  }
+}

@@ -3,7 +3,7 @@
     <div class="card">
       <article class="card-body">
         <p class="text-success text-center">
-          メールアドレスとパスワードを入力して下さい
+          {{ $t("text.login.headMessage") }}
         </p>
         <form @submit.prevent="login">
           <p v-if="error" class="text-danger">
@@ -11,7 +11,7 @@
           </p>
           <div class="box-body">
             <div class="form-group">
-              <span>メールアドレス</span>
+              <span>{{ $t("text.login.username") }}</span>
               <input
                 v-model="username"
                 class="form-control"
@@ -21,7 +21,7 @@
               />
             </div>
             <div class="form-group">
-              <span>パスワード</span>
+              <span>{{ $t("text.login.password") }}</span>
               <input
                 v-model="password"
                 class="form-control"
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group text-center">
               <button type="submit" class="btn btn-primary btn-block">
-                ログイン
+                {{ $t("text.login.login") }}
               </button>
             </div>
           </div>
@@ -54,7 +54,7 @@ import { ILoginPayload, IUser } from "@/interfaces/api/User/ILogin";
 export default class extends Vue {
   head(): any {
     return {
-      title: "ログイン"
+      title: this.$t("text.login.login")
     };
   }
 

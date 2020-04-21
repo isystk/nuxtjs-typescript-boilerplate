@@ -15,7 +15,14 @@ const nuxtConfig: Configuration = {
   env: {},
 
   router: {
-    base: PUBLIC_PATH
+    // リロードのタイミングでは SSR 側で実行される
+    // ルーティングの度に CSR 側で実行される
+    // ログインの必要のない画面でも middleware が実行されるので注意が必要
+    // middleware: 'check-auth',
+
+    base: PUBLIC_PATH,
+
+    middleware: "i18n"
   },
 
   // https://ja.nuxtjs.org/faq/host-port/
@@ -80,7 +87,8 @@ const nuxtConfig: Configuration = {
     "@/plugins/libraries/moment.ts",
     "@/plugins/libraries/axios.ts",
     "@/plugins/constants-inject.ts",
-    "@/plugins/env-inject.ts"
+    "@/plugins/env-inject.ts",
+    "@/plugins/locale/i18n.ts"
   ],
   /**
    * Build configuration

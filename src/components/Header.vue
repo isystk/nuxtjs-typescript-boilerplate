@@ -18,7 +18,7 @@
     <div v-if="isAuthenticated" class="ml-auto form-inline">
       <div>
         <nuxt-link to="/auth/sign-off">
-          ログアウト
+          {{ $t("text.header.logout") }}
         </nuxt-link>
       </div>
     </div>

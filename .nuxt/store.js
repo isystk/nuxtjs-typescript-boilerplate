@@ -21,6 +21,7 @@ let store = {};
 
   resolveStoreModules(require('../src/store/auth.ts'), 'auth.ts')
   resolveStoreModules(require('../src/store/currency.ts'), 'currency.ts')
+  resolveStoreModules(require('../src/store/i18n.ts'), 'i18n.ts')
   resolveStoreModules(require('../src/store/sideMenu.ts'), 'sideMenu.ts')
   resolveStoreModules(require('../src/store/store.ts'), 'store.ts')
 
@@ -31,6 +32,7 @@ let store = {};
     module.hot.accept([
       '../src/store/auth.ts',
       '../src/store/currency.ts',
+      '../src/store/i18n.ts',
       '../src/store/index.ts',
       '../src/store/sideMenu.ts',
       '../src/store/store.ts',

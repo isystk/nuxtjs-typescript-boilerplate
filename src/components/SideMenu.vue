@@ -9,7 +9,9 @@
         class="brand-image img-circle elevation-3"
         style="opacity: .8"
       />
-      <span class="brand-text font-weight-light">Nuxt-Typescript</span>
+      <span class="brand-text font-weight-light">{{
+        $t("text.header.title")
+      }}</span>
     </nuxt-link>
 
     <!-- Sidebar -->
@@ -26,7 +28,7 @@
             <a href="#" :class="[group == 'form' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                入力フォーム
+                {{ $t("text.sideMenu.form") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -37,7 +39,7 @@
                   :class="[item == 'basic' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>基本フォーム</p>
+                  <p>{{ $t("text.sideMenu.basic") }}</p>
                 </nuxt-link>
               </li>
             </ul>
@@ -46,7 +48,7 @@
             <a href="#" :class="[group == 'chart' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                チャート
+                {{ $t("text.sideMenu.chart") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -57,7 +59,7 @@
                   :class="[item == 'line' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
-                  <p>折れ線グラフ</p>
+                  <p>{{ $t("text.sideMenu.line") }}</p>
                 </nuxt-link>
               </li>
             </ul>
@@ -66,7 +68,7 @@
             <a href="#" class="nav-link">
               <i class="fa fa-cogs"></i>
               <p>
-                リッチクライアント
+                {{ $t("text.sideMenu.ria") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -74,13 +76,13 @@
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-envelope"></i>
-                  <p>画像スライダー</p>
+                  <p>{{ $t("text.sideMenu.carousel") }}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
                   <i class="fa fa-file"></i>
-                  <p>オーバーレイ</p>
+                  <p>{{ $t("text.sideMenu.overlay") }}</p>
                 </a>
               </li>
             </ul>
