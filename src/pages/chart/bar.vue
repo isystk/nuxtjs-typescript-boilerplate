@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '折れ線グラフ', url: '/chart/line/' }"
+      :current="{ title: '棒グラフ', url: '/chart/bar/' }"
       :breadcrumb-list="[{ title: 'チャート', url: '/chart/' }]"
     />
     <!-- Main content -->
@@ -17,21 +17,6 @@
                     $moment(toDate).format("MM月DD日")
                   }}
                 </h3>
-                <div class="float-sm-right">
-                  <SelectBox
-                    :values="
-                      this.$_.map(supportedCurrencies, (value, key) => ({
-                        value: value.currency,
-                        code: value.country
-                      }))
-                    "
-                    :selected-code.sync="selectedCurrency"
-                    :class-object="{
-                      isMenuRight: true,
-                      btnColor: 'btn-secondary'
-                    }"
-                  />
-                </div>
               </div>
               <div class="card-body">
                 <div class="chart">
@@ -57,7 +42,7 @@ import { Component, Watch, Mixins } from "vue-property-decorator";
 import Chart from "chart.js";
 import { Line } from "vue-chartjs";
 import { sideMenuModule } from "@/store/sideMenu";
-import { currencyModule, SupportedCurrencies } from "@/store/currency";
+import { currencyModule } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
 import LineChart from "@/components/parts/LineChart.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
@@ -71,8 +56,6 @@ import SelectBox from "@/components/parts/SelectBox.vue";
   middleware: ["authenticated"]
 })
 export default class extends Mixins(Line) {
-  selectedCurrency = "";
-
   fromDate = new Date();
   toDate = new Date();
   chartData: Chart.ChartData = {};
@@ -103,17 +86,10 @@ export default class extends Mixins(Line) {
     // 選択中のサイドメニューをアクティブに変更
     sideMenuModule.setCurrentMenu({
       group: "chart",
-      item: "line"
+      item: "bar"
     });
 
     this.createChartData();
-
-    // サポートしている通貨の一覧を設定します。
-    currencyModule.fetchSupportedCurrencies();
-  }
-
-  get supportedCurrencies(): SupportedCurrencies[] {
-    return currencyModule.supportedCurrencies;
   }
 
   createChartData(): void {
@@ -129,38 +105,21 @@ export default class extends Mixins(Line) {
       ],
       datasets: [
         {
-          type: "line",
-          label: "最高気温(度）",
-          data: [35, 34, 37, 35, 34, 35, 34, 25],
-          backgroundColor: "#6090EF",
-          borderColor: "#6090EF",
-          fill: false
-        },
-        {
           type: "bar",
           label: "最低気温(度）",
           data: [25, 27, 27, 25, 26, 27, 25, 21],
           backgroundColor: "#fd98b0",
           borderColor: "#fd98b0"
+        },
+        {
+          type: "bar",
+          label: "最低気温(度）",
+          data: [25, 27, 27, 25, 26, 27, 25, 21],
+          backgroundColor: "#aae0ff",
+          borderColor: "#aae0ff"
         }
       ]
     };
-  }
-
-  // 通貨の種類選択用リストボックスデータをStoreから取得する
-  async createSelectData(): Promise<any> {
-    const res = await currencyModule.searchHistorical({} as any);
-    console.log("res", res);
-    const selectList: any[] = [];
-    if (res) {
-      res.forEach(function(e) {
-        selectList.push({
-          code: e.currency,
-          value: e.currency
-        });
-      });
-    }
-    return selectList;
   }
 }
 </script>

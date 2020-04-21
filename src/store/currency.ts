@@ -6,9 +6,8 @@ import {
   getModule,
   Module
 } from "vuex-module-decorators";
+import { $axios } from "@/utilities/api";
 import store from "@/store/store"; // デコレータでstoreを指定するためimportする必要あり
-import supportedCurrenciesData from "@/static/data/supported-currencies.json";
-import historicalCloseData from "@/static/data/historical-close.json";
 
 export interface SupportedCurrencies {
   currency?: string;
@@ -46,8 +45,8 @@ export interface CurrencyState {
 @Module({ dynamic: true, store, name: "currency", namespaced: true })
 class Currency extends VuexModule implements CurrencyState {
   // state
-  public supportedCurrencies: SupportedCurrencies[] = [];
-  public selecedCurrency: SupportedCurrencies = {};
+  supportedCurrencies: SupportedCurrencies[] = [];
+  selecedCurrency: SupportedCurrencies = {};
 
   // mutation
   // 通貨セレクトボックス変更にstore内データを更新します。
@@ -61,20 +60,26 @@ class Currency extends VuexModule implements CurrencyState {
     }
   }
 
-  // サポートする通貨を返却します
+  // サポートしている通貨の一覧を設定します。
   @MutationAction({ mutate: ["supportedCurrencies"] })
-  public loadSupportedCurrencies(): any {
-    // const data = axiosUtil('supported-currencies.json');
-    const data = supportedCurrenciesData;
+  async fetchSupportedCurrencies(): Promise<any> {
+    const { data } = await $axios.get<SupportedCurrencies[]>(
+      "/api/v1/bpi/supported-currencies.json",
+      {}
+    );
     return { supportedCurrencies: data };
   }
 
   // 指定した通貨の履歴データを返却します
   @Action({})
-  public searchHistorical(params: any): any {
-    // const data = axiosUtil('supported-currencies.json');
-    const data = historicalCloseData;
-    return data.bpi;
+  async searchHistorical(params: any): Promise<SupportedCurrencies[]> {
+    console.log("call!searchHistorical");
+
+    const { data } = await $axios.get<SupportedCurrencies[]>(
+      "/api/v1/bpi/supported-currencies.json",
+      {}
+    );
+    return data;
   }
 }
 

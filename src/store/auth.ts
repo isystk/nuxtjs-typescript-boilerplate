@@ -7,6 +7,7 @@ import {
 } from "@/interfaces/api/User/ILoginCheck";
 import { ILogoutPayload, ILogout } from "@/interfaces/api/User/ILogout";
 import { cancelToken } from "@/utilities/";
+import { $axios } from "@/utilities/api";
 
 /**
  * store 用インターフェイス
@@ -124,7 +125,7 @@ export const actions = {
     commit("updateBusyStatus", ["login", true]);
 
     try {
-      const { data, headers } = await this.$axios.post<IUser>(
+      const { data, headers } = await $axios.post<IUser>(
         this.$C.API_ENDPOINT.LOGIN,
         {
           username: payload.username,
@@ -172,7 +173,7 @@ export const actions = {
     commit("updateBusyStatus", ["logout", true]);
 
     try {
-      const { data } = await this.$axios.post<ILogout>(
+      const { data } = await $axios.post<ILogout>(
         this.$C.API_ENDPOINT.LOGOUT,
         {},
         {
@@ -209,7 +210,7 @@ export const actions = {
     commit("updateBusyStatus", ["loginCheck", true]);
 
     try {
-      const { data, headers } = await this.$axios.post<ILoginCheck>(
+      const { data, headers } = await $axios.post<ILoginCheck>(
         this.$C.API_ENDPOINT.LOGIN_CHECK,
         {},
         {

@@ -1,10 +1,15 @@
-import { Configuration } from "@nuxt/types";
+import { Configuration as NuxtConfiguration } from "@nuxt/types";
+import {
+  Configuration as WebpackConfiguration,
+  Options as WebpackOptions,
+  Plugin as WebpackPlugin
+} from "webpack";
 
 const pkg = require("./package");
 
 const PUBLIC_PATH = process.env.PUBLIC_PATH || "/";
 
-const nuxtConfig: Configuration = {
+const nuxtConfig: NuxtConfiguration = {
   mode: "universal",
   srcDir: "src/",
 
@@ -80,7 +85,12 @@ const nuxtConfig: Configuration = {
    * 他の scss ファイルに依存しない scss はこちらに
    */
   css: ["@/assets/sass/app.scss"],
-  modules: ["@nuxtjs/axios", "@nuxtjs/pwa", ["@nuxtjs/moment", ["ja"]]],
+  modules: [
+    "@nuxtjs/axios",
+    "@nuxtjs/proxy",
+    "@nuxtjs/pwa",
+    ["@nuxtjs/moment", ["ja"]]
+  ],
   plugins: [
     "@/plugins/libraries/sanitize-html.ts",
     "@/plugins/libraries/lodash.ts",
@@ -146,6 +156,12 @@ const nuxtConfig: Configuration = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
+  },
+  proxy: {
+    "/api/": {
+      target: "http://api.coindesk.com",
+      pathRewrite: { "^/api/": "/" }
+    }
   }
 };
 
