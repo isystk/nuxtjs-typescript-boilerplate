@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '折れ線グラフ', url: '/chart/line/' }"
+      :current="{ title: '線グラフ', url: '/chart/line/' }"
       :breadcrumb-list="[{ title: 'チャート', url: '/chart/' }]"
     />
     <!-- Main content -->
@@ -22,10 +22,10 @@
                     :values="
                       this.$_.map(supportedCurrencies, (value, key) => ({
                         value: value.currency,
-                        code: value.country
+                        code: value.currency
                       }))
                     "
-                    :selected-code.sync="selectedCurrency"
+                    :selected-code.sync="selectedCurrencyCode"
                     :class-object="{
                       isMenuRight: true,
                       btnColor: 'btn-secondary'
@@ -35,10 +35,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <LineChart
-                    :chart-data="chartData"
-                    :chart-options="chartOptions"
-                  />
+                  <LineChart :chart-data="chartData" :options="chartOptions" />
                 </div>
               </div>
               <!-- /.card-body -->
@@ -53,11 +50,17 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Mixins } from "vue-property-decorator";
-import Chart from "chart.js";
-import { Line } from "vue-chartjs";
+import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+
+import moment from "moment";
+import _ from "lodash";
 import { sideMenuModule } from "@/store/sideMenu";
-import { currencyModule, SupportedCurrencies } from "@/store/currency";
+import {
+  currencyModule,
+  SupportedCurrencies,
+  SearchHistoricalCondition,
+  Historical
+} from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
 import LineChart from "@/components/parts/LineChart.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
@@ -70,34 +73,19 @@ import SelectBox from "@/components/parts/SelectBox.vue";
   },
   middleware: ["authenticated"]
 })
-export default class extends Mixins(Line) {
-  selectedCurrency = "";
+export default class extends Vue {
+  selectedCurrencyCode = "";
+  fromDate = new Date("2020-02-01");
+  toDate = new Date("2020-04-22");
+  currencyData: Historical = {};
 
-  fromDate = new Date();
-  toDate = new Date();
-  chartData: Chart.ChartData = {};
-  chartOptions: Chart.ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    title: {
-      display: true,
-      text: "気温（8月1日~8月7日）"
-    },
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            suggestedMax: 40,
-            suggestedMin: 0,
-            stepSize: 10,
-            callback(value): string {
-              return value + "度";
-            }
-          }
-        }
-      ]
+  @Watch("selectedCurrencyCode", { immediate: true })
+  onChangeSelectedCurrencyCode(val, old): void {
+    // console.log("change currentMenu new:%s old:%s", val, old);
+    if (val) {
+      this.createChartData(val);
     }
-  };
+  }
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更
@@ -106,61 +94,84 @@ export default class extends Mixins(Line) {
       item: "line"
     });
 
-    this.createChartData();
-
-    // サポートしている通貨の一覧を設定します。
+    // サポートしている通貨の一覧を生成します。
     currencyModule.fetchSupportedCurrencies();
   }
 
+  // サポートしている通貨の一覧を取得します。
   get supportedCurrencies(): SupportedCurrencies[] {
     return currencyModule.supportedCurrencies;
   }
 
-  createChartData(): void {
-    this.chartData = {
-      labels: [
-        "8月1日",
-        "8月2日",
-        "8月3日",
-        "8月4日",
-        "8月5日",
-        "8月6日",
-        "8月7日"
-      ],
+  get chartData(): Chart.ChartData | null {
+    if (_.isEmpty(this.currencyData)) {
+      return null;
+    }
+    const lalbels = _.map(this.currencyData.historicals, e => {
+      return moment(e.updated).format("MM月DD日");
+    });
+    const datas = _.map(this.currencyData.historicals, e => {
+      return Math.floor(e.rateFloat);
+    });
+
+    return {
+      labels: lalbels,
       datasets: [
         {
           type: "line",
-          label: "最高気温(度）",
-          data: [35, 34, 37, 35, 34, 35, 34, 25],
+          label: "rate",
+          data: datas,
           backgroundColor: "#6090EF",
           borderColor: "#6090EF",
           fill: false
-        },
-        {
-          type: "bar",
-          label: "最低気温(度）",
-          data: [25, 27, 27, 25, 26, 27, 25, 21],
-          backgroundColor: "#fd98b0",
-          borderColor: "#fd98b0"
         }
       ]
-    };
+    } as Chart.ChartData;
   }
 
-  // 通貨の種類選択用リストボックスデータをStoreから取得する
-  async createSelectData(): Promise<any> {
-    const res = await currencyModule.searchHistorical({} as any);
-    console.log("res", res);
-    const selectList: any[] = [];
-    if (res) {
-      res.forEach(function(e) {
-        selectList.push({
-          code: e.currency,
-          value: e.currency
-        });
-      });
+  get chartOptions(): Chart.ChartOptions {
+    if (_.isEmpty(this.currencyData)) {
+      return {
+        responsive: true,
+        maintainAspectRatio: false
+      } as Chart.ChartOptions;
     }
-    return selectList;
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text:
+          this.selectedCurrencyCode +
+          " " +
+          moment(this.fromDate).format("MM月DD日") +
+          "～" +
+          moment(this.toDate).format("MM月DD日")
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              suggestedMax: 40,
+              suggestedMin: 0,
+              stepSize: 10,
+              callback(value): string {
+                return "$" + value;
+              }
+            }
+          }
+        ]
+      }
+    } as Chart.ChartOptions;
+  }
+
+  // 引数で指定した通貨のチャートを描画します。
+  async createChartData(currency: string): Promise<any> {
+    this.currencyData = await currencyModule.searchHistorical({
+      currency,
+      start: this.fromDate,
+      end: this.toDate
+    } as SearchHistoricalCondition);
   }
 }
 </script>

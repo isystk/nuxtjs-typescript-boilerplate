@@ -17,7 +17,7 @@ const accessor = ({ $axios, app, req, error }): void => {
    */
   $axios.onRequest((config: AxiosRequestConfig): void => {
     const token = getTokenFromCookie(req);
-    console.log("$axios.onRequest", token);
+    // console.log("$axios.onRequest", token);
 
     // トークンがあればログイン済みなのでリクエストヘッダで送信する
     if (token) {
@@ -30,7 +30,7 @@ const accessor = ({ $axios, app, req, error }): void => {
    */
   $axios.onResponse((response): void => {
     const token = response.headers[app.$C.ACCESS_TOKEN_NAME];
-    console.log("$axios.onResponse", token);
+    // console.log("$axios.onResponse", token);
 
     // CSR のときだけトークンをセットする、 SSR のときは nuxtClientInit でセットしている
     if (process.client) {

@@ -6,8 +6,11 @@ import {
   getModule,
   Module
 } from "vuex-module-decorators";
+import _ from "lodash";
+import moment from "moment";
+import { AxiosRequestConfig } from "axios";
 import { $axios } from "@/utilities/api";
-import store from "@/store/store"; // デコレータでstoreを指定するためimportする必要あり
+import store from "@/store/store";
 
 export interface SupportedCurrencies {
   currency?: string;
@@ -34,6 +37,13 @@ export interface Historical {
 export interface Historicals {
   updated: Date;
   rateFloat: number;
+}
+
+// 検索条件
+export interface SearchHistoricalCondition {
+  currency: string;
+  start: Date;
+  end: Date;
 }
 
 // state's interface
@@ -71,15 +81,25 @@ class Currency extends VuexModule implements CurrencyState {
   }
 
   // 指定した通貨の履歴データを返却します
-  @Action({})
-  async searchHistorical(params: any): Promise<SupportedCurrencies[]> {
-    console.log("call!searchHistorical");
-
-    const { data } = await $axios.get<SupportedCurrencies[]>(
-      "/api/v1/bpi/supported-currencies.json",
-      {}
-    );
-    return data;
+  @Action
+  async searchHistorical(
+    params: SearchHistoricalCondition
+  ): Promise<Historical> {
+    const url = "/coindesk/v1/bpi/historical/" + params.currency + ".json";
+    const { data } = await $axios.get(url, {
+      start: moment(params.start).format("YYYY-MM-DD"),
+      end: moment(params.end).format("YYYY-MM-DD")
+    } as AxiosRequestConfig);
+    const historical: Historical = {
+      currency: this.selecedCurrency.currency,
+      start: params.start,
+      end: params.end,
+      historicals: _.map(data.bpi, (value, key) => ({
+        updated: new Date(key),
+        rateFloat: parseFloat(value)
+      }))
+    };
+    return historical;
   }
 }
 

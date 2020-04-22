@@ -61,23 +61,5 @@ export const actions = {
 
     // ログインチェック
     await dispatch("auth/loginCheck", {} as ILoginCheckPayload);
-  },
-  /**
-   * クライアント初期化時の処理
-   */
-  // @ts-ignore
-  nuxtClientInit({ commit, getters }: ActionContext<any, any>, { app }): void {
-    console.log("nuxtClientInit");
-    commit("setIsClientInitCalled");
-
-    // nuxtServerInit でログインチェックした state を元に token を cookie にセットし直す
-    const token = getters["auth/getToken"];
-    const loggedIn = getters["auth/isAuthenticated"];
-    console.log("token", getters["auth/getToken"], "loggedIn:", loggedIn);
-    if (token && loggedIn) {
-      setToken(token);
-    } else {
-      unsetToken();
-    }
   }
 };

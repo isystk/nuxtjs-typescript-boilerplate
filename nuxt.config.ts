@@ -157,6 +157,8 @@ const nuxtConfig: NuxtConfiguration = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+  // 外部ドメインのAPIを利用するためのCORS対応
+  // See https://blog.ikedaosushi.com/entry/2019/02/09/013404
   proxy: {
     "/coindesk/": {
       target: "http://api.coindesk.com",

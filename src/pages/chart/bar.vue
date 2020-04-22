@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <!-- LINE CHART -->
+            <!-- bar CHART -->
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
@@ -20,10 +20,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <LineChart
-                    :chart-data="chartData"
-                    :chart-options="chartOptions"
-                  />
+                  <LineChart :data="chartData" :options="chartOptions" />
                 </div>
               </div>
               <!-- /.card-body -->
@@ -40,9 +37,16 @@
 <script lang="ts">
 import { Component, Watch, Mixins } from "vue-property-decorator";
 import Chart from "chart.js";
-import { Line } from "vue-chartjs";
+import { Bar } from "vue-chartjs";
+import moment from "moment";
+import _ from "lodash";
 import { sideMenuModule } from "@/store/sideMenu";
-import { currencyModule } from "@/store/currency";
+import {
+  currencyModule,
+  SupportedCurrencies,
+  SearchHistoricalCondition,
+  Historical
+} from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
 import LineChart from "@/components/parts/LineChart.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
@@ -55,32 +59,19 @@ import SelectBox from "@/components/parts/SelectBox.vue";
   },
   middleware: ["authenticated"]
 })
-export default class extends Mixins(Line) {
-  fromDate = new Date();
-  toDate = new Date();
-  chartData: Chart.ChartData = {};
-  chartOptions: Chart.ChartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,
-    title: {
-      display: true,
-      text: "気温（8月1日~8月7日）"
-    },
-    scales: {
-      yAxes: [
-        {
-          ticks: {
-            suggestedMax: 40,
-            suggestedMin: 0,
-            stepSize: 10,
-            callback(value): string {
-              return value + "度";
-            }
-          }
-        }
-      ]
+export default class extends Mixins(Bar) {
+  selectedCurrencyCode = "";
+  fromDate = new Date("2020-02-01");
+  toDate = new Date("2020-04-22");
+  currencyData: Historical = {};
+
+  @Watch("selectedCurrencyCode", { immediate: true })
+  onChangeselectedCurrencyCode(val, old): void {
+    // console.log("change currentMenu new:%s old:%s", val, old);
+    if (val) {
+      this.createChartData(val);
     }
-  };
+  }
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更
@@ -89,37 +80,81 @@ export default class extends Mixins(Line) {
       item: "bar"
     });
 
-    this.createChartData();
+    // サポートしている通貨の一覧を生成します。
+    currencyModule.fetchSupportedCurrencies();
   }
 
-  createChartData(): void {
-    this.chartData = {
-      labels: [
-        "8月1日",
-        "8月2日",
-        "8月3日",
-        "8月4日",
-        "8月5日",
-        "8月6日",
-        "8月7日"
-      ],
+  // サポートしている通貨の一覧を取得します。
+  get supportedCurrencies(): SupportedCurrencies[] {
+    return currencyModule.supportedCurrencies;
+  }
+
+  get chartData(): Chart.ChartData {
+    if (_.isEmpty(this.currencyData)) {
+      return {};
+    }
+    const lalbels = _.map(this.currencyData.historicals, e => {
+      return moment(e.updated).format("MM月DD日");
+    });
+    const datas = _.map(this.currencyData.historicals, e => {
+      return Math.floor(e.rateFloat);
+    });
+
+    return {
+      labels: lalbels,
       datasets: [
         {
           type: "bar",
-          label: "最低気温(度）",
-          data: [25, 27, 27, 25, 26, 27, 25, 21],
-          backgroundColor: "#fd98b0",
-          borderColor: "#fd98b0"
-        },
-        {
-          type: "bar",
-          label: "最低気温(度）",
-          data: [25, 27, 27, 25, 26, 27, 25, 21],
-          backgroundColor: "#aae0ff",
-          borderColor: "#aae0ff"
+          label: "rate",
+          data: datas,
+          backgroundColor: "#6090EF",
+          borderColor: "#6090EF",
+          fill: false
         }
       ]
+    } as Chart.ChartData;
+  }
+
+  get chartOptions(): Chart.ChartOptions {
+    if (_.isEmpty(this.currencyData)) {
+      return {};
+    }
+    return {
+      responsive: true,
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text:
+          this.selectedCurrencyCode +
+          " " +
+          moment(this.fromDate).format("MM月DD日") +
+          "～" +
+          moment(this.toDate).format("MM月DD日")
+      },
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              suggestedMax: 40,
+              suggestedMin: 0,
+              stepSize: 10,
+              callback(value): string {
+                return "$" + value;
+              }
+            }
+          }
+        ]
+      }
     };
+  }
+
+  // 引数で指定した通貨のチャートを描画します。
+  async createChartData(currency: string): Promise<any> {
+    this.currencyData = await currencyModule.searchHistorical({
+      currency,
+      start: this.fromDate,
+      end: this.toDate
+    } as SearchHistoricalCondition);
   }
 }
 </script>

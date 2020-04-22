@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Component, Mixins, Prop } from "vue-property-decorator";
+import { Component, Mixins, Prop, Watch } from "vue-property-decorator";
 import Chart from "chart.js";
 import { Line, Bar, mixins } from "vue-chartjs";
 
@@ -9,11 +9,31 @@ export default class LineChartComponent extends Mixins(
   Bar,
   mixins.reactiveProp
 ) {
-  @Prop() chartData!: Chart.ChartData;
-  @Prop() chartOptions!: Chart.ChartOptions;
+  @Prop()
+  chartData;
+
+  @Prop()
+  options;
 
   mounted(): void {
-    this.renderChart(this.chartData, this.chartOptions);
+    if (this.chartData) {
+      this.renderChart(this.chartData, this.options);
+    }
   }
+
+  @Watch("chartData")
+  onChangeData(val, old): void {
+    if (this.chartData) {
+      console.log(this.chartData, this.options);
+      this.renderChart(this.chartData, this.options);
+    }
+  }
+
+  // @Watch("options")
+  // onChangeOptions(val, old): void {
+  // if (this.chartData) {
+  //   this.renderChart(this.chartData, this.options);
+  // }
+  // }
 }
 </script>

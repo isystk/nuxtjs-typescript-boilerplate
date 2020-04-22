@@ -63,7 +63,7 @@
                 </nuxt-link>
                 <nuxt-link
                   to="/chart/bar/"
-                  :class="[item == 'line' ? 'active' : '', 'nav-link']"
+                  :class="[item == 'bar' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.bar") }}</p>
