@@ -86,7 +86,7 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import ChartRadar from "@/components/parts/ChartRadar.vue";
+import ChartRadar from "@/components/chart/ChartRadar.vue";
 
 @Component({
   components: {

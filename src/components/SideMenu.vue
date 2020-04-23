@@ -15,7 +15,7 @@
         >
           <li class="nav-item has-treeview">
             <a href="#" :class="[group == 'auth' ? 'active' : '', 'nav-link']">
-              <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-lock-open"></i>
               <p>
                 {{ $t("text.sideMenu.auth") }}
                 <i class="fas fa-angle-left right"></i>
@@ -55,7 +55,7 @@
           </li>
           <li class="nav-item has-treeview">
             <a href="#" :class="[group == 'chart' ? 'active' : '', 'nav-link']">
-              <i class="nav-icon fas fa-table"></i>
+              <i class="nav-icon fas fa-chart-line"></i>
               <p>
                 {{ $t("text.sideMenu.chart") }}
                 <i class="fas fa-angle-left right"></i>

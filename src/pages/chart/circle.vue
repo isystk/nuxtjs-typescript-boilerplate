@@ -103,8 +103,8 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import ChartPie from "@/components/parts/ChartPie.vue";
-import ChartDoughnut from "@/components/parts/ChartDoughnut.vue";
+import ChartPie from "@/components/chart/ChartPie.vue";
+import ChartDoughnut from "@/components/chart/ChartDoughnut.vue";
 
 @Component({
   components: {

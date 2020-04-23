@@ -73,6 +73,15 @@
                       />
                     </div>
                     <div class="form-group">
+                      <label class="control-label">日付</label>
+                      <input
+                        v-model="dateval"
+                        class="form-control"
+                        type="date"
+                        maxlength="10"
+                      />
+                    </div>
+                    <div class="form-group">
                       <label class="control-label">テキストエリア</label>
                       <Textarea
                         :inputvalue.sync="textareaval"
@@ -113,10 +122,10 @@
 import { Component, Vue } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/ContentHeader.vue";
-import SelectBox from "@/components/parts/SelectBox.vue";
-import CheckBox from "@/components/parts/CheckBox.vue";
-import RadioBotton from "@/components/parts/RadioBotton.vue";
-import Textarea from "@/components/parts/Textarea.vue";
+import SelectBox from "@/components/form/SelectBox.vue";
+import CheckBox from "@/components/form/CheckBox.vue";
+import RadioBotton from "@/components/form/RadioBotton.vue";
+import Textarea from "@/components/form/Textarea.vue";
 
 @Component({
   components: {
@@ -134,6 +143,8 @@ export default class extends Vue {
   public checkboxval = [];
   public radioval = "";
   public textareaval = "";
+  public dateval = "";
+  public numberval = "";
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更

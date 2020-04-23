@@ -65,8 +65,8 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import ChartLineBar from "@/components/parts/ChartLineBar.vue";
-import SelectBox from "@/components/parts/SelectBox.vue";
+import ChartLineBar from "@/components/chart/ChartLineBar.vue";
+import SelectBox from "@/components/form/SelectBox.vue";
 
 @Component({
   components: {
