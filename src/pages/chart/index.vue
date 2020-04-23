@@ -13,8 +13,7 @@ import ContentHeader from "@/components/ContentHeader.vue";
 @Component({
   components: {
     ContentHeader
-  },
-  middleware: ["authenticated"]
+  }
 })
 export default class extends Vue {
   public mounted(): void {

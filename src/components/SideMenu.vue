@@ -2,18 +2,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-purple elevation-4">
     <!-- Brand Logo -->
-    <nuxt-link to="/" class="brand-link">
-      <img
-        src="~/assets/img/github-icon.svg"
-        alt="github Logo"
-        class="brand-image img-circle elevation-3"
-        style="opacity: .8"
-      />
-      <span class="brand-text font-weight-light">{{
-        $t("text.header.title")
-      }}</span>
-    </nuxt-link>
-
+    <Logo />
     <!-- Sidebar -->
     <div class="sidebar">
       <!-- Sidebar Menu -->
@@ -24,6 +13,26 @@
           role="menu"
           data-accordion="false"
         >
+          <li class="nav-item has-treeview">
+            <a href="#" :class="[group == 'auth' ? 'active' : '', 'nav-link']">
+              <i class="nav-icon fas fa-table"></i>
+              <p>
+                {{ $t("text.sideMenu.auth") }}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <nuxt-link
+                  to="/auth/sign-in/"
+                  :class="[item == 'login' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $t("text.sideMenu.login") }}</p>
+                </nuxt-link>
+              </li>
+            </ul>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" :class="[group == 'form' ? 'active' : '', 'nav-link']">
               <i class="nav-icon fas fa-table"></i>
@@ -105,8 +114,13 @@
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
+import Logo from "@/components/Logo.vue";
 
-@Component
+@Component({
+  components: {
+    Logo
+  }
+})
 export default class SideMenu extends Vue {
   group = "";
   item = "";

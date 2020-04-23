@@ -5,6 +5,8 @@
       "logout": "ログアウト"
     },
     "sideMenu": {
+      "auth": "認証",
+      "login": "ログイン",
       "form": "入力フォーム",
       "basic": "基本フォーム",
       "chart": "チャート",

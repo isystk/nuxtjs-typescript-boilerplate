@@ -4,7 +4,7 @@ import Chart from "chart.js";
 import { Line, Bar, mixins } from "vue-chartjs";
 
 @Component({})
-export default class LineChartComponent extends Mixins(
+export default class ChartViewComponent extends Mixins(
   Line,
   Bar,
   mixins.reactiveProp
@@ -24,7 +24,6 @@ export default class LineChartComponent extends Mixins(
   @Watch("chartData")
   onChangeData(val, old): void {
     if (this.chartData) {
-      console.log(this.chartData, this.options);
       this.renderChart(this.chartData, this.options);
     }
   }

@@ -125,8 +125,7 @@ import Textarea from "@/components/parts/Textarea.vue";
     CheckBox,
     RadioBotton,
     Textarea
-  },
-  middleware: ["authenticated"]
+  }
 })
 export default class extends Vue {
   public error = "";

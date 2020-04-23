@@ -1,9 +1,6 @@
 <template>
-  <nav
-    class="main-header navbar navbar-expand navbar-white navbar-light"
-    :class="[isAuthenticated ? '' : 'ml-0']"
-  >
-    <ul v-if="isAuthenticated" class="navbar-nav">
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
       <li class="nav-item">
         <a
           href="#"
@@ -33,7 +30,7 @@ export default class Header extends Vue {
   head(): any {
     return {
       bodyAttrs: {
-        class: this.openSideMenu ? "sidebar-collapse" : ""
+        class: this.openSideMenu ? "sidebar-mini sidebar-collapse" : ""
       }
     };
   }

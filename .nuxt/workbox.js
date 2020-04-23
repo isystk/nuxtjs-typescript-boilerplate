@@ -5,8 +5,8 @@ async function register() {
 
   const { Workbox } = await import('workbox-cdn/workbox/workbox-window.prod.es5.mjs')
 
-  const workbox = new Workbox('/sw.js', {
-    scope: '/'
+  const workbox = new Workbox('/nuxtjs-typescript-boilerplate/sw.js', {
+    scope: '/nuxtjs-typescript-boilerplate/'
   })
 
   await workbox.register()

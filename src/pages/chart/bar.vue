@@ -1,7 +1,7 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '棒グラフ', url: '/chart/bar/' }"
+      :current="{ title: '線グラフ', url: '/chart/line/' }"
       :breadcrumb-list="[{ title: 'チャート', url: '/chart/' }]"
     />
     <!-- Main content -->
@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-12">
-            <!-- bar CHART -->
+            <!-- LINE CHART -->
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
@@ -17,10 +17,25 @@
                     $moment(toDate).format("MM月DD日")
                   }}
                 </h3>
+                <div class="float-sm-right">
+                  <SelectBox
+                    :values="
+                      this.$_.map(supportedCurrencies, (value, key) => ({
+                        value: value.currency,
+                        code: value.currency
+                      }))
+                    "
+                    :selected-code.sync="selectedCurrencyCode"
+                    :class-object="{
+                      isMenuRight: true,
+                      btnColor: 'btn-secondary'
+                    }"
+                  />
+                </div>
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <LineChart :data="chartData" :options="chartOptions" />
+                  <ChartView :chart-data="chartData" :options="chartOptions" />
                 </div>
               </div>
               <!-- /.card-body -->
@@ -35,9 +50,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Watch, Mixins } from "vue-property-decorator";
-import Chart from "chart.js";
-import { Bar } from "vue-chartjs";
+import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+
 import moment from "moment";
 import _ from "lodash";
 import { sideMenuModule } from "@/store/sideMenu";
@@ -48,25 +62,24 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import LineChart from "@/components/parts/LineChart.vue";
+import ChartView from "@/components/parts/ChartView.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 
 @Component({
   components: {
     ContentHeader,
-    LineChart,
+    ChartView,
     SelectBox
-  },
-  middleware: ["authenticated"]
+  }
 })
-export default class extends Mixins(Bar) {
+export default class extends Vue {
   selectedCurrencyCode = "";
   fromDate = new Date("2020-02-01");
   toDate = new Date("2020-04-22");
   currencyData: Historical = {};
 
   @Watch("selectedCurrencyCode", { immediate: true })
-  onChangeselectedCurrencyCode(val, old): void {
+  onChangeSelectedCurrencyCode(val, old): void {
     // console.log("change currentMenu new:%s old:%s", val, old);
     if (val) {
       this.createChartData(val);
@@ -89,9 +102,9 @@ export default class extends Mixins(Bar) {
     return currencyModule.supportedCurrencies;
   }
 
-  get chartData(): Chart.ChartData {
+  get chartData(): Chart.ChartData | null {
     if (_.isEmpty(this.currencyData)) {
-      return {};
+      return null;
     }
     const lalbels = _.map(this.currencyData.historicals, e => {
       return moment(e.updated).format("MM月DD日");
@@ -117,7 +130,10 @@ export default class extends Mixins(Bar) {
 
   get chartOptions(): Chart.ChartOptions {
     if (_.isEmpty(this.currencyData)) {
-      return {};
+      return {
+        responsive: true,
+        maintainAspectRatio: false
+      } as Chart.ChartOptions;
     }
     return {
       responsive: true,
@@ -145,7 +161,7 @@ export default class extends Mixins(Bar) {
           }
         ]
       }
-    };
+    } as Chart.ChartOptions;
   }
 
   // 引数で指定した通貨のチャートを描画します。

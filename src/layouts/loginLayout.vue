@@ -1,6 +1,6 @@
 <template>
   <div class="wrapper">
-    <Header />
+    <Header v-show="false" />
     <SideMenu v-show="false" />
     <div>
       <nuxt />

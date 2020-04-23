@@ -35,7 +35,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <LineChart :chart-data="chartData" :options="chartOptions" />
+                  <ChartView :chart-data="chartData" :options="chartOptions" />
                 </div>
               </div>
               <!-- /.card-body -->
@@ -62,16 +62,15 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import LineChart from "@/components/parts/LineChart.vue";
+import ChartView from "@/components/parts/ChartView.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 
 @Component({
   components: {
     ContentHeader,
-    LineChart,
+    ChartView,
     SelectBox
-  },
-  middleware: ["authenticated"]
+  }
 })
 export default class extends Vue {
   selectedCurrencyCode = "";
