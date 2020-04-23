@@ -1,11 +1,7 @@
 <template>
-  <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-purple elevation-4">
-    <!-- Brand Logo -->
     <Logo />
-    <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul
           class="nav nav-pills nav-sidebar flex-column"
@@ -50,6 +46,29 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.basic") }}</p>
                 </nuxt-link>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-cubes"></i>
+              <p>
+                {{ $t("text.sideMenu.ria") }}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-envelope"></i>
+                  <p>{{ $t("text.sideMenu.carousel") }}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fa fa-file"></i>
+                  <p>{{ $t("text.sideMenu.overlay") }}</p>
+                </a>
               </li>
             </ul>
           </li>
@@ -101,33 +120,37 @@
             </ul>
           </li>
           <li class="nav-item has-treeview">
-            <a href="#" class="nav-link">
-              <i class="fa fa-cogs"></i>
+            <a href="#" :class="[group == 'api' ? 'active' : '', 'nav-link']">
+              <i class="nav-icon fas fa-network-wired"></i>
               <p>
-                {{ $t("text.sideMenu.ria") }}
+                {{ $t("text.sideMenu.api") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-envelope"></i>
-                  <p>{{ $t("text.sideMenu.carousel") }}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-file"></i>
-                  <p>{{ $t("text.sideMenu.overlay") }}</p>
-                </a>
+                <nuxt-link
+                  to="/api/coindesk/"
+                  :class="[item == 'coindesk' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $t("text.sideMenu.coindesk") }}</p>
+                </nuxt-link>
               </li>
             </ul>
           </li>
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="fa fa-cogs"></i>
+              <p>
+                {{ $t("text.sideMenu.settings") }}
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
-      <!-- /.sidebar-menu -->
     </div>
-    <!-- /.sidebar -->
   </aside>
 </template>
 

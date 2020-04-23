@@ -118,7 +118,7 @@ export default class extends Vue {
     // 選択中のサイドメニューをアクティブに変更
     sideMenuModule.setCurrentMenu({
       group: "chart",
-      item: "pie"
+      item: "circle"
     });
   }
 

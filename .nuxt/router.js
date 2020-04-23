@@ -3,8 +3,10 @@ import Router from 'vue-router'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
+const _6713dc1a = () => interopDefault(import('../src/pages/api/index.vue' /* webpackChunkName: "pages/api/index" */))
 const _69789992 = () => interopDefault(import('../src/pages/chart/index.vue' /* webpackChunkName: "pages/chart/index" */))
 const _1131ed61 = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
+const _06bd7bce = () => interopDefault(import('../src/pages/api/coindesk.vue' /* webpackChunkName: "pages/api/coindesk" */))
 const _a2759130 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
 const _5c94c3bc = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
 const _11944d38 = () => interopDefault(import('../src/pages/chart/bar.vue' /* webpackChunkName: "pages/chart/bar" */))
@@ -31,6 +33,10 @@ export const routerOptions = {
   scrollBehavior,
 
   routes: [{
+    path: "/api",
+    component: _6713dc1a,
+    name: "api"
+  }, {
     path: "/chart",
     component: _69789992,
     name: "chart"
@@ -38,6 +44,10 @@ export const routerOptions = {
     path: "/form",
     component: _1131ed61,
     name: "form"
+  }, {
+    path: "/api/coindesk",
+    component: _06bd7bce,
+    name: "api-coindesk"
   }, {
     path: "/auth/sign-in",
     component: _a2759130,

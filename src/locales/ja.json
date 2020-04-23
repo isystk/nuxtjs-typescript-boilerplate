@@ -15,9 +15,12 @@
       "bar": "棒グラフ",
       "radar": "レーダー",
       "circle": "円グラフ",
-      "ria": "リッチクライアント",
-      "carousel": "リッチクライアント",
-      "overlay": "オーバーレイ"
+      "api": "API",
+      "coindesk": "仮想通貨",
+      "ria": "RIA",
+      "carousel": "カルーセル",
+      "overlay": "オーバーレイ",
+      "settings": "設定"
     },
     "login": {
       "title": "ログイン",
