@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: $t('text.sideMenu.api'), url: '/api/' }"
+    :current="{ title: $t('text.sideMenu.api'), url: this.$C.URL.API }"
     :breadcrumb-list="[]"
   />
 </template>
@@ -17,7 +17,7 @@ import ContentHeader from "@/components/ContentHeader.vue";
 })
 export default class extends Vue {
   public mounted(): void {
-    this.$router.replace("/api/coindesk/");
+    this.$router.replace(this.$C.URL.API_COINDESK);
   }
 }
 </script>

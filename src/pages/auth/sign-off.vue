@@ -26,7 +26,7 @@ export default class SignOff extends Vue {
   public async mounted(): Promise<any> {
     await this.$store.dispatch("auth/logout", {} as ILogoutPayload);
 
-    this.$router.replace("/");
+    this.$router.replace(this.$C.URL.HOME);
   }
 }
 </script>

@@ -69,7 +69,7 @@ export default class extends Vue {
         password: this.password
       } as ILoginPayload);
 
-      this.$router.push("/");
+      this.$router.push(this.$C.URL.HOME);
     } catch (e) {
       this.error = e.message;
     }

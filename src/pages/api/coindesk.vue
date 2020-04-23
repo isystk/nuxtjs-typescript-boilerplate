@@ -1,8 +1,13 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: $t('text.sideMenu.coindesk'), url: '/api/coindesk/' }"
-      :breadcrumb-list="[{ title: $t('text.sideMenu.api'), url: '/api/' }]"
+      :current="{
+        title: $t('text.sideMenu.coindesk'),
+        url: this.$C.URL.API_COINDESK
+      }"
+      :breadcrumb-list="[
+        { title: $t('text.sideMenu.api'), url: this.$C.URL.API }
+      ]"
     />
     <!-- Main content -->
     <div class="content">

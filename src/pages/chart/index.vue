@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: $t('text.sideMenu.chart'), url: '/chart/' }"
+    :current="{ title: $t('text.sideMenu.chart'), url: this.$C.URL.CHART }"
     :breadcrumb-list="[]"
   />
 </template>
@@ -17,7 +17,7 @@ import ContentHeader from "@/components/ContentHeader.vue";
 })
 export default class extends Vue {
   public mounted(): void {
-    this.$router.replace("/chart/line/");
+    this.$router.replace(this.$C.URL.CHART_LINE);
   }
 }
 </script>

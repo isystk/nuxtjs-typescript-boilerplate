@@ -1,5 +1,5 @@
 import { mount, shallowMount } from "@vue/test-utils";
-import SelectBox from "@/components/parts/SelectBox.vue";
+import SelectBox from "@/components/form/SelectBox.vue";
 import { ISelectBox } from "@/interfaces/api/Form/ISelectBox";
 
 const values: ISelectBox<string>[] = [

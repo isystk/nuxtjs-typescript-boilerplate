@@ -1,6 +1,5 @@
 <template>
-  <!-- Brand Logo -->
-  <nuxt-link to="/" class="brand-link">
+  <nuxt-link :to="this.$C.URL.HOME" class="brand-link">
     <img
       src="~/assets/img/github-icon.svg"
       alt="github Logo"

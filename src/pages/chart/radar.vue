@@ -1,8 +1,13 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: $t('text.sideMenu.radar'), url: '/chart/radar/' }"
-      :breadcrumb-list="[{ title: $t('text.sideMenu.chart'), url: '/chart/' }]"
+      :current="{
+        title: $t('text.sideMenu.radar'),
+        url: this.$C.URL.CHART_RADAR
+      }"
+      :breadcrumb-list="[
+        { title: $t('text.sideMenu.chart'), url: this.$C.URL.CHART }
+      ]"
     />
     <div class="content">
       <div class="container-fluid">

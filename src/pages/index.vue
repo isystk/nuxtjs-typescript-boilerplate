@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: $t('text.sideMenu.home'), url: '/form/basic/' }"
+    :current="{ title: $t('text.sideMenu.home'), url: this.$C.URL.HOME }"
     :breadcrumb-list="[]"
   />
 </template>
@@ -17,7 +17,7 @@ import ContentHeader from "@/components/ContentHeader.vue";
 })
 export default class extends Vue {
   public mounted(): void {
-    this.$router.replace("/form/basic/");
+    this.$router.replace(this.$C.URL.FORM_BASIC);
   }
 }
 </script>

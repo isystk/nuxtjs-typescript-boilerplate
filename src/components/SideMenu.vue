@@ -20,7 +20,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/auth/sign-in/"
+                  :to="this.$C.URL.AUTH_LOGIN"
                   :class="[item == 'login' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -40,7 +40,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/form/basic/"
+                  :to="this.$C.URL.FORM_BASIC"
                   :class="[item == 'basic' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -83,7 +83,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/chart/line/"
+                  :to="this.$C.URL.CHART_LINE"
                   :class="[item == 'line' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -92,7 +92,7 @@
               </li>
               <li class="nav-item">
                 <nuxt-link
-                  to="/chart/bar/"
+                  :to="this.$C.URL.CHART_BAR"
                   :class="[item == 'bar' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -101,7 +101,7 @@
               </li>
               <li class="nav-item">
                 <nuxt-link
-                  to="/chart/radar/"
+                  :to="this.$C.URL.CHART_RADAR"
                   :class="[item == 'radar' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -110,7 +110,7 @@
               </li>
               <li class="nav-item">
                 <nuxt-link
-                  to="/chart/circle/"
+                  :to="this.$C.URL.CHART_CIRCLE"
                   :class="[item == 'circle' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -130,7 +130,7 @@
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  to="/api/coindesk/"
+                  :to="this.$C.URL.API_COINDESK"
                   :class="[item == 'coindesk' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>

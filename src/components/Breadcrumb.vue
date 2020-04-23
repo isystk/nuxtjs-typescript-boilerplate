@@ -2,8 +2,8 @@
   <div class="col-sm-6">
     <ol class="breadcrumb float-sm-right">
       <li class="breadcrumb-item">
-        <nuxt-link to="/">
-          Home
+        <nuxt-link :to="this.$C.URL.HOME">
+          {{ $t("text.sideMenu.home") }}
         </nuxt-link>
       </li>
       <li

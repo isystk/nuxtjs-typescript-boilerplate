@@ -1,5 +1,4 @@
 <template>
-  <!-- Main Footer -->
   <footer
     class="main-footer text-center"
     :class="[isAuthenticated ? '' : 'ml-0']"
