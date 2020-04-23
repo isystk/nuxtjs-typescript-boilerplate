@@ -1,8 +1,8 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '線グラフ', url: '/chart/line/' }"
-      :breadcrumb-list="[{ title: 'チャート', url: '/chart/' }]"
+      :current="{ title: $t('text.sideMenu.line'), url: '/chart/line/' }"
+      :breadcrumb-list="[{ title: $t('text.sideMenu.chart'), url: '/chart/' }]"
     />
     <!-- Main content -->
     <div class="content">
@@ -35,7 +35,10 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartView :chart-data="chartData" :options="chartOptions" />
+                  <ChartLineBar
+                    :chart-data="chartData"
+                    :options="chartOptions"
+                  />
                 </div>
               </div>
               <!-- /.card-body -->
@@ -62,13 +65,13 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
-import ChartView from "@/components/parts/ChartView.vue";
+import ChartLineBar from "@/components/parts/ChartLineBar.vue";
 import SelectBox from "@/components/parts/SelectBox.vue";
 
 @Component({
   components: {
     ContentHeader,
-    ChartView,
+    ChartLineBar,
     SelectBox
   }
 })

@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: 'チャート', url: '/chart/' }"
+    :current="{ title: $t('text.sideMenu.chart'), url: '/chart/' }"
     :breadcrumb-list="[]"
   />
 </template>

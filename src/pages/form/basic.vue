@@ -1,8 +1,8 @@
 <template>
   <div>
     <ContentHeader
-      :current="{ title: '基本フォーム', url: '/form/basic/' }"
-      :breadcrumb-list="[{ title: '入力フォーム', url: '/form/' }]"
+      :current="{ title: $t('text.sideMenu.basic'), url: '/form/basic/' }"
+      :breadcrumb-list="[{ title: $t('text.sideMenu.form'), url: '/form/' }]"
     />
     <div class="content">
       <div class="container-fluid">

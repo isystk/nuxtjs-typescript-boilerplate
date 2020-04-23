@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: 'フォーム', url: '/form/' }"
+    :current="{ title: $t('text.sideMenu.form'), url: '/form/' }"
     :breadcrumb-list="[]"
   />
 </template>

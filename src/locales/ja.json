@@ -5,13 +5,16 @@
       "logout": "ログアウト"
     },
     "sideMenu": {
+      "home": "HOME",
       "auth": "認証",
       "login": "ログイン",
       "form": "入力フォーム",
       "basic": "基本フォーム",
       "chart": "チャート",
-      "line": "線グラフ",
+      "line": "折れ線",
       "bar": "棒グラフ",
+      "radar": "レーダー",
+      "circle": "円グラフ",
       "ria": "リッチクライアント",
       "carousel": "リッチクライアント",
       "overlay": "オーバーレイ"

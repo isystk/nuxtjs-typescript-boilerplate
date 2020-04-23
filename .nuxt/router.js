@@ -8,7 +8,9 @@ const _1131ed61 = () => interopDefault(import('../src/pages/form/index.vue' /* w
 const _a2759130 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
 const _5c94c3bc = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
 const _11944d38 = () => interopDefault(import('../src/pages/chart/bar.vue' /* webpackChunkName: "pages/chart/bar" */))
+const _3114103b = () => interopDefault(import('../src/pages/chart/circle.vue' /* webpackChunkName: "pages/chart/circle" */))
 const _59f42bc2 = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
+const _97d7392a = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
 const _47e6ea86 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
 const _2a517aa8 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
@@ -23,7 +25,7 @@ Vue.use(Router)
 
 export const routerOptions = {
   mode: 'history',
-  base: decodeURI('/nuxtjs-typescript-boilerplate/'),
+  base: decodeURI('/'),
   linkActiveClass: 'nuxt-link-active',
   linkExactActiveClass: 'nuxt-link-exact-active',
   scrollBehavior,
@@ -49,9 +51,17 @@ export const routerOptions = {
     component: _11944d38,
     name: "chart-bar"
   }, {
+    path: "/chart/circle",
+    component: _3114103b,
+    name: "chart-circle"
+  }, {
     path: "/chart/line",
     component: _59f42bc2,
     name: "chart-line"
+  }, {
+    path: "/chart/radar",
+    component: _97d7392a,
+    name: "chart-radar"
   }, {
     path: "/form/basic",
     component: _47e6ea86,

@@ -135,10 +135,6 @@ const nuxtConfig: NuxtConfiguration = {
     },
     // extractCSS: isProduction,
 
-    // ビルドを爆速にする
-    // https://qiita.com/toaru/items/0690a9110c94052bb479
-    hardSource: true,
-
     terser: {
       terserOptions: {
         compress: {

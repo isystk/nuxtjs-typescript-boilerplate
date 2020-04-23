@@ -70,12 +70,32 @@
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.line") }}</p>
                 </nuxt-link>
+              </li>
+              <li class="nav-item">
                 <nuxt-link
                   to="/chart/bar/"
                   :class="[item == 'bar' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.bar") }}</p>
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  to="/chart/radar/"
+                  :class="[item == 'radar' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $t("text.sideMenu.radar") }}</p>
+                </nuxt-link>
+              </li>
+              <li class="nav-item">
+                <nuxt-link
+                  to="/chart/circle/"
+                  :class="[item == 'circle' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $t("text.sideMenu.circle") }}</p>
                 </nuxt-link>
               </li>
             </ul>
