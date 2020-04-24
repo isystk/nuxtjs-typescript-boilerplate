@@ -4,10 +4,7 @@ import Chart from "chart.js";
 import { Pie, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartPieComponent extends Mixins(
-  Pie,
-  mixins.reactiveProp
-) {
+export default class ChartPie extends Mixins(Pie, mixins.reactiveProp) {
   @Prop()
   chartData;
 

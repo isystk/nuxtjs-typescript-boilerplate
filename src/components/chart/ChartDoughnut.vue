@@ -4,7 +4,7 @@ import Chart from "chart.js";
 import { Doughnut, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartDoughnutComponent extends Mixins(
+export default class ChartDoughnut extends Mixins(
   Doughnut,
   mixins.reactiveProp
 ) {

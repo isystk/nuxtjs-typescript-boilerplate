@@ -4,10 +4,7 @@ import Chart from "chart.js";
 import { PolarArea, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartPolarComponent extends Mixins(
-  PolarArea,
-  mixins.reactiveProp
-) {
+export default class ChartPolar extends Mixins(PolarArea, mixins.reactiveProp) {
   @Prop()
   chartData;
 

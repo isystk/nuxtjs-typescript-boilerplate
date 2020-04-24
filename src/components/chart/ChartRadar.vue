@@ -4,10 +4,7 @@ import Chart from "chart.js";
 import { Radar, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartRadarComponent extends Mixins(
-  Radar,
-  mixins.reactiveProp
-) {
+export default class ChartRadar extends Mixins(Radar, mixins.reactiveProp) {
   @Prop()
   chartData;
 

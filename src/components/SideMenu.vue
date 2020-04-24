@@ -62,20 +62,23 @@
             <a href="#" class="nav-link">
               <i class="fa fa-cubes"></i>
               <p>
-                {{ $t("text.sideMenu.ria") }}
+                {{ $t("text.sideMenu.ui") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fa fa-envelope"></i>
+                <nuxt-link
+                  :to="this.$C.URL.UI_CAROUSEL"
+                  :class="[item == 'carousel' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.carousel") }}</p>
-                </a>
+                </nuxt-link>
               </li>
               <li class="nav-item">
                 <a href="#" class="nav-link">
-                  <i class="fa fa-file"></i>
+                  <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.overlay") }}</p>
                 </a>
               </li>

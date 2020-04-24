@@ -4,7 +4,7 @@ import Chart from "chart.js";
 import { HorizontalBar, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartHorizontalBarComponent extends Mixins(
+export default class ChartHorizontalBar extends Mixins(
   HorizontalBar,
   mixins.reactiveProp
 ) {

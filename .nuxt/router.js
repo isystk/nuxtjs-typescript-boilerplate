@@ -6,6 +6,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _6713dc1a = () => interopDefault(import('../src/pages/api/index.vue' /* webpackChunkName: "pages/api/index" */))
 const _69789992 = () => interopDefault(import('../src/pages/chart/index.vue' /* webpackChunkName: "pages/chart/index" */))
 const _1131ed61 = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
+const _6340b89e = () => interopDefault(import('../src/pages/ui/index.vue' /* webpackChunkName: "pages/ui/index" */))
 const _06bd7bce = () => interopDefault(import('../src/pages/api/coindesk.vue' /* webpackChunkName: "pages/api/coindesk" */))
 const _a2759130 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
 const _5c94c3bc = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
@@ -15,6 +16,7 @@ const _59f42bc2 = () => interopDefault(import('../src/pages/chart/line.vue' /* w
 const _97d7392a = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
 const _47e6ea86 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
 const _496dc702 = () => interopDefault(import('../src/pages/form/calendar.vue' /* webpackChunkName: "pages/form/calendar" */))
+const _41658951 = () => interopDefault(import('../src/pages/ui/carousel.vue' /* webpackChunkName: "pages/ui/carousel" */))
 const _2a517aa8 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -28,7 +30,7 @@ Vue.use(Router)
 
 export const routerOptions = {
   mode: 'history',
-  base: decodeURI('/nuxtjs-typescript-boilerplate/'),
+  base: decodeURI('/'),
   linkActiveClass: 'nuxt-link-active',
   linkExactActiveClass: 'nuxt-link-exact-active',
   scrollBehavior,
@@ -45,6 +47,10 @@ export const routerOptions = {
     path: "/form",
     component: _1131ed61,
     name: "form"
+  }, {
+    path: "/ui",
+    component: _6340b89e,
+    name: "ui"
   }, {
     path: "/api/coindesk",
     component: _06bd7bce,
@@ -81,6 +87,10 @@ export const routerOptions = {
     path: "/form/calendar",
     component: _496dc702,
     name: "form-calendar"
+  }, {
+    path: "/ui/carousel",
+    component: _41658951,
+    name: "ui-carousel"
   }, {
     path: "/",
     component: _2a517aa8,

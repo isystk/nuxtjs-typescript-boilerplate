@@ -24,6 +24,10 @@ export const URL = {
   CHART_RADAR: "/chart/radar",
   /** チャート(円グラフ) */
   CHART_CIRCLE: "/chart/circle",
+  /** UI */
+  UI: "/ui",
+  /** UI(カルーセル) */
+  UI_CAROUSEL: "/ui/carousel",
   /** API */
   API: "/api",
   /** API(仮想通貨) */
