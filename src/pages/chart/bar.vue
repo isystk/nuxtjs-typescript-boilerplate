@@ -56,13 +56,13 @@
                         <th scope="row">
                           1
                         </th>
-                        <td>Line · Chart.js documentation</td>
+                        <td>棒グラフ · Chart.js 日本語ドキュメント</td>
                         <td>
                           <a
-                            href="https://www.chartjs.org/docs/latest/charts/bar.html"
+                            href="https://misc.0o0o.org/chartjs-doc-ja/charts/bar.html"
                             target="_blank"
                           >
-                            "https://www.chartjs.org/docs/latest/charts/bar.html"
+                            "https://misc.0o0o.org/chartjs-doc-ja/charts/bar.html"
                           </a>
                         </td>
                       </tr>
@@ -104,7 +104,8 @@ export default class extends Vue {
 
   get chartData(): Chart.ChartData {
     return {
-      // Data to be represented on x-axis
+      // データセットプロパティに関する設定
+      // See https://misc.0o0o.org/chartjs-doc-ja/charts/bar.html
       labels: [
         "1月",
         "2月",
@@ -121,13 +122,14 @@ export default class extends Vue {
       ],
       datasets: [
         {
-          type: "bar",
-          label: "データ1",
-          backgroundColor: "#f87979",
-          pointBackgroundColor: "white",
-          borderWidth: 1,
-          pointBorderColor: "#249EBF",
-          // Data to be represented on y-axis
+          label: "データ1", // 凡例とツールチップに表示されるデータセットのラベル
+          xAxisID: null, // このデータセットをプロットするx軸のID。指定されていない場合、これは最初に見つかったx軸のIDになります。
+          yAxisID: null, // このデータセットをプロットするy軸のID。指定されていない場合、これは最初に見つかったy軸のIDになります。
+          backgroundColor: "#6090EF", // 線の下の塗りつぶしの色
+          borderColor: null, // 線の色
+          borderWidth: 1, // 線の幅
+          pointBackgroundColor: "white", // 点の塗りつぶしの色
+          pointBorderColor: "#249EBF", // 点の境界線の色
           data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
         },
         {
@@ -141,6 +143,53 @@ export default class extends Vue {
 
   get chartOptions(): Chart.ChartOptions {
     return {
+      responsive: true, // コンテナサイズが変更された際に、チャートキャンバスサイズを変更します
+      responsiveAnimationDuration: 0, // サイズ変更イベント後に新しいサイズにアニメーションするのに要する時間（ミリ秒）
+      maintainAspectRatio: false, // サイズ変更の際に、元のキャンバスのアスペクト比(width / height)を維持します。
+      // onResize(chart, size): void {
+      //   // サイズ変更が発生したときに呼び出されます。チャートインスタンスと新しいサイズの2つの引数を渡します。
+      // },
+      layout: {
+        // レイアウトに関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/layout.html
+        padding: 0 // グラフの内側に追加するパディング
+      },
+      title: {
+        // タイトル
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/title.html
+        display: true, // タイトルを表示します。
+        position: "top", // タイトルの位置
+        fontSize: 12, // タイトルのフォントサイズ
+        padding: 10, // タイトルテキストの上下に追加するピクセル数
+        text: "タイトル"
+      },
+      legend: {
+        // 凡例に関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/legend.html
+        display: true, // 凡例を表示します。
+        position: "bottom" // 凡例の位置
+      },
+      tooltips: {
+        // ツールチップに関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/tooltip.html
+        display: true // キャンバス上でツールチップを有効にします
+      },
+      elements: {
+        // 要素に関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/elements.html
+        point: {
+          // 点に関する設定
+        },
+        line: {
+          // 線に関する設定
+        },
+        rectangle: {
+          // 矩形に関する設定
+        },
+        arc: {
+          // 円弧に関する設定
+        }
+      },
       scales: {
         yAxes: [
           {
@@ -159,12 +208,7 @@ export default class extends Vue {
             }
           }
         ]
-      },
-      legend: {
-        display: true
-      },
-      responsive: true,
-      maintainAspectRatio: false
+      }
     } as Chart.ChartOptions;
   }
 }

@@ -26,12 +26,5 @@ export default class ChartPieComponent extends Mixins(
       this.renderChart(this.chartData, this.options);
     }
   }
-
-  // @Watch("options")
-  // onChangeOptions(val, old): void {
-  // if (this.chartData) {
-  //   this.renderChart(this.chartData, this.options);
-  // }
-  // }
 }
 </script>

@@ -14,6 +14,7 @@ const _3114103b = () => interopDefault(import('../src/pages/chart/circle.vue' /*
 const _59f42bc2 = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
 const _97d7392a = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
 const _47e6ea86 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
+const _496dc702 = () => interopDefault(import('../src/pages/form/calendar.vue' /* webpackChunkName: "pages/form/calendar" */))
 const _2a517aa8 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -76,6 +77,10 @@ export const routerOptions = {
     path: "/form/basic",
     component: _47e6ea86,
     name: "form-basic"
+  }, {
+    path: "/form/calendar",
+    component: _496dc702,
+    name: "form-calendar"
   }, {
     path: "/",
     component: _2a517aa8,

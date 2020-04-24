@@ -56,13 +56,13 @@
                         <th scope="row">
                           1
                         </th>
-                        <td>Radar · Chart.js documentation</td>
+                        <td>レーダーチャート · Chart.js 日本語ドキュメント</td>
                         <td>
                           <a
-                            href="https://www.chartjs.org/docs/latest/charts/radar.html"
+                            href="https://misc.0o0o.org/chartjs-doc-ja/charts/radar.html"
                             target="_blank"
                           >
-                            "https://www.chartjs.org/docs/latest/charts/radar.html"
+                            "https://misc.0o0o.org/chartjs-doc-ja/charts/radar.html"
                           </a>
                         </td>
                       </tr>
@@ -110,6 +110,8 @@ export default class extends Vue {
 
   get chartData(): Chart.ChartData | null {
     return {
+      // データセットプロパティに関する設定
+      // See https://misc.0o0o.org/chartjs-doc-ja/charts/radar.html
       labels: ["価格", "味", "接客", "衛生", "品質"],
       datasets: [
         {
@@ -128,11 +130,52 @@ export default class extends Vue {
 
   get chartOptions(): Chart.ChartOptions {
     return {
-      responsive: true,
-      maintainAspectRatio: false,
+      responsive: true, // コンテナサイズが変更された際に、チャートキャンバスサイズを変更します
+      responsiveAnimationDuration: 0, // サイズ変更イベント後に新しいサイズにアニメーションするのに要する時間（ミリ秒）
+      maintainAspectRatio: false, // サイズ変更の際に、元のキャンバスのアスペクト比(width / height)を維持します。
+      // onResize(chart, size): void {
+      //   // サイズ変更が発生したときに呼び出されます。チャートインスタンスと新しいサイズの2つの引数を渡します。
+      // },
+      layout: {
+        // レイアウトに関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/layout.html
+        padding: 0 // グラフの内側に追加するパディング
+      },
       title: {
-        display: true,
+        // タイトル
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/title.html
+        display: true, // タイトルを表示します。
+        position: "top", // タイトルの位置
+        fontSize: 12, // タイトルのフォントサイズ
+        padding: 10, // タイトルテキストの上下に追加するピクセル数
         text: "タイトル"
+      },
+      legend: {
+        // 凡例に関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/legend.html
+        display: true, // 凡例を表示します。
+        position: "bottom" // 凡例の位置
+      },
+      tooltips: {
+        // ツールチップに関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/tooltip.html
+        display: true // キャンバス上でツールチップを有効にします
+      },
+      elements: {
+        // 要素に関する設定
+        // See https://misc.0o0o.org/chartjs-doc-ja/configuration/elements.html
+        point: {
+          // 点に関する設定
+        },
+        line: {
+          // 線に関する設定
+        },
+        rectangle: {
+          // 矩形に関する設定
+        },
+        arc: {
+          // 円弧に関する設定
+        }
       },
       scale: {
         angleLines: {

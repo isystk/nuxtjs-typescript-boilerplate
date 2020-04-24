@@ -47,6 +47,15 @@
                   <p>{{ $t("text.sideMenu.basic") }}</p>
                 </nuxt-link>
               </li>
+              <li class="nav-item">
+                <nuxt-link
+                  :to="this.$C.URL.FORM_CALENDAR"
+                  :class="[item == 'calendar' ? 'active' : '', 'nav-link']"
+                >
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ $t("text.sideMenu.calendar") }}</p>
+                </nuxt-link>
+              </li>
             </ul>
           </li>
           <li class="nav-item has-treeview">
