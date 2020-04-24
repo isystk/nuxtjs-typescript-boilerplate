@@ -2,12 +2,7 @@
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a
-          href="#"
-          class="nav-link"
-          data-widget="pushmenu"
-          @click.prevent="pushmenu"
-        >
+        <a href="#" class="nav-link" data-widget="pushmenu" @click="pushmenu">
           <i class="fas fa-bars"></i>
         </a>
       </li>
@@ -54,12 +49,11 @@ export default class Header extends Vue {
 
   // サイドメニューの開閉
   pushmenu(): void {
-    this.openSideMenu = !this.openSideMenu;
     const path = "/";
     if (this.openSideMenu) {
-      document.cookie = "sidebarToggleState=opened; path=" + path + ";";
-    } else {
       document.cookie = "sidebarToggleState=closed; path=" + path + ";";
+    } else {
+      document.cookie = "sidebarToggleState=opened; path=" + path + ";";
     }
   }
 }

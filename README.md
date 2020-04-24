@@ -54,6 +54,8 @@ Nuxtjs・Typescript を利用したボイラープレートです。
 
 ![DEMO](./demo.jpg "DEMO")
 
+https://demo.isystk.com/nuxtjs/
+
 ## 🎨 Requirement
 
 推奨するNodeのバージョン v13.13.0
