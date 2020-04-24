@@ -81,15 +81,7 @@
 <script lang="ts">
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
 
-import moment from "moment";
-import _ from "lodash";
 import { sideMenuModule } from "@/store/sideMenu";
-import {
-  currencyModule,
-  SupportedCurrencies,
-  SearchHistoricalCondition,
-  Historical
-} from "@/store/currency";
 import ContentHeader from "@/components/ContentHeader.vue";
 import ChartRadar from "@/components/chart/ChartRadar.vue";
 

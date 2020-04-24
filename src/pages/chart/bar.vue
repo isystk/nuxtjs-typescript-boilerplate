@@ -32,6 +32,25 @@
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
+                  横棒グラフ
+                </h3>
+              </div>
+              <div class="card-body">
+                <div class="chart">
+                  <ChartHorizontalBar
+                    :chart-data="chartData"
+                    :options="chartOptions"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">
                   資料
                 </h3>
               </div>
@@ -84,13 +103,13 @@ import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/ContentHeader.vue";
 import ChartLineBar from "@/components/chart/ChartLineBar.vue";
-import SelectBox from "@/components/form/SelectBox.vue";
+import ChartHorizontalBar from "@/components/chart/ChartHorizontalBar.vue";
 
 @Component({
   components: {
     ContentHeader,
     ChartLineBar,
-    SelectBox
+    ChartHorizontalBar
   }
 })
 export default class extends Vue {
@@ -133,7 +152,6 @@ export default class extends Vue {
           data: [40, 20, 30, 50, 90, 10, 20, 40, 50, 70, 90, 100]
         },
         {
-          type: "bar",
           label: "データ2",
           data: [30, 40, 80, 60, 50, 80, 90, 50, 20, 10, 50, 30]
         }

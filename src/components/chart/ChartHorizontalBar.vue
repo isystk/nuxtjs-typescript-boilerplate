@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Component, Mixins, Prop, Watch } from "vue-property-decorator";
 import Chart from "chart.js";
-import { PolarArea, mixins } from "vue-chartjs";
+import { HorizontalBar, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartPolarComponent extends Mixins(
-  PolarArea,
+export default class ChartHorizontalBarComponent extends Mixins(
+  HorizontalBar,
   mixins.reactiveProp
 ) {
   @Prop()

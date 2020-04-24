@@ -87,13 +87,11 @@ import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/ContentHeader.vue";
 import ChartLineBar from "@/components/chart/ChartLineBar.vue";
-import SelectBox from "@/components/form/SelectBox.vue";
 
 @Component({
   components: {
     ContentHeader,
-    ChartLineBar,
-    SelectBox
+    ChartLineBar
   }
 })
 export default class extends Vue {
@@ -198,19 +196,7 @@ export default class extends Vue {
       scales: {
         yAxes: [
           {
-            ticks: {
-              beginAtZero: true
-            },
-            gridLines: {
-              display: true
-            }
-          }
-        ],
-        xAxes: [
-          {
-            gridLines: {
-              display: false
-            }
+            stacked: false // true の場合は積み上げ面グラフを有効にする
           }
         ]
       }
