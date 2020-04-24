@@ -22,6 +22,7 @@ import nuxt_plugin_axios_1ed6fea1 from 'nuxt_plugin_axios_1ed6fea1' // Source: .
 import nuxt_plugin_constantsinject_5b5d368a from 'nuxt_plugin_constantsinject_5b5d368a' // Source: ../src/plugins/constants-inject.ts (mode: 'all')
 import nuxt_plugin_envinject_0cf04cb0 from 'nuxt_plugin_envinject_0cf04cb0' // Source: ../src/plugins/env-inject.ts (mode: 'all')
 import nuxt_plugin_i18n_2ff0308e from 'nuxt_plugin_i18n_2ff0308e' // Source: ../src/plugins/locale/i18n.ts (mode: 'all')
+import nuxt_plugin_adminlte_0a7ef655 from 'nuxt_plugin_adminlte_0a7ef655' // Source: ../src/plugins/libraries/adminlte.ts (mode: 'client')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -68,7 +69,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s | nuxtjs-typescript-boilerplate","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxtjs-typescript-boilerplate"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fnuxtjs-typescript-boilerplate\u002Ffavicon.ico"},{"rel":"stylesheet","href":"\u002Fnuxtjs-typescript-boilerplate\u002Fplugins\u002Ffontawesome-free\u002Fcss\u002Fall.min.css"},{"rel":"stylesheet","href":"\u002Fnuxtjs-typescript-boilerplate\u002Fcss\u002Fadminlte.min.css"},{"rel":"manifest","href":"\u002Fnuxtjs-typescript-boilerplate\u002F_nuxt\u002Fmanifest.1c23d3a3.json"}],"script":[{"src":"\u002Fnuxtjs-typescript-boilerplate\u002Fplugins\u002Fjquery\u002Fjquery.min.js","body":true},{"src":"\u002Fnuxtjs-typescript-boilerplate\u002Fplugins\u002Fbootstrap\u002Fjs\u002Fbootstrap.bundle.min.js","body":true},{"src":"\u002Fnuxtjs-typescript-boilerplate\u002Fjs\u002Fadminlte.min.js","body":true},{"src":"\u002Fnuxtjs-typescript-boilerplate\u002Fjs\u002Fcommon.js","body":true}],"style":[],"title":"nuxtjs-typescript-boilerplate","htmlAttrs":{"lang":"en"}},
+    head: {"titleTemplate":"%s | nuxtjs-typescript-boilerplate","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxtjs-typescript-boilerplate"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fnuxtjs\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002Fnuxtjs\u002F_nuxt\u002Fmanifest.e814e774.json"}],"style":[],"script":[],"title":"nuxtjs-typescript-boilerplate","htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -221,6 +222,10 @@ async function createApp (ssrContext) {
 
   if (typeof nuxt_plugin_i18n_2ff0308e === 'function') {
     await nuxt_plugin_i18n_2ff0308e(app.context, inject)
+  }
+
+  if (process.client && typeof nuxt_plugin_adminlte_0a7ef655 === 'function') {
+    await nuxt_plugin_adminlte_0a7ef655(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

@@ -149,7 +149,7 @@ export async function setContext (app, context) {
       store: app.store,
       payload: context.payload,
       error: context.error,
-      base: '/nuxtjs-typescript-boilerplate/',
+      base: '/nuxtjs/',
       env: {}
     }
     // Only set once

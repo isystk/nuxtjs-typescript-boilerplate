@@ -10,6 +10,10 @@ import {
 
 import NuxtError from '../src/layouts/error.vue'
 
+import '../node_modules/admin-lte/plugins/fontawesome-free/css/all.min.css'
+
+import '../node_modules/admin-lte/dist/css/adminlte.min.css'
+
 import '../src/assets/sass/app.scss'
 
 import _6f6c098b from '../src/layouts/default.vue'

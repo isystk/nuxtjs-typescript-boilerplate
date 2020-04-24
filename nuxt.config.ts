@@ -1,5 +1,5 @@
 import { Configuration as NuxtConfiguration } from "@nuxt/types";
-import {
+import webpack, {
   Configuration as WebpackConfiguration,
   Options as WebpackOptions,
   Plugin as WebpackPlugin
@@ -60,21 +60,7 @@ const nuxtConfig: NuxtConfiguration = {
       }
     ],
     link: [
-      { rel: "icon", type: "image/x-icon", href: PUBLIC_PATH + "favicon.ico" },
-      {
-        rel: "stylesheet",
-        href: PUBLIC_PATH + "plugins/fontawesome-free/css/all.min.css"
-      },
-      { rel: "stylesheet", href: PUBLIC_PATH + "css/adminlte.min.css" }
-    ],
-    script: [
-      { src: PUBLIC_PATH + "plugins/jquery/jquery.min.js", body: true },
-      {
-        src: PUBLIC_PATH + "plugins/bootstrap/js/bootstrap.bundle.min.js",
-        body: true
-      },
-      { src: PUBLIC_PATH + "js/adminlte.min.js", body: true },
-      { src: PUBLIC_PATH + "js/common.js", body: true }
+      { rel: "icon", type: "image/x-icon", href: PUBLIC_PATH + "favicon.ico" }
     ]
   },
   // loading: { color: "#fff" },
@@ -84,7 +70,11 @@ const nuxtConfig: NuxtConfiguration = {
    * Global CSS
    * 他の scss ファイルに依存しない scss はこちらに
    */
-  css: ["@/assets/sass/app.scss"],
+  css: [
+    "admin-lte/plugins/fontawesome-free/css/all.min.css",
+    "admin-lte/dist/css/adminlte.min.css",
+    "@/assets/sass/app.scss"
+  ],
   modules: [
     "@nuxtjs/axios",
     "@nuxtjs/proxy",
@@ -98,7 +88,8 @@ const nuxtConfig: NuxtConfiguration = {
     "@/plugins/libraries/axios.ts",
     "@/plugins/constants-inject.ts",
     "@/plugins/env-inject.ts",
-    "@/plugins/locale/i18n.ts"
+    "@/plugins/locale/i18n.ts",
+    { src: "@/plugins/libraries/adminlte.ts", mode: "client" }
   ],
   /**
    * Build configuration
@@ -108,6 +99,14 @@ const nuxtConfig: NuxtConfiguration = {
     // vue-devtools を許可するかどうかを設定します
     // https://ja.nuxtjs.org/api/configuration-build/#devtools
     devtools: true,
+
+    plugins: [
+      new webpack.ProvidePlugin({
+        // グローバルなモジュール
+        jQuery: "jquery",
+        $: "jquery"
+      })
+    ],
 
     /**
      * You can extend webpack config here

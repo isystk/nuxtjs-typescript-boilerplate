@@ -52,12 +52,12 @@ import _ from "lodash";
 @Component
 export default class Carousel extends Vue {
   imagePath = [
-    "/img/sample1.jpg",
-    "/img/sample2.jpg",
-    "/img/sample1.jpg",
-    "/img/sample2.jpg",
-    "/img/sample1.jpg",
-    "/img/sample2.jpg"
+    require("@/assets/img/thumb/sample1.jpg"),
+    require("@/assets/img/thumb/sample2.jpg"),
+    require("@/assets/img/thumb/sample1.jpg"),
+    require("@/assets/img/thumb/sample2.jpg"),
+    require("@/assets/img/thumb/sample1.jpg"),
+    require("@/assets/img/thumb/sample2.jpg")
   ];
 
   currentNum = 0;
