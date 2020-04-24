@@ -46,5 +46,13 @@ import Carousel from "@/components/ui/Carousel.vue";
     Carousel
   }
 })
-export default class extends Vue {}
+export default class extends Vue {
+  created(): void {
+    // 選択中のサイドメニューをアクティブに変更
+    sideMenuModule.setCurrentMenu({
+      group: "ui",
+      item: "carousel"
+    });
+  }
+}
 </script>

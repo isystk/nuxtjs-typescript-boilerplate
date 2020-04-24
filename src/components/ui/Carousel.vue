@@ -1,6 +1,37 @@
 <template>
   <div>
-    <div class="carousel" @mousedown="onMouseDown">
+    <div v-if="isCarousel" class="carousel" @mousedown="onMouseDown">
+      <div class="list" :style="_listStyle" @transitionend="onTransitionEnd">
+        <!-- 後ろの要素をコピー -->
+        <template v-for="(e, index) in COPY_COUNT">
+          <div :key="'before' + index" class="list__item">
+            <div class="item square">
+              <img
+                :src="imagePath[imagePath.length - (COPY_COUNT - index)]"
+                width="200px"
+              />
+            </div>
+          </div>
+        </template>
+        <!-- 本体 -->
+        <template v-for="(e, index) in imagePath">
+          <div :key="index" class="list__item">
+            <div class="item square">
+              <img :src="e" width="200px" />
+            </div>
+          </div>
+        </template>
+        <!-- 最初の要素をコピー -->
+        <template v-for="(e, index) in COPY_COUNT">
+          <div :key="'after' + index" class="list__item">
+            <div class="item square">
+              <img :src="imagePath[index]" width="200px" />
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+    <div v-else class="carousel" @mousedown="onMouseDown">
       <div class="list" :style="_listStyle">
         <template v-for="(e, index) in imagePath">
           <div :key="index" class="list__item">
@@ -33,6 +64,11 @@ export default class Carousel extends Vue {
   diffX = 0;
   startX: number | null = null;
 
+  isCarousel = true; // カルーセルするかどうか
+
+  COPY_COUNT = 2; // コピーする数
+  isAnimating = false;
+
   mounted(): void {
     window.addEventListener("mousemove", this.onMouseMove);
     window.addEventListener("mouseup", this.onMouseUp);
@@ -44,12 +80,22 @@ export default class Carousel extends Vue {
   }
 
   get _listStyle(): any {
-    return {
-      transition: this.startX == null ? "" : "none",
-      transform: `translate3d(${-100 * this.currentNum}%, 0, 0) translate3d(${
-        this.diffX
-      }px, 0, 0)`
-    };
+    if (this.isCarousel) {
+      return {
+        transition: this.isAnimating ? "" : "none",
+        transform: `translate3d(${-100 *
+          (this.currentNum + this.COPY_COUNT)}%, 0, 0) translate3d(${
+          this.diffX
+        }px, 0, 0)`
+      };
+    } else {
+      return {
+        transition: this.startX == null ? "" : "none",
+        transform: `translate3d(${-100 * this.currentNum}%, 0, 0) translate3d(${
+          this.diffX
+        }px, 0, 0)`
+      };
+    }
   }
 
   onMouseDown(e): void {
@@ -66,33 +112,44 @@ export default class Carousel extends Vue {
   onMouseUp(e): void {
     this.startX = null;
     if (this.diffX > 20) {
-      this.currentNum = Math.max(this.currentNum - 1, 0);
+      if (this.isCarousel) {
+        this.currentNum -= 1;
+        this.isAnimating = true;
+      } else {
+        this.currentNum = Math.max(this.currentNum - 1, 0);
+      }
     }
     if (this.diffX < -20) {
-      this.currentNum = Math.min(
-        this.currentNum + 1,
-        this.imagePath.length - 1
-      );
+      if (this.isCarousel) {
+        this.currentNum += 1;
+        this.isAnimating = true;
+      } else {
+        this.currentNum = Math.min(
+          this.currentNum + 1,
+          this.imagePath.length - 1
+        );
+      }
     }
     this.diffX = 0;
+  }
+
+  onTransitionEnd(): void {
+    this.adjustPosition();
+  }
+
+  adjustPosition(): void {
+    this.isAnimating = false;
+    this.currentNum =
+      (this.currentNum + this.imagePath.length) % this.imagePath.length;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-* {
-  box-sizing: border-box;
-}
-
-body {
-  padding: 10px;
-  width: 300px;
-  margin: 0 auto;
-}
-
 .carousel {
   border: solid 2px #ccc;
   overflow: hidden;
+  width: 240px;
 }
 
 .list {
@@ -122,13 +179,6 @@ body {
   }
 }
 
-.inner {
-  overflow: hidden;
-  width: 200px;
-  height: 200px;
-  float: left;
-  margin-right: 20px;
-}
 .square {
   width: 100%;
   position: relative;
