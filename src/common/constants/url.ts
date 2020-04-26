@@ -28,6 +28,8 @@ export const URL = {
   UI: "/ui",
   /** UI(カルーセル) */
   UI_CAROUSEL: "/ui/carousel",
+  /** UI(オーバーレイ) */
+  UI_OVERLAY: "/ui/overlay",
   /** API */
   API: "/api",
   /** API(仮想通貨) */

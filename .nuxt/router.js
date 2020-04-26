@@ -17,6 +17,7 @@ const _97d7392a = () => interopDefault(import('../src/pages/chart/radar.vue' /* 
 const _47e6ea86 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
 const _496dc702 = () => interopDefault(import('../src/pages/form/calendar.vue' /* webpackChunkName: "pages/form/calendar" */))
 const _41658951 = () => interopDefault(import('../src/pages/ui/carousel.vue' /* webpackChunkName: "pages/ui/carousel" */))
+const _e8b0cb22 = () => interopDefault(import('../src/pages/ui/overlay.vue' /* webpackChunkName: "pages/ui/overlay" */))
 const _2a517aa8 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -91,6 +92,10 @@ export const routerOptions = {
     path: "/ui/carousel",
     component: _41658951,
     name: "ui-carousel"
+  }, {
+    path: "/ui/overlay",
+    component: _e8b0cb22,
+    name: "ui-overlay"
   }, {
     path: "/",
     component: _2a517aa8,

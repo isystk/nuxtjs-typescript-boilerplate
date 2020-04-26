@@ -77,10 +77,13 @@
                 </nuxt-link>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <nuxt-link
+                  :to="this.$C.URL.UI_OVERLAY"
+                  :class="[item == 'overlay' ? 'active' : '', 'nav-link']"
+                >
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.overlay") }}</p>
-                </a>
+                </nuxt-link>
               </li>
             </ul>
           </li>
