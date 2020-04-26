@@ -22,40 +22,37 @@
               <div class="card-body">
                 <div class="box-body">
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5 m-auto">
                       <label class="control-label">
                         1ページ1枚（250x250）、カルーセルなし
                       </label>
                       <ImageCarousel
                         :image-path="imagePath"
                         :is-carousel="false"
-                        :box-size="{ width: '290px' }"
                         :image-size="{ width: '250px', height: '250px' }"
                       />
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5 m-auto">
                       <label class="control-label">
                         1ページ1枚（250x250）、カルーセルあり
                       </label>
                       <ImageCarousel
                         :image-path="imagePath"
                         :is-carousel="true"
-                        :box-size="{ width: '290px' }"
                         :image-size="{ width: '250px', height: '250px' }"
                       />
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5 m-auto">
                       <label class="control-label">
                         1ページ3枚（150x150）、カルーセルなし
                       </label>
                       <ImageCarousel
                         :image-path="imagePath"
                         :is-carousel="false"
-                        :box-size="{ width: '100%' }"
                         :image-size="{
                           width: '100px',
                           height: '100px'
@@ -65,14 +62,13 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5 m-auto">
                       <label class="control-label">
                         1ページ3枚（150x150）、オートページャ
                       </label>
                       <ImageCarousel
                         :image-path="imagePath"
                         :is-carousel="true"
-                        :box-size="{ width: '100%' }"
                         :image-size="{
                           width: '100px',
                           height: '100px'

@@ -1,9 +1,7 @@
 <template>
   <div>
     <div
-      v-if="isCarousel"
       class="box"
-      :style="[boxSize]"
       @mousedown.prevent="onTouchStart"
       @touchstart.prevent="onTouchStart"
     >
@@ -14,7 +12,12 @@
       >
         <!-- 後ろの要素をコピー -->
         <template v-for="(e, index) in COPY_COUNT">
-          <div :key="'before' + index" class="list__item" :style="[imageSize]">
+          <div
+            v-if="isCarousel"
+            :key="'before' + index"
+            class="list__item"
+            :style="[imageSize]"
+          >
             <div class="item square">
               <img :src="imagePath[imagePath.length - (COPY_COUNT - index)]" />
             </div>
@@ -30,26 +33,14 @@
         </template>
         <!-- 最初の要素をコピー -->
         <template v-for="(e, index) in COPY_COUNT">
-          <div :key="'after' + index" class="list__item" :style="[imageSize]">
+          <div
+            v-if="isCarousel"
+            :key="'after' + index"
+            class="list__item"
+            :style="[imageSize]"
+          >
             <div class="item square">
               <img :src="imagePath[index]" />
-            </div>
-          </div>
-        </template>
-      </div>
-    </div>
-    <div
-      v-else
-      class="box"
-      :style="[boxSize]"
-      @mousedown.prevent="onTouchStart"
-      @touchstart.prevent="onTouchStart"
-    >
-      <div class="list" :style="[_listStyle, imageSize]">
-        <template v-for="(e, index) in imagePath">
-          <div :key="index" class="list__item" :style="[imageSize]">
-            <div class="item square">
-              <img :src="e" />
             </div>
           </div>
         </template>
@@ -70,7 +61,6 @@
 <script lang="ts">
 import { PropType } from "vue";
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
-import _ from "lodash";
 
 @Component
 export default class ImageCarousel extends Vue {
@@ -89,14 +79,6 @@ export default class ImageCarousel extends Vue {
   // 自動でページングさせるかどうか
   @Prop({ type: Boolean, default: false, required: false })
   isAutoPager;
-
-  // 表示領域のサイズ指定
-  @Prop({
-    type: Object as PropType<string>,
-    default: () => ({ width: "240px" }),
-    required: true
-  })
-  boxSize;
 
   // 画像表示のサイズ指定
   @Prop({
@@ -275,7 +257,6 @@ export default class ImageCarousel extends Vue {
 .box {
   border: solid 2px #ccc;
   overflow: hidden;
-  width: 240px;
 }
 
 .list {
@@ -323,7 +304,7 @@ export default class ImageCarousel extends Vue {
   padding: 0;
 }
 .paging.dot {
-  width: 24%;
+  width: 50%;
   margin: 5px auto;
 }
 .paging.dot li {
