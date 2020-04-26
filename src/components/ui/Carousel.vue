@@ -1,42 +1,55 @@
 <template>
   <div>
-    <div v-if="isCarousel" class="carousel" @mousedown="onMouseDown">
-      <div class="list" :style="_listStyle" @transitionend="onTransitionEnd">
+    <div
+      v-if="isCarousel"
+      class="box"
+      :style="[boxSize]"
+      @mousedown="onTouchStart"
+      @touchstart="onTouchStart"
+    >
+      <div
+        class="list"
+        :style="[_listStyle, imageSize]"
+        @transitionend="onTransitionEnd"
+      >
         <!-- 後ろの要素をコピー -->
         <template v-for="(e, index) in COPY_COUNT">
-          <div :key="'before' + index" class="list__item">
+          <div :key="'before' + index" class="list__item" :style="[imageSize]">
             <div class="item square">
-              <img
-                :src="imagePath[imagePath.length - (COPY_COUNT - index)]"
-                width="200px"
-              />
+              <img :src="imagePath[imagePath.length - (COPY_COUNT - index)]" />
             </div>
           </div>
         </template>
         <!-- 本体 -->
         <template v-for="(e, index) in imagePath">
-          <div :key="index" class="list__item">
+          <div :key="index" class="list__item" :style="[imageSize]">
             <div class="item square">
-              <img :src="e" width="200px" />
+              <img :src="e" />
             </div>
           </div>
         </template>
         <!-- 最初の要素をコピー -->
         <template v-for="(e, index) in COPY_COUNT">
-          <div :key="'after' + index" class="list__item">
+          <div :key="'after' + index" class="list__item" :style="[imageSize]">
             <div class="item square">
-              <img :src="imagePath[index]" width="200px" />
+              <img :src="imagePath[index]" />
             </div>
           </div>
         </template>
       </div>
     </div>
-    <div v-else class="carousel" @mousedown="onMouseDown">
-      <div class="list" :style="_listStyle">
+    <div
+      v-else
+      class="box"
+      :style="[boxSize]"
+      @mousedown="onTouchStart"
+      @touchstart="onTouchStart"
+    >
+      <div class="list" :style="[_listStyle, imageSize]">
         <template v-for="(e, index) in imagePath">
-          <div :key="index" class="list__item">
+          <div :key="index" class="list__item" :style="[imageSize]">
             <div class="item square">
-              <img :src="e" width="200px" />
+              <img :src="e" />
             </div>
           </div>
         </template>
@@ -46,37 +59,60 @@
 </template>
 
 <script lang="ts">
+import { PropType } from "vue";
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
 
 @Component
 export default class Carousel extends Vue {
-  imagePath = [
-    require("@/assets/img/thumb/sample1.jpg"),
-    require("@/assets/img/thumb/sample2.jpg"),
-    require("@/assets/img/thumb/sample1.jpg"),
-    require("@/assets/img/thumb/sample2.jpg"),
-    require("@/assets/img/thumb/sample1.jpg"),
-    require("@/assets/img/thumb/sample2.jpg")
-  ];
+  @Prop({
+    type: Array as PropType<string[]>,
+    default: () => [],
+    required: true
+  })
+  imagePath;
+
+  @Prop({ type: Boolean, default: false, required: false })
+  isCarousel; // カルーセルするかどうか
+
+  @Prop({
+    type: Object as PropType<string>,
+    default: () => ({ width: "240px" }),
+    required: true
+  })
+  boxSize;
+
+  @Prop({
+    type: Object as PropType<string>,
+    default: () => ({ width: "200px", height: "200px" }),
+    required: true
+  })
+  imageSize;
 
   currentNum = 0;
   diffX = 0;
   startX: number | null = null;
 
-  isCarousel = true; // カルーセルするかどうか
-
+  /* カルーセル有効の場合に必要なプロパティ */
   COPY_COUNT = 2; // コピーする数
   isAnimating = false;
 
   mounted(): void {
-    window.addEventListener("mousemove", this.onMouseMove);
-    window.addEventListener("mouseup", this.onMouseUp);
+    // PC向け
+    window.addEventListener("mousemove", this.onTouchMove);
+    window.addEventListener("mouseup", this.onTouchUp);
+    // スマホ向け
+    window.addEventListener("touchmove", this.onTouchMove);
+    window.addEventListener("touchend", this.onTouchUp);
   }
 
   beforeDestroy(): void {
-    window.removeEventListener("mousemove", this.onMouseMove);
-    window.removeEventListener("mouseup", this.onMouseUp);
+    // PC向け
+    window.removeEventListener("mousemove", this.onTouchMove);
+    window.removeEventListener("mouseup", this.onTouchUp);
+    // スマホ向け
+    window.removeEventListener("touchmove", this.onTouchMove);
+    window.removeEventListener("touchend", this.onTouchUp);
   }
 
   get _listStyle(): any {
@@ -98,18 +134,30 @@ export default class Carousel extends Vue {
     }
   }
 
-  onMouseDown(e): void {
-    this.startX = e.clientX;
+  onTouchStart(e): void {
+    if (e.touches && e.touches[0]) {
+      this.startX = e.touches[0].clientX;
+    } else if (e.originalEvent && e.originalEvent.changedTouches[0]) {
+      this.startX = e.originalEvent.changedTouches[0].clientX;
+    } else if (e.clientX) {
+      this.startX = e.clientX;
+    }
   }
 
-  onMouseMove(e): void {
+  onTouchMove(e): void {
     if (this.startX == null) {
       return;
     }
-    this.diffX = e.clientX - this.startX;
+    if (e.touches && e.touches[0]) {
+      this.diffX = e.touches[0].clientX - this.startX;
+    } else if (e.originalEvent && e.originalEvent.changedTouches[0]) {
+      this.diffX = e.originalEvent.changedTouches[0].clientX - this.startX;
+    } else if (e.clientX) {
+      this.diffX = e.clientX - this.startX;
+    }
   }
 
-  onMouseUp(e): void {
+  onTouchUp(e): void {
     this.startX = null;
     if (this.diffX > 20) {
       if (this.isCarousel) {
@@ -146,7 +194,7 @@ export default class Carousel extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.carousel {
+.box {
   border: solid 2px #ccc;
   overflow: hidden;
   width: 240px;
