@@ -4,8 +4,8 @@
       v-if="isCarousel"
       class="box"
       :style="[boxSize]"
-      @mousedown="onTouchStart"
-      @touchstart="onTouchStart"
+      @mousedown.prevent="onTouchStart"
+      @touchstart.prevent="onTouchStart"
     >
       <div
         class="list"
@@ -42,8 +42,8 @@
       v-else
       class="box"
       :style="[boxSize]"
-      @mousedown="onTouchStart"
-      @touchstart="onTouchStart"
+      @mousedown.prevent="onTouchStart"
+      @touchstart.prevent="onTouchStart"
     >
       <div class="list" :style="[_listStyle, imageSize]">
         <template v-for="(e, index) in imagePath">
@@ -55,6 +55,15 @@
         </template>
       </div>
     </div>
+    <ul class="paging dot">
+      <template v-for="e in maxPageNo">
+        <li
+          :key="e"
+          :class="currentPageNo == e ? 'active' : ''"
+          @click.prevent="changePage(e)"
+        ></li>
+      </template>
+    </ul>
   </div>
 </template>
 
@@ -64,7 +73,8 @@ import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
 import _ from "lodash";
 
 @Component
-export default class Carousel extends Vue {
+export default class ImageCarousel extends Vue {
+  // 表示する画像のパス
   @Prop({
     type: Array as PropType<string[]>,
     default: () => [],
@@ -72,9 +82,15 @@ export default class Carousel extends Vue {
   })
   imagePath;
 
+  // カルーセルするかどうか
   @Prop({ type: Boolean, default: false, required: false })
-  isCarousel; // カルーセルするかどうか
+  isCarousel;
 
+  // 自動でページングさせるかどうか
+  @Prop({ type: Boolean, default: false, required: false })
+  isAutoPager;
+
+  // 表示領域のサイズ指定
   @Prop({
     type: Object as PropType<string>,
     default: () => ({ width: "240px" }),
@@ -82,6 +98,7 @@ export default class Carousel extends Vue {
   })
   boxSize;
 
+  // 画像表示のサイズ指定
   @Prop({
     type: Object as PropType<string>,
     default: () => ({ width: "200px", height: "200px" }),
@@ -89,13 +106,32 @@ export default class Carousel extends Vue {
   })
   imageSize;
 
-  currentNum = 0;
-  diffX = 0;
-  startX: number | null = null;
+  // 1ページでスライドさせる子要素の数
+  @Prop({ type: Number, default: 1, required: false })
+  shift;
 
-  /* カルーセル有効の場合に必要なプロパティ */
-  COPY_COUNT = 2; // コピーする数
-  isAnimating = false;
+  // 初期表示するページNo
+  @Prop({ type: Number, default: 1, required: false })
+  pageNo;
+
+  // 表示中のページNo
+  currentPageNo = this.pageNo;
+
+  // 最大ページ数
+  get maxPageNo(): number {
+    return this.imagePath.length / this.shift;
+  }
+
+  private currentNum = 0;
+  private diffX = 0;
+  private startX: number | null = null;
+  private COPY_COUNT = this.shift * 2; // コピーする数
+  private isAnimating = false;
+
+  // 1ページでスライドさせる子要素の数に応じて初期表示位置をシフトする
+  get startShift(): number {
+    return Math.floor(this.shift / 2);
+  }
 
   mounted(): void {
     // PC向け
@@ -104,6 +140,14 @@ export default class Carousel extends Vue {
     // スマホ向け
     window.addEventListener("touchmove", this.onTouchMove);
     window.addEventListener("touchend", this.onTouchUp);
+
+    // 初期ページを設定
+    this.changePage(this.pageNo);
+
+    // 自動でページングさせる
+    if (this.isAutoPager) {
+      this.startTimer();
+    }
   }
 
   beforeDestroy(): void {
@@ -115,19 +159,21 @@ export default class Carousel extends Vue {
     window.removeEventListener("touchend", this.onTouchUp);
   }
 
+  // スライドアニメーション
   get _listStyle(): any {
     if (this.isCarousel) {
       return {
         transition: this.isAnimating ? "" : "none",
         transform: `translate3d(${-100 *
-          (this.currentNum + this.COPY_COUNT)}%, 0, 0) translate3d(${
-          this.diffX
-        }px, 0, 0)`
+          (this.startShift +
+            this.currentNum +
+            this.COPY_COUNT)}%, 0, 0) translate3d(${this.diffX}px, 0, 0)`
       };
     } else {
       return {
         transition: this.startX == null ? "" : "none",
-        transform: `translate3d(${-100 * this.currentNum}%, 0, 0) translate3d(${
+        transform: `translate3d(${-100 *
+          (this.startShift + this.currentNum)}%, 0, 0) translate3d(${
           this.diffX
         }px, 0, 0)`
       };
@@ -161,21 +207,33 @@ export default class Carousel extends Vue {
     this.startX = null;
     if (this.diffX > 20) {
       if (this.isCarousel) {
-        this.currentNum -= 1;
+        this.currentNum -= this.shift;
         this.isAnimating = true;
       } else {
-        this.currentNum = Math.max(this.currentNum - 1, 0);
+        this.currentNum = Math.max(this.currentNum - this.shift, 0);
+      }
+      // ページ番号を設定
+      if (this.currentPageNo > 1) {
+        this.currentPageNo -= 1;
+      } else if (this.isCarousel) {
+        this.currentPageNo = this.maxPageNo;
       }
     }
     if (this.diffX < -20) {
       if (this.isCarousel) {
-        this.currentNum += 1;
+        this.currentNum += this.shift;
         this.isAnimating = true;
       } else {
         this.currentNum = Math.min(
-          this.currentNum + 1,
-          this.imagePath.length - 1
+          this.currentNum + this.shift,
+          this.imagePath.length - this.shift
         );
+      }
+      // ページ番号を設定
+      if (this.currentPageNo < this.maxPageNo) {
+        this.currentPageNo += 1;
+      } else if (this.isCarousel) {
+        this.currentPageNo = 1;
       }
     }
     this.diffX = 0;
@@ -189,6 +247,26 @@ export default class Carousel extends Vue {
     this.isAnimating = false;
     this.currentNum =
       (this.currentNum + this.imagePath.length) % this.imagePath.length;
+  }
+
+  // 引数で指定したページ番号を表示する
+  changePage(num: number): void {
+    this.isAnimating = true;
+    this.currentNum = this.shift * (num - 1);
+    this.currentPageNo = num;
+  }
+
+  // 自動でページングさせる
+  startTimer(): void {
+    const timer = window.setTimeout(() => {
+      clearInterval(timer);
+      let showPageNo = this.currentPageNo + 1;
+      if (showPageNo > this.maxPageNo) {
+        showPageNo = 1;
+      }
+      this.changePage(showPageNo);
+      this.startTimer();
+    }, 5000);
   }
 }
 </script>
@@ -237,5 +315,25 @@ export default class Carousel extends Vue {
   position: absolute;
   top: 0;
   object-fit: cover;
+}
+
+.paging {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+}
+.paging.dot {
+  width: 24%;
+  margin: 5px auto;
+}
+.paging.dot li {
+  border: 1px solid #666;
+  border-radius: 50%;
+  width: 7px;
+  height: 7px;
+  list-style-type: none;
+}
+.paging.dot li.active {
+  background: #666;
 }
 </style>
