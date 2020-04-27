@@ -52,6 +52,12 @@ export default class Calendar extends Vue {
   day = -1;
   today = "";
 
+  @PropSync("selectedDate", {
+    type: Date,
+    default: null
+  })
+  date;
+
   /**
    * 先月のカレンダーを取得
    */
@@ -85,6 +91,7 @@ export default class Calendar extends Vue {
     if (dayNum !== "") {
       this.day = dayNum;
     }
+    this.date = new Date(this.year, this.month, this.day);
   }
 
   /**

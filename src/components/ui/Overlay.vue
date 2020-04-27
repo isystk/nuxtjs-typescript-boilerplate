@@ -1,6 +1,10 @@
 <template>
   <div>
-    <div v-if="isVisible" id="overlay-background"></div>
+    <div
+      v-if="isVisible"
+      id="overlay-background"
+      @click.prevent="close()"
+    ></div>
     <div class="isystk-overlay" :class="{ open: isVisible }">
       <a href="#" class="close" @click.prevent="close()">
         <i class="far fa-times-circle"></i>

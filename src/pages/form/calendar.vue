@@ -12,7 +12,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-6">
+          <div class="col-sm-6">
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
@@ -23,14 +23,14 @@
                 <form>
                   <div class="box-body">
                     <div class="form-group">
-                      <Calendar />
+                      <Calendar :selected-date.sync="selectedDateFrom" />
                     </div>
                   </div>
                 </form>
               </div>
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-sm-6">
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
@@ -60,10 +60,7 @@ import Calendar from "@/components/form/Calendar.vue";
 })
 export default class extends Vue {
   error = "";
-  selectedDate = {
-    start: new Date(2018, 10, 9),
-    end: new Date(2018, 10, 10)
-  };
+  selectedDateFrom: Date | null = null;
 
   created(): void {
     // 選択中のサイドメニューをアクティブに変更

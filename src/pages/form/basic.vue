@@ -12,7 +12,7 @@
     <div class="content">
       <div class="container-fluid">
         <div class="row">
-          <div class="col-6">
+          <div class="col-sm-6">
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
@@ -105,7 +105,7 @@
               <!-- /.card-body -->
             </div>
           </div>
-          <div class="col-6">
+          <div class="col-sm-6">
             <div class="card card-info">
               <div class="card-header">
                 <h3 class="card-title">
