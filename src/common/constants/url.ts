@@ -12,8 +12,6 @@ export const URL = {
   FORM: "/form",
   /** フォーム(基本) */
   FORM_BASIC: "/form/basic",
-  /** フォーム(カレンダー) */
-  FORM_CALENDAR: "/form/calendar",
   /** チャート */
   CHART: "/chart",
   /** チャート(折れ線) */

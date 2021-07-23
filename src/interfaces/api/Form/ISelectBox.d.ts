@@ -1,4 +1,4 @@
 export interface ISelectBox<T> {
-  value: string;
-  code: T;
+  text: string;
+  value: T;
 }

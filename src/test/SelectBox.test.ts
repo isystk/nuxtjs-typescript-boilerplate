@@ -1,30 +1,30 @@
 import { mount, shallowMount } from "@vue/test-utils";
-import SelectBox from "@/components/form/SelectBox.vue";
+import PulldownInput from "@/components/elements/Input/Pulldown.vue";
 import { ISelectBox } from "@/interfaces/api/Form/ISelectBox";
 
 const values: ISelectBox<string>[] = [
   {
-    value: "項目1",
-    code: "1"
+    text: "項目1",
+    value: "1"
   },
   {
-    value: "項目2",
-    code: "2"
+    text: "項目2",
+    value: "2"
   },
   {
-    value: "項目3",
-    code: "3"
+    text: "項目3",
+    value: "3"
   }
 ];
 
 describe("SelectBox", (): void => {
   test("Vueインスタンスが生成されること", (): void => {
-    const wrapper = mount(SelectBox);
+    const wrapper = mount(PulldownInput);
     expect(wrapper.isVueInstance()).toBeTruthy();
   });
 
   test("propsを受け取れること", (): void => {
-    const wrapper = shallowMount(SelectBox, {
+    const wrapper = shallowMount(PulldownInput, {
       propsData: { values }
     });
     expect(wrapper.findAll(".dropdown-menu a").length).toBe(3);

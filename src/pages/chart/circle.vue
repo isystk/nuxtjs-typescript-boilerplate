@@ -136,10 +136,10 @@
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
 
 import { sideMenuModule } from "@/store/sideMenu";
-import ContentHeader from "@/components/ContentHeader.vue";
-import ChartPie from "@/components/chart/ChartPie.vue";
-import ChartDoughnut from "@/components/chart/ChartDoughnut.vue";
-import ChartPolar from "@/components/chart/ChartPolar.vue";
+import ContentHeader from "@/components/pages/ContentHeader.vue";
+import ChartPie from "@/components/pages/chart/ChartPie.vue";
+import ChartDoughnut from "@/components/pages/chart/ChartDoughnut.vue";
+import ChartPolar from "@/components/pages/chart/ChartPolar.vue";
 
 @Component({
   components: {

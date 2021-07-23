@@ -8,7 +8,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { State } from "vuex-class";
-import ContentHeader from "@/components/ContentHeader.vue";
+import ContentHeader from "@/components/pages/ContentHeader.vue";
 
 @Component({
   components: {

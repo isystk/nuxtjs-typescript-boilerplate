@@ -23,18 +23,16 @@
                   }}
                 </h3>
                 <div class="float-sm-right">
-                  <SelectBox
-                    :values="
+                  <PulldownInput
+                    name="currencyCode"
+                    :default-value="selectedCurrencyCode"
+                    :options="
                       this.$_.map(supportedCurrencies, (value, key) => ({
-                        value: value.currency,
-                        code: value.currency
+                        text: value.currency,
+                        value: value.currency
                       }))
                     "
-                    :selected-code.sync="selectedCurrencyCode"
-                    :class-object="{
-                      isMenuRight: true,
-                      btnColor: 'btn-secondary'
-                    }"
+                    :on-change="onChangeSelectedCurrencyCode"
                   />
                 </div>
               </div>
@@ -69,15 +67,15 @@ import {
   SearchHistoricalCondition,
   Historical
 } from "@/store/currency";
-import ContentHeader from "@/components/ContentHeader.vue";
-import ChartLineBar from "@/components/chart/ChartLineBar.vue";
-import SelectBox from "@/components/form/SelectBox.vue";
+import ContentHeader from "@/components/pages/ContentHeader.vue";
+import ChartLineBar from "@/components/pages/chart/ChartLineBar.vue";
+import PulldownInput from "@/components/elements/Input/Pulldown.vue";
 
 @Component({
   components: {
     ContentHeader,
     ChartLineBar,
-    SelectBox
+    PulldownInput
   }
 })
 export default class extends Vue {

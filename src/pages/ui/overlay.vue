@@ -55,7 +55,7 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
-import ContentHeader from "@/components/ContentHeader.vue";
+import ContentHeader from "@/components/pages/ContentHeader.vue";
 import ImageCarousel from "@/components/ui/ImageCarousel.vue";
 import Overlay from "@/components/ui/Overlay.vue";
 @Component({

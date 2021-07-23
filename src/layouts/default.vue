@@ -12,9 +12,9 @@
 <script lang="ts">
 import { Component, Vue } from "nuxt-property-decorator";
 
-import Header from "@/components/Header.vue";
-import SideMenu from "@/components/SideMenu.vue";
-import Footer from "@/components/Footer.vue";
+import Header from "@/components/pages/Header.vue";
+import SideMenu from "@/components/pages/SideMenu.vue";
+import Footer from "@/components/pages/Footer.vue";
 
 @Component({
   components: {

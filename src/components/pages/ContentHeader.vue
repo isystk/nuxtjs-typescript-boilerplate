@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, Watch } from "vue-property-decorator";
-import Breadcrumb from "@/components/Breadcrumb.vue";
+import Breadcrumb from "@/components/pages/Breadcrumb.vue";
 
 @Component({
   components: {

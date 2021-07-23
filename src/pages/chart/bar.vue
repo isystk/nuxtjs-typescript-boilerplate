@@ -101,9 +101,9 @@
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
 
 import { sideMenuModule } from "@/store/sideMenu";
-import ContentHeader from "@/components/ContentHeader.vue";
-import ChartLineBar from "@/components/chart/ChartLineBar.vue";
-import ChartHorizontalBar from "@/components/chart/ChartHorizontalBar.vue";
+import ContentHeader from "@/components/pages/ContentHeader.vue";
+import ChartLineBar from "@/components/pages/chart/ChartLineBar.vue";
+import ChartHorizontalBar from "@/components/pages/chart/ChartHorizontalBar.vue";
 
 @Component({
   components: {

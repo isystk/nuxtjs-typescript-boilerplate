@@ -12,9 +12,9 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_workbox_227780c7 from 'nuxt_plugin_workbox_227780c7' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_moment_666ee48d from 'nuxt_plugin_moment_666ee48d' // Source: ./moment.js (mode: 'all')
-import nuxt_plugin_axios_c0880b2a from 'nuxt_plugin_axios_c0880b2a' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_workbox_3de2ae72 from 'nuxt_plugin_workbox_3de2ae72' // Source: ./workbox.js (mode: 'client')
+import nuxt_plugin_moment_ad3c54fc from 'nuxt_plugin_moment_ad3c54fc' // Source: ./moment.js (mode: 'all')
+import nuxt_plugin_axios_fe46d254 from 'nuxt_plugin_axios_fe46d254' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_sanitizehtml_2c7303e8 from 'nuxt_plugin_sanitizehtml_2c7303e8' // Source: ../src/plugins/libraries/sanitize-html.ts (mode: 'all')
 import nuxt_plugin_lodash_53c55d0e from 'nuxt_plugin_lodash_53c55d0e' // Source: ../src/plugins/libraries/lodash.ts (mode: 'all')
 import nuxt_plugin_moment_6a977a7a from 'nuxt_plugin_moment_6a977a7a' // Source: ../src/plugins/libraries/moment.ts (mode: 'all')
@@ -69,7 +69,7 @@ async function createApp (ssrContext) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"titleTemplate":"%s | nuxtjs-typescript-boilerplate","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxtjs-typescript-boilerplate"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Fnuxtjs\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002Fnuxtjs\u002F_nuxt\u002Fmanifest.e814e774.json"}],"style":[],"script":[],"title":"nuxtjs-typescript-boilerplate","htmlAttrs":{"lang":"en"}},
+    head: {"titleTemplate":"%s | nuxtjs-typescript-boilerplate","meta":[{"hid":"charset","charset":"utf-8"},{"hid":"viewport","name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"},{"hid":"noydir","name":"robots","content":"noydir"},{"hid":"noodp","name":"robots","content":"noodp"},{"hid":"index,follow","name":"robots","content":"index,follow"},{"hid":"format-detection","name":"format-detection","content":"telephone=no"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"nuxtjs-typescript-boilerplate"},{"hid":"author","name":"author","content":"isystk"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"nuxtjs-typescript-boilerplate"},{"hid":"og:description","name":"og:description","property":"og:description","content":"Nuxtjs、Typescriptを利用したボイラープレートです"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.9e113507.json"}],"style":[],"script":[],"title":"nuxtjs-typescript-boilerplate","htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -184,16 +184,16 @@ async function createApp (ssrContext) {
 
   // Plugin execution
 
-  if (process.client && typeof nuxt_plugin_workbox_227780c7 === 'function') {
-    await nuxt_plugin_workbox_227780c7(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_3de2ae72 === 'function') {
+    await nuxt_plugin_workbox_3de2ae72(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_moment_666ee48d === 'function') {
-    await nuxt_plugin_moment_666ee48d(app.context, inject)
+  if (typeof nuxt_plugin_moment_ad3c54fc === 'function') {
+    await nuxt_plugin_moment_ad3c54fc(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_c0880b2a === 'function') {
-    await nuxt_plugin_axios_c0880b2a(app.context, inject)
+  if (typeof nuxt_plugin_axios_fe46d254 === 'function') {
+    await nuxt_plugin_axios_fe46d254(app.context, inject)
   }
 
   if (typeof nuxt_plugin_sanitizehtml_2c7303e8 === 'function') {

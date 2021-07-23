@@ -63,7 +63,7 @@
       "@nuxt/vue-app"
     ],                                        /* コンパイルに含める宣言ファイルを入力します。 */
     // "allowSyntheticDefaultImports": true,  /* デフォルトのエクスポートがないモジュールからのデフォルトのインポートを許可します。これはコードの出力には影響しません。型検査だけです。 */
-    "esModuleInterop": true,                  /* CommonJSモジュールとESモジュール間の相互運用性を,すべてのインポート用に名前空間オブジェクトを作成することで可能にします。 「allowSyntheticDefaultImports」を暗示します。 */
+    "esModuleInterop": true                  /* CommonJSモジュールとESモジュール間の相互運用性を,すべてのインポート用に名前空間オブジェクトを作成することで可能にします。 「allowSyntheticDefaultImports」を暗示します。 */
     // "preserveSymlinks": true,              /* シンボリックリンクの実際のパスを解決しません。 */
 
     /* ソースマップオプション */
