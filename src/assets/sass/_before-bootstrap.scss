@@ -1,0 +1,33 @@
+// --------------------------------------------------
+// Override bootstrap variables
+// --------------------------------------------------
+
+// Body
+$body-bg: #fffdf9;
+$body-color: $text;
+
+// Typography
+$font-family-sans-serif: 'M PLUS 1p', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Link
+$link-color: $link;
+
+// Table
+$table-striped-order: even;
+
+// Paginator
+$pagination-active-color: $white;
+$pagination-active-bg: $link;
+$pagination-active-border-color: $link;
+
+// Input
+$input-placeholder-color: #cccccc;
+$input-font-size: 16px; // for iPhone
+
+// for input-group append/prepend
+$insertion-padding-x: 0.5rem;
+
+// Custom File
+$custom-file-padding-x: $insertion-padding-x;

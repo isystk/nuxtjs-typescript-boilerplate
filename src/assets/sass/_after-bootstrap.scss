@@ -1,0 +1,132 @@
+// --------------------------------------------------
+// Override bootstrap style
+// --------------------------------------------------
+
+// Pagination
+@include media-breakpoint-only(xs) { // for mobile
+  .pagination .page-link {
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+  }
+}
+@media (max-width: 350px) { // for iphone 5/se
+  .pagination {
+    margin-left: -25px;
+    margin-right: -25px;
+  }
+}
+
+// Table
+.striped>div:nth-child(2n+1) {
+  @extend .bg-light;
+}
+.table-striped tr {
+  &:not(.disabled):nth-of-type(even) {
+    th, td {
+      @extend .bg-light;
+    }
+  }
+  &:not(.disabled):nth-of-type(odd) {
+    th, td {
+      background-color: $white;
+    }
+  }
+  &.disabled {
+    th, td {
+      @extend .bg-secondary;
+    }
+  }
+}
+.table-responsive {
+  position: relative;
+  box-shadow: -15px 0 20px -20px rgba(206, 212, 218, 1) inset;
+}
+
+.table-sticky {
+  width: 100%;
+  max-height: 90vh;
+  overflow: scroll;
+
+  position: relative;
+  box-shadow: -15px 0 20px -20px rgba(206, 212, 218, 1) inset;
+}
+
+.table-xs {
+  td, th {
+    padding: .15rem .3rem;
+  }
+}
+
+// Card
+.card-body-custom {
+  @extend .card-body;
+  @include media-breakpoint-up('md', $grid-breakpoints) {
+    min-height: 550px;
+  }
+  @include media-breakpoint-down('sm', $grid-breakpoints) {
+    min-height: 350px;
+  }
+}
+
+.card-main>.card-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: none;
+  background-color: $main;
+  color: $white;
+}
+.card-main>.card-header>span.h2 {
+  line-height: 2.2rem;
+}
+.card-main>.card-body hr {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+// for sd-md
+@include media-breakpoint-down(md) {
+  .card-body {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+// to transparent
+.card-transparent {
+  border: none !important;
+  background: transparent !important;
+}
+
+// Buttons
+.btn {
+  border-color: $main-bg;
+}
+
+// for link
+.btn.btn-link {
+  border-color: transparent;
+}
+.btn.btn-transparent {
+  color: $black;
+  border-color: transparent;
+}
+
+.btn-noclick {
+  pointer-events: none;
+  cursor: default !important;
+}
+
+// Button group
+.btn-group > form > .btn:not(:first-child),
+.btn-group > form > .btn-group:not(:first-child) {
+  margin-left: -1px;
+}
+
+.btn-group > form > .btn:not(:last-child):not(.dropdown-toggle),
+.btn-group > form > .btn-group:not(:last-child) > .btn {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.btn-group > form > .btn:not(:first-child),
+.btn-group > form > .btn-group:not(:first-child) > .btn {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

@@ -53,14 +53,14 @@
             <a href="#" class="nav-link">
               <i class="fa fa-cubes"></i>
               <p>
-                {{ $t("text.sideMenu.ui") }}
+                {{ $t("text.sideMenu.widgets") }}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <nuxt-link
-                  :to="this.$C.URL.UI_CAROUSEL"
+                  :to="this.$C.URL.WIDGETS_CAROUSEL"
                   :class="[item == 'carousel' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
@@ -69,8 +69,8 @@
               </li>
               <li class="nav-item">
                 <nuxt-link
-                  :to="this.$C.URL.UI_OVERLAY"
-                  :class="[item == 'overlay' ? 'active' : '', 'nav-link']"
+                  :to="this.$C.URL.WIDGETS_OVERLAY"
+                  :class="[item == 'carousel' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.overlay") }}</p>

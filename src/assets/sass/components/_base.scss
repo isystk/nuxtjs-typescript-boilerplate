@@ -1,0 +1,8 @@
+body {
+  height: 100%;
+  position: relative;
+}
+
+.header {
+  z-index: $zindex-header;
+}

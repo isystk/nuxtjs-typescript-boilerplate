@@ -3,10 +3,10 @@
     <ContentHeader
       :current="{
         title: $t('text.sideMenu.carousel'),
-        url: this.$C.URL.UI_CAROUSEL
+        url: this.$C.URL.WIDGETS_CAROUSEL
       }"
       :breadcrumb-list="[
-        { title: $t('text.sideMenu.ui'), url: this.$C.URL.UI }
+        { title: $t('text.sideMenu.widgets'), url: this.$C.URL.WIDGETS }
       ]"
     />
     <div class="content">
@@ -92,7 +92,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ImageCarousel from "@/components/ui/ImageCarousel.vue";
+import ImageCarousel from "@/components/pages/carousel/ImageCarousel.vue";
 
 @Component({
   components: {

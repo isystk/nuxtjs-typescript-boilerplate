@@ -1,6 +1,6 @@
 <template>
   <ContentHeader
-    :current="{ title: $t('text.sideMenu.ui'), url: this.$C.URL.UI }"
+    :current="{ title: $t('text.sideMenu.widgets'), url: this.$C.URL.WIDGETS }"
     :breadcrumb-list="[]"
   />
 </template>

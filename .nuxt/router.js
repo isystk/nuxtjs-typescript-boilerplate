@@ -6,7 +6,7 @@ import scrollBehavior from './router.scrollBehavior.js'
 const _0af73de8 = () => interopDefault(import('../src/pages/api/index.vue' /* webpackChunkName: "pages/api/index" */))
 const _6e29b5ec = () => interopDefault(import('../src/pages/chart/index.vue' /* webpackChunkName: "pages/chart/index" */))
 const _ba537fe8 = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
-const _3bbea51c = () => interopDefault(import('../src/pages/ui/index.vue' /* webpackChunkName: "pages/ui/index" */))
+const _b2be2a86 = () => interopDefault(import('../src/pages/widgets/index.vue' /* webpackChunkName: "pages/widgets/index" */))
 const _9308d3f8 = () => interopDefault(import('../src/pages/api/coindesk.vue' /* webpackChunkName: "pages/api/coindesk" */))
 const _689f8b53 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
 const _43f6259e = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
@@ -15,8 +15,8 @@ const _2a2337b4 = () => interopDefault(import('../src/pages/chart/circle.vue' /*
 const _64aa3cca = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
 const _56fa6620 = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
 const _6db0dd68 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
-const _3768e7f4 = () => interopDefault(import('../src/pages/ui/carousel.vue' /* webpackChunkName: "pages/ui/carousel" */))
-const _1d4bed1a = () => interopDefault(import('../src/pages/ui/overlay.vue' /* webpackChunkName: "pages/ui/overlay" */))
+const _15d056c5 = () => interopDefault(import('../src/pages/widgets/carousel.vue' /* webpackChunkName: "pages/widgets/carousel" */))
+const _58b34e7b = () => interopDefault(import('../src/pages/widgets/overlay.vue' /* webpackChunkName: "pages/widgets/overlay" */))
 const _306e2dc6 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 // TODO: remove in Nuxt 3
@@ -48,9 +48,9 @@ export const routerOptions = {
     component: _ba537fe8,
     name: "form"
   }, {
-    path: "/ui",
-    component: _3bbea51c,
-    name: "ui"
+    path: "/widgets",
+    component: _b2be2a86,
+    name: "widgets"
   }, {
     path: "/api/coindesk",
     component: _9308d3f8,
@@ -84,13 +84,13 @@ export const routerOptions = {
     component: _6db0dd68,
     name: "form-basic"
   }, {
-    path: "/ui/carousel",
-    component: _3768e7f4,
-    name: "ui-carousel"
+    path: "/widgets/carousel",
+    component: _15d056c5,
+    name: "widgets-carousel"
   }, {
-    path: "/ui/overlay",
-    component: _1d4bed1a,
-    name: "ui-overlay"
+    path: "/widgets/overlay",
+    component: _58b34e7b,
+    name: "widgets-overlay"
   }, {
     path: "/",
     component: _306e2dc6,

@@ -3,10 +3,10 @@
     <ContentHeader
       :current="{
         title: $t('text.sideMenu.overlay'),
-        url: this.$C.URL.UI_OVERLAY
+        url: this.$C.URL.WIDGETS_OVERLAY
       }"
       :breadcrumb-list="[
-        { title: $t('text.sideMenu.ui'), url: this.$C.URL.UI }
+        { title: $t('text.sideMenu.widgets'), url: this.$C.URL.WIDGETS }
       ]"
     />
     <div class="content">
@@ -23,23 +23,16 @@
                 <div class="box-body">
                   <div class="row">
                     <div class="col-12">
-                      <a href="#" @click.prevent="showOverlay()">
-                        オーバーレイを表示する
-                      </a>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-sm-5 m-auto">
-                      <Overlay :is-visible-overlay.sync="isVisibleOverlay">
-                        <template v-slot:body>
-                          モーダル
-                          <ImageCarousel
-                            :image-path="imagePath"
-                            :is-carousel="false"
-                            :image-size="{ width: '250px', height: '250px' }"
-                          />
-                        </template>
-                      </Overlay>
+                      <AddPropertyButton
+                          :year="2020"
+                          :month="6"
+                          endpoint-uri="xxx"
+                          buttonLabel="追加"
+                          cancelLabel="閉じる"
+                          nextLabel="次へ"
+                          backLabel="戻る"
+                          submitLabel="登録する"
+                      />
                     </div>
                   </div>
                 </div>
@@ -56,13 +49,14 @@
 import { Component, Vue } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ImageCarousel from "@/components/ui/ImageCarousel.vue";
-import Overlay from "@/components/ui/Overlay.vue";
+import ImageCarousel from "@/components/pages/carousel/ImageCarousel.vue";
+import AddPropertyButton from "@/components/pages/condition/AddPropertyButton.vue";
+
 @Component({
   components: {
     ContentHeader,
     ImageCarousel,
-    Overlay
+    AddPropertyButton
   }
 })
 export default class extends Vue {

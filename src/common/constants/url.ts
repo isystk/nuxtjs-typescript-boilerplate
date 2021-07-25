@@ -22,12 +22,12 @@ export const URL = {
   CHART_RADAR: "/chart/radar",
   /** チャート(円グラフ) */
   CHART_CIRCLE: "/chart/circle",
-  /** UI */
-  UI: "/ui",
-  /** UI(カルーセル) */
-  UI_CAROUSEL: "/ui/carousel",
-  /** UI(オーバーレイ) */
-  UI_OVERLAY: "/ui/overlay",
+  /** ウィジェット */
+  WIDGETS: "/widgets",
+  /** ウィジェット(カルーセル) */
+  WIDGETS_CAROUSEL: "/widgets/carousel",
+  /** ウィジェット(オーバーレイ) */
+  WIDGETS_OVERLAY: "/widgets/overlay",
   /** API */
   API: "/api",
   /** API(仮想通貨) */
