@@ -20,6 +20,7 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../src/store/auth.ts'), 'auth.ts')
+  resolveStoreModules(require('../src/store/coverPage.js'), 'coverPage.js')
   resolveStoreModules(require('../src/store/currency.ts'), 'currency.ts')
   resolveStoreModules(require('../src/store/i18n.ts'), 'i18n.ts')
   resolveStoreModules(require('../src/store/sideMenu.ts'), 'sideMenu.ts')
@@ -31,6 +32,7 @@ let store = {};
     // Whenever any Vuex module is updated...
     module.hot.accept([
       '../src/store/auth.ts',
+      '../src/store/coverPage.js',
       '../src/store/currency.ts',
       '../src/store/i18n.ts',
       '../src/store/index.ts',

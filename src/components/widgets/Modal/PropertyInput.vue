@@ -9,7 +9,7 @@
   >
     <template slot="body">
       <div class="p-1 position-relative text-dark">
-        <WidgetsInputGroupStaffPropertyElement
+        <WidgetsInputGroupStockPropertyElement
           :back-label="backLabel"
           :next-label="nextLabel"
           :submit-label="submitLabel"
@@ -18,7 +18,7 @@
           @submit="handleSubmitted"
         />
 
-        <loading v-if="loading" />
+        <ElementsLoading v-if="loading" />
       </div>
     </template>
   </WidgetsModal>

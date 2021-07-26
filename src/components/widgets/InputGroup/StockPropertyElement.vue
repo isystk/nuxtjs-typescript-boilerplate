@@ -3,7 +3,7 @@
     <transition>
       <div v-if="step === 1">
         <h4 class="text-center p-4">
-          スタッフを分類するカテゴリーの名前と<br/>
+          商品を分類するカテゴリーの名前と<br/>
           タイプの数を入力してください
         </h4>
 

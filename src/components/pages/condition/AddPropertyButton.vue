@@ -6,7 +6,7 @@
       @click.stop.prevent="onOpen"
     >
       {{ buttonLabel }}
-      <loading v-if="loading" />
+      <ElementsLoading v-if="loading" />
     </button>
 
     <WidgetsModalPropertyInput
