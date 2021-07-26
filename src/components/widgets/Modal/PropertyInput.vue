@@ -1,5 +1,5 @@
 <template>
-  <Modal
+  <WidgetsModal
     v-if="opened"
     @close="handleCanceled"
     :close-label="cancelLabel"
@@ -9,7 +9,7 @@
   >
     <template slot="body">
       <div class="p-1 position-relative text-dark">
-        <StaffPropertyElementInputGroup
+        <WidgetsInputGroupStaffPropertyElement
           :back-label="backLabel"
           :next-label="nextLabel"
           :submit-label="submitLabel"
@@ -21,17 +21,11 @@
         <loading v-if="loading" />
       </div>
     </template>
-  </modal>
+  </WidgetsModal>
 </template>
 <script>
-import Modal from "@/components/widgets/Modal.vue";
-import StaffPropertyElementInputGroup from "@/components/widgets/InputGroup/StaffPropertyElement.vue";
 
 export default {
-  components: {
-    Modal,
-    StaffPropertyElementInputGroup
-  },
   props: {
     opened: {
       type: Boolean,

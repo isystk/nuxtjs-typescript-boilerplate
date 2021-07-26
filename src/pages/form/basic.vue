@@ -26,9 +26,9 @@
                 <div class="box-body">
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      ConfirmButton
+                      ElementsButtonConfirm
                     </p>
-                    <ConfirmButton
+                    <ElementsButtonConfirm
                       method="post"
                       action="/xxx/xxx"
                       variant="danger"
@@ -38,10 +38,10 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      SubmitButton
+                      ElementsButtonSubmit
                     </p>
                     <form method="post" action="/user/edit/">
-                      <SubmitButton
+                      <ElementsButtonSubmit
                         label="登録する"
                         name="regist"
                         variant="primary"
@@ -50,15 +50,15 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      CalendarInput
+                      ElementsInputCalendar
                     </p>
-                    <CalendarInput />
+                    <ElementsInputCalendar />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      CheckboxInput
+                      ElementsInputCheckbox
                     </p>
-                    <CheckboxInput
+                    <ElementsInputCheckbox
                       name="check1"
                       :default-value="[2, 4]"
                       :options="
@@ -74,17 +74,17 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      ColorInput
+                      ElementsInputColor
                     </p>
-                    <ColorInput < p>
-                      <ColorInput name="color1" default-value="#000000" />
-                    </ColorInput>
+                    <ElementsInputColor
+                      name="color1"
+                      default-value="#000000" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      DateInput
+                      ElementsInputDate
                     </p>
-                    <DateInput
+                    <ElementsInputDate
                       name="birthday"
                       errors="生年月日を入力してください"
                       :start-year="1950"
@@ -97,59 +97,56 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      FileInput
+                      ElementsInputFile
                     </p>
-                    <FileInput < p>
-                      <FileInput name="file1" />
-                    </FileInput>
+                    <ElementsInputFile
+                      name="file1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      FullNameInput
+                      ElementsInputFullName
                     </p>
-                    <FullNameInput
+                    <ElementsInputFullName
                       name="fullName"
                       default-value="ise yoshitaka"
                     />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      ImageInput
+                      ElementsInputImage
                     </p>
-                    <ImageInput < p>
-                      <ImageInput name="image1" />
-                    </ImageInput>
+                    <ElementsInputImage
+                      name="image1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      MailAddressInput
+                      ElementsInputMailAddress
                     </p>
-                    <MailAddressInput < p>
-                      <MailAddressInput name="mail1" />
-                    </MailAddressInput>
+                    <ElementsInputMailAddress
+                      name="mail1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      PhoneNumberInput
+                      ElementsInputPhoneNumber
                     </p>
-                    <PhoneNumberInput
+                    <ElementsInputPhoneNumber
                       name="tel"
                       default-value="090-1111-2222"
                     />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      PostalCodeInput
+                      ElementsInputPostalCode
                     </p>
-                    <PostalCodeInput < p>
-                      <PostalCodeInput name="postal" default-value="040-0063" />
-                    </PostalCodeInput>
+                    <ElementsInputPostalCode
+                      name="postal"
+                      default-value="040-0063" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      PulldownInput
+                      ElementsInputPulldown
                     </p>
-                    <PulldownInput
+                    <ElementsInputPulldown
                       name="select1"
                       default-value="2"
                       :options="[
@@ -161,9 +158,9 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      RadioInput
+                      ElementsInputRadio
                     </p>
-                    <RadioInput
+                    <ElementsInputRadio
                       name="radio1"
                       default-value="2"
                       :options="[
@@ -175,59 +172,55 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      TextInput
+                      ElementsInputText
                     </p>
-                    <TextInput < p>
-                      <TextInput name="text1" default-value="hogehoge" />
-                    </TextInput>
+                    <ElementsInputText
+                      name="text1"
+                      default-value="hogehoge" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      TextareaInput
+                      ElementsInputTextarea
                     </p>
-                    <TextareaInput
+                    <ElementsInputTextarea
                       name="textarea1"
                       :default-value="`a\nbb\nccc`"
                     />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      YearMonthInput
+                      ElementsInputYearMonth
                     </p>
-                    <YearMonthInput < p>
-                      <YearMonthInput
-                        name="yearmonth1"
-                        default-value="202006"
-                      />
-                    </YearMonthInput>
+                    <ElementsInputYearMonth
+                      name="yearmonth1"
+                      default-value="202006"
+                    />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      NameLabel
+                      ElementsLabelName
                     </p>
-                    <NameLabel < p>
-                      <NameLabel name="やまだ　たろう" />
-                    </NameLabel>
+                    <ElementsLabelName
+                      name="やまだ　たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      Cell
+                      ElementsCell
                     </p>
-                    <Cell < p>
-                      <Cell text="やまだ　たろう" />
-                    </Cell>
+                    <ElementsCell
+                      text="やまだ　たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      Loading
+                      ElementsLoading
                     </p>
-                    <Loading />
+                    <ElementsLoading />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
-                      Required
+                      ElementsRequired
                     </p>
-                    <Required />
+                    <ElementsRequired />
                   </div>
                 </div>
               </div>
@@ -255,52 +248,10 @@
 import { Component, Vue } from "vue-property-decorator";
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ConfirmButton from "@/components/elements/Button/Confirm.vue";
-import SubmitButton from "@/components/elements/Button/Submit.vue";
-import CalendarInput from "@/components/elements/Input/Calendar.vue";
-import CheckboxInput from "@/components/elements/Input/Checkbox.vue";
-import ColorInput from "@/components/elements/Input/Color.vue";
-import DateInput from "@/components/elements/Input/Date.vue";
-import FileInput from "@/components/elements/Input/File.vue";
-import FullNameInput from "@/components/elements/Input/FullName.vue";
-import ImageInput from "@/components/elements/Input/Image.vue";
-import MailAddressInput from "@/components/elements/Input/MailAddress.vue";
-import PhoneNumberInput from "@/components/elements/Input/PhoneNumber.vue";
-import PostalCodeInput from "@/components/elements/Input/PostalCode.vue";
-import PulldownInput from "@/components/elements/Input/Pulldown.vue";
-import RadioInput from "@/components/elements/Input/Radio.vue";
-import TextInput from "@/components/elements/Input/Text.vue";
-import TextareaInput from "@/components/elements/Input/Textarea.vue";
-import YearMonthInput from "@/components/elements/Input/YearMonth.vue";
-import NameLabel from "@/components/elements/Label/Name.vue";
-import Cell from "@/components/elements/Cell.vue";
-import Loading from "@/components/elements/Loading.vue";
-import Required from "@/components/elements/Required.vue";
 
 @Component({
   components: {
-    ContentHeader,
-    ConfirmButton,
-    SubmitButton,
-    CheckboxInput,
-    CalendarInput,
-    ColorInput,
-    DateInput,
-    FileInput,
-    FullNameInput,
-    ImageInput,
-    MailAddressInput,
-    PhoneNumberInput,
-    PostalCodeInput,
-    PulldownInput,
-    RadioInput,
-    TextInput,
-    TextareaInput,
-    YearMonthInput,
-    NameLabel,
-    Cell,
-    Loading,
-    Required
+    ContentHeader
   }
 })
 export default class extends Vue {

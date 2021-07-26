@@ -70,7 +70,7 @@
               <li class="nav-item">
                 <nuxt-link
                   :to="this.$C.URL.WIDGETS_OVERLAY"
-                  :class="[item == 'carousel' ? 'active' : '', 'nav-link']"
+                  :class="[item == 'overlay' ? 'active' : '', 'nav-link']"
                 >
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ $t("text.sideMenu.overlay") }}</p>

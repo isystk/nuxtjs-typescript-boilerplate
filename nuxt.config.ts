@@ -10,6 +10,9 @@ const pkg = require("./package");
 const PUBLIC_PATH = process.env.PUBLIC_PATH || "/";
 
 const nuxtConfig: NuxtConfiguration = {
+  // コンポーネントの自動インポート
+  components: true,
+
   mode: "universal",
   srcDir: "src/",
 
@@ -145,7 +148,10 @@ const nuxtConfig: NuxtConfiguration = {
     }
   },
   buildcd: {},
-  buildModules: ["@nuxt/typescript-build"],
+  buildModules: [
+    "@nuxt/typescript-build",
+    "@nuxt/components"
+  ],
   /**
    * Axios module configuration
    */

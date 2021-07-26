@@ -9,7 +9,7 @@
       <loading v-if="loading" />
     </button>
 
-    <PropertyInputModal
+    <WidgetsModalPropertyInput
       :opened="opened"
       :loading="loading"
 
@@ -24,12 +24,8 @@
   </span>
 </template>
 <script>
-import PropertyInputModal from "@/components/widgets/Modal/PropertyInput.vue";
 
 export default {
-  components: {
-    PropertyInputModal
-  },
   props: {
     year: {
       type: Number|String,
