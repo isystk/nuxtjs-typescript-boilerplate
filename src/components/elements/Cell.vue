@@ -21,7 +21,7 @@ export default {
       default: "span"
     },
     text: {
-      type: String | Number,
+      type: String,
       default: ""
     },
 

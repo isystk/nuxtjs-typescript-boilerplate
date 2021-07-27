@@ -30,11 +30,13 @@ export default {
   props: {
     year: {
       type: Number | String,
-      required: true
+      required: true,
+      default: ""
     },
     month: {
       type: Number | String,
-      required: true
+      required: true,
+      default: ""
     },
     endpointUri: {
       type: String,

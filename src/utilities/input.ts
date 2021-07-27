@@ -1,7 +1,6 @@
-import { Component, Vue } from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 import { shadowingName } from "~/utilities/filters";
 
-@Component
 export default class extends Vue {
   name = "";
   validated = "";

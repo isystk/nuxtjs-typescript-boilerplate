@@ -12,8 +12,7 @@
     v-click-outside="onHide"
     :class="`fas fa-info-circle${warn ? ' warn' : ''}`"
     @click.prevent="onToggle"
-  >
-  </i>
+  ></i>
 </template>
 
 <script>

@@ -76,9 +76,7 @@
                     <p class="font-weight-bold">
                       ElementsInputColor
                     </p>
-                    <ElementsInputColor
-name="color1"
-default-value="#000000" />
+                    <ElementsInputColor name="color1" default-value="#000000" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -99,8 +97,7 @@ default-value="#000000" />
                     <p class="font-weight-bold">
                       ElementsInputFile
                     </p>
-                    <ElementsInputFile
-name="file1" />
+                    <ElementsInputFile name="file1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -115,15 +112,13 @@ name="file1" />
                     <p class="font-weight-bold">
                       ElementsInputImage
                     </p>
-                    <ElementsInputImage
-name="image1" />
+                    <ElementsInputImage name="image1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
                       ElementsInputMailAddress
                     </p>
-                    <ElementsInputMailAddress
-name="mail1" />
+                    <ElementsInputMailAddress name="mail1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -175,9 +170,7 @@ name="mail1" />
                     <p class="font-weight-bold">
                       ElementsInputText
                     </p>
-                    <ElementsInputText
-name="text1"
-default-value="hogehoge" />
+                    <ElementsInputText name="text1" default-value="hogehoge" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -201,15 +194,13 @@ default-value="hogehoge" />
                     <p class="font-weight-bold">
                       ElementsLabelName
                     </p>
-                    <ElementsLabelName
-name="やまだ　たろう" />
+                    <ElementsLabelName name="やまだ たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
                       ElementsCell
                     </p>
-                    <ElementsCell
-text="やまだ　たろう" />
+                    <ElementsCell text="やまだ たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">

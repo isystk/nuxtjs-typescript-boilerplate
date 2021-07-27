@@ -18,7 +18,9 @@ export class CancelTokenMap {
    * @param key キーにする値
    */
   public create(key: any): void {
-    if (this.cancelTokenMap.has(key)) return;
+    if (this.cancelTokenMap.has(key)) {
+      return;
+    }
 
     this.cancelTokenMap.set(key, axios.CancelToken.source());
   }
@@ -32,7 +34,9 @@ export class CancelTokenMap {
 
     const cancelTokenSource = this.cancelTokenMap.get(key);
 
-    if (cancelTokenSource == null) return;
+    if (cancelTokenSource == null) {
+      return;
+    }
 
     return cancelTokenSource.token;
   }
@@ -45,7 +49,9 @@ export class CancelTokenMap {
   public cancel(key: any, message?: string): void {
     const cancelTokenSource = this.cancelTokenMap.get(key);
 
-    if (cancelTokenSource == null) return;
+    if (cancelTokenSource == null) {
+      return;
+    }
 
     cancelTokenSource.cancel(message);
   }

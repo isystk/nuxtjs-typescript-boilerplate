@@ -1,4 +1,4 @@
-import { mount, shallowMount, RouterLinkStub } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import Vue from "vue";
 import VueI18n from "vue-i18n";
 import Logo from "@/components/pages/Logo.vue";
