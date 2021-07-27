@@ -20,7 +20,7 @@ let store = {};
   store.modules = store.modules || {}
 
   resolveStoreModules(require('../src/store/auth.ts'), 'auth.ts')
-  resolveStoreModules(require('../src/store/coverPage.js'), 'coverPage.js')
+  resolveStoreModules(require('../src/store/coverPage.ts'), 'coverPage.ts')
   resolveStoreModules(require('../src/store/currency.ts'), 'currency.ts')
   resolveStoreModules(require('../src/store/i18n.ts'), 'i18n.ts')
   resolveStoreModules(require('../src/store/sideMenu.ts'), 'sideMenu.ts')
@@ -32,7 +32,7 @@ let store = {};
     // Whenever any Vuex module is updated...
     module.hot.accept([
       '../src/store/auth.ts',
-      '../src/store/coverPage.js',
+      '../src/store/coverPage.ts',
       '../src/store/currency.ts',
       '../src/store/i18n.ts',
       '../src/store/index.ts',
@@ -94,10 +94,10 @@ function resolveStoreModules (moduleData, filename) {
   // If src is a known Vuex property
   if (VUEX_PROPERTIES.includes(moduleName)) {
     const property = moduleName
-    const storeModule = getStoreModule(store, namespaces, { isProperty: true })
+    const propertyStoreModule = getStoreModule(store, namespaces, { isProperty: true })
 
     // Replace state since it's a function
-    mergeProperty(storeModule, moduleData, property)
+    mergeProperty(propertyStoreModule, moduleData, property)
     return
   }
 

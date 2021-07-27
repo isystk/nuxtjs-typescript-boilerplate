@@ -6,7 +6,6 @@ import {
   getModule,
   Module
 } from "vuex-module-decorators";
-import _ from "lodash";
 import moment from "moment";
 import { AxiosRequestConfig } from "axios";
 import { $axios } from "@/utilities/api";
@@ -94,7 +93,7 @@ class Currency extends VuexModule implements CurrencyState {
       currency: this.selecedCurrency.currency,
       start: params.start,
       end: params.end,
-      historicals: _.map(data.bpi, (value, key) => ({
+      historicals: data.bpi.map((value, key) => ({
         updated: new Date(key),
         rateFloat: parseFloat(value)
       }))

@@ -1,11 +1,11 @@
 <template>
   <WidgetsModal
     v-if="opened"
-    @close="handleCanceled"
     :close-label="cancelLabel"
     lg
     headless
     footless
+    @close="handleCanceled"
   >
     <template slot="body">
       <div class="p-1 position-relative text-dark">
@@ -13,7 +13,6 @@
           :back-label="backLabel"
           :next-label="nextLabel"
           :submit-label="submitLabel"
-
           @cancel="handleCanceled"
           @submit="handleSubmitted"
         />
@@ -24,42 +23,41 @@
   </WidgetsModal>
 </template>
 <script>
-
 export default {
   props: {
     opened: {
       type: Boolean,
-      default: false,
+      default: false
     },
     loading: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     cancelLabel: {
       type: String,
-      default: 'Close',
+      default: "Close"
     },
     nextLabel: {
       type: String,
-      default: 'Next',
+      default: "Next"
     },
     backLabel: {
       type: String,
-      default: 'Back',
+      default: "Back"
     },
     submitLabel: {
       type: String,
-      default: 'Create',
-    },
+      default: "Create"
+    }
   },
   methods: {
-    handleCanceled: function() {
-      this.$emit('cancel')
+    handleCanceled() {
+      this.$emit("cancel");
     },
-    handleSubmitted: function(values) {
-      this.$emit('submit', values)
-    },
-  },
-}
+    handleSubmitted(values) {
+      this.$emit("submit", values);
+    }
+  }
+};
 </script>

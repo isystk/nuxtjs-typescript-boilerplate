@@ -21,7 +21,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartLineBar
+                  <PagesChartLineBar
                     :chart-data="chartData"
                     :options="chartOptions"
                   />
@@ -83,15 +83,14 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+import Chart from "chart.js";
 
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ChartLineBar from "@/components/pages/chart/ChartLineBar.vue";
 
 @Component({
   components: {
-    ContentHeader,
-    ChartLineBar
+    ContentHeader
   }
 })
 export default class extends Vue {

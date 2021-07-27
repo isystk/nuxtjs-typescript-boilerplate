@@ -21,7 +21,10 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartRadar :chart-data="chartData" :options="chartOptions" />
+                  <PagesChartRadar
+                    :chart-data="chartData"
+                    :options="chartOptions"
+                  />
                 </div>
               </div>
             </div>
@@ -80,15 +83,14 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+import Chart from "chart.js";
 
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ChartRadar from "@/components/pages/chart/ChartRadar.vue";
 
 @Component({
   components: {
-    ContentHeader,
-    ChartRadar
+    ContentHeader
   }
 })
 export default class extends Vue {

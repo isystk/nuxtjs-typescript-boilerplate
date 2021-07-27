@@ -24,14 +24,14 @@
                   <div class="row">
                     <div class="col-12">
                       <AddPropertyButton
-                          :year="2020"
-                          :month="6"
-                          endpoint-uri="xxx"
-                          buttonLabel="追加"
-                          cancelLabel="閉じる"
-                          nextLabel="次へ"
-                          backLabel="戻る"
-                          submitLabel="登録する"
+                        :year="2020"
+                        :month="6"
+                        endpoint-uri="xxx"
+                        button-label="追加"
+                        cancel-label="閉じる"
+                        next-label="次へ"
+                        back-label="戻る"
+                        submit-label="登録する"
                       />
                     </div>
                   </div>

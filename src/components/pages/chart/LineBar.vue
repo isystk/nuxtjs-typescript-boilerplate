@@ -1,10 +1,10 @@
 <script lang="ts">
 import { Component, Mixins, Prop, Watch } from "vue-property-decorator";
 import Chart from "chart.js";
-import { Pie, mixins } from "vue-chartjs";
+import { Line, Bar, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartPie extends Mixins(Pie, mixins.reactiveProp) {
+export default class LineBar extends Mixins(Line, Bar, mixins.reactiveProp) {
   @Prop()
   chartData;
 

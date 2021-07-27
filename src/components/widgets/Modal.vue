@@ -1,10 +1,15 @@
 <template>
   <transition name="modal">
     <div class="modal-mask" @click.self.prevent="handleClose">
-      <div class="modal" tabindex="-1" role="dialog" @click.self.stop="handleClose">
+      <div
+        class="modal"
+        tabindex="-1"
+        role="dialog"
+        @click.self.stop="handleClose"
+      >
         <div :class="modalClass" role="document">
           <div class="modal-content">
-            <div class="modal-header" v-if="!headless">
+            <div v-if="!headless" class="modal-header">
               <h5 class="modal-title">
                 <slot name="title"></slot>
               </h5>
@@ -26,7 +31,7 @@
               </slot>
             </div>
 
-            <div class="modal-footer" v-if="!footless">
+            <div v-if="!footless" class="modal-footer">
               <slot name="footer">
                 <button
                   class="btn btn-done"
@@ -49,53 +54,53 @@ export default {
   props: {
     suspending: {
       type: Boolean,
-      default: false,
+      default: false
     },
     closeLabel: {
       type: String,
-      default: 'Close',
+      default: "Close"
     },
     sm: {
       type: Boolean,
-      default: false,
+      default: false
     },
     lg: {
       type: Boolean,
-      default: false,
+      default: false
     },
     xl: {
       type: Boolean,
-      default: false,
+      default: false
     },
     headless: {
       type: Boolean,
-      default: false,
+      default: false
     },
     footless: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
-    modalClass: function() {
-      let size = ''
+    modalClass() {
+      let size = "";
       if (this.xl) {
-        size = ' modal-xl'
+        size = " modal-xl";
       } else if (this.lg) {
-        size = ' modal-lg'
+        size = " modal-lg";
       } else if (this.sm) {
-        size = ' modal-sm'
+        size = " modal-sm";
       }
-      return 'modal-dialog' + size
-    },
+      return "modal-dialog" + size;
+    }
   },
   methods: {
-    handleClose: function() {
+    handleClose() {
       if (this.suspending) {
-        return false
+        return false;
       }
-      this.$emit('close')
-    },
-  },
-}
+      this.$emit("close");
+    }
+  }
+};
 </script>

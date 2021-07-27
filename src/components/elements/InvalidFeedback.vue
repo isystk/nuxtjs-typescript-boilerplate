@@ -8,9 +8,9 @@ export default {
   props: {
     error: {
       type: String,
-      default: 'Errored',
+      default: "Errored"
     },
-    className: String,
-  },
-}
+    className: String
+  }
+};
 </script>

@@ -2,7 +2,11 @@
   <span>
     <button
       type="button"
-      :class="`btn btn-sm btn-core w-150px position-relative${loading || readonly ? ' readonly' : ''}`"
+      :class="
+        `btn btn-sm btn-core w-150px position-relative${
+          loading || readonly ? ' readonly' : ''
+        }`
+      "
       @click.stop.prevent="onOpen"
     >
       {{ buttonLabel }}
@@ -12,123 +16,117 @@
     <WidgetsModalPropertyInput
       :opened="opened"
       :loading="loading"
-
       :cancel-label="cancelLabel"
       :back-label="backLabel"
       :next-label="nextLabel"
       :submit-label="submitLabel"
-
       @cancel="onClose"
       @submit="onSubmit"
     />
   </span>
 </template>
 <script>
-
 export default {
   props: {
     year: {
-      type: Number|String,
-      required: true,
+      type: Number | String,
+      required: true
     },
     month: {
-      type: Number|String,
-      required: true,
+      type: Number | String,
+      required: true
     },
     endpointUri: {
       type: String,
-      required: true,
+      required: true
     },
 
     readonly: {
       type: Boolean,
-      default: false,
+      default: false
     },
 
     buttonLabel: {
       type: String,
-      default: 'Add',
+      default: "Add"
     },
     cancelLabel: {
       type: String,
-      default: 'Close',
+      default: "Close"
     },
     nextLabel: {
       type: String,
-      default: 'Next',
+      default: "Next"
     },
     backLabel: {
       type: String,
-      default: 'Back',
+      default: "Back"
     },
     submitLabel: {
       type: String,
-      default: 'Create',
-    },
+      default: "Create"
+    }
   },
   data() {
     return {
       opened: false,
-      loading: false,
-    }
+      loading: false
+    };
   },
   methods: {
-    onOpen: function() {
+    onOpen() {
       if (this.readonly) {
-        return
+        return;
       }
-      this.opened = true
+      this.opened = true;
     },
-    onClose: function() {
+    onClose() {
       if (this.readonly) {
-        return
+        return;
       }
-      this.opened = false
+      this.opened = false;
     },
 
-    onSubmit: async function({ element, optionsLength, options }) {
+    async onSubmit({ element, optionsLength, options }) {
       if (this.readonly) {
-        return
+        return;
       }
       if (!this.endpointUri) {
-        return
+        return;
       }
       if (this.loading) {
-        return
+        return;
       }
 
       // Set cover
-      this.$store.dispatch('coverPage/setCover', {
+      this.$store.dispatch("coverPage/setCover", {
         display: true,
         content: {
-          title: '保存中',
-          loading: true,
-        },
-      })
-
-      this.loading = true
-
-      const response = await this.$api.post(
-        this.endpointUri,
-        {
-          _year: this.year,
-          _month: this.month,
-          element,
-          optionsLength,
-          options,
+          title: "保存中",
+          loading: true
         }
-      )
+      });
+
+      this.loading = true;
+
+      const response = await this.$api.post(this.endpointUri, {
+        _year: this.year,
+        _month: this.month,
+        element,
+        optionsLength,
+        options
+      });
       if (response && response.data) {
-        window.location.reload()
-        return
+        window.location.reload();
+        return;
       }
 
-      alert('カテゴリの追加中にエラーが発生しました')
-      this.$store.dispatch('coverPage/removeCover')
+      alert("カテゴリの追加中にエラーが発生しました");
+      this.$store.dispatch("coverPage/removeCover");
 
-      this.loading = false
-      this.opened = false
-    },
-  },
-}
+      this.loading = false;
+      this.opened = false;
+    }
+  }
+};
 </script>

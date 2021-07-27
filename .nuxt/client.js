@@ -6,7 +6,7 @@ import {
   promisify,
   middlewareSeries,
   sanitizeComponent,
-
+  resolveRouteComponents,
   getMatchedComponents,
   getMatchedComponentsInstances,
   flatMapComponents,
@@ -14,7 +14,9 @@ import {
   getLocation,
   compile,
   getQueryDiff,
-  globalHandleError
+  globalHandleError,
+  isSamePath,
+  urlJoin
 } from './utils.js'
 import { createApp, NuxtError } from './index.js'
 import fetchMixin from './mixins/fetch.client'
@@ -41,12 +43,17 @@ let store
 // Try to rehydrate SSR data from window
 const NUXT = window.__NUXT__ || {}
 
+const $config = NUXT.config || {}
+if ($config._app) {
+  __webpack_public_path__ = urlJoin($config._app.cdnURL, $config._app.assetsPath)
+}
+
 Object.assign(Vue.config, {"silent":false,"performance":true})
 
 const logs = NUXT.logs || []
   if (logs.length > 0) {
-  const ssrLogSyle = 'background: #2E495E;border-radius: 0.5em;color: white;font-weight: bold;padding: 2px 0.5em;'
-  console.group && console.group ('%cNuxt SSR', ssrLogSyle)
+  const ssrLogStyle = 'background: #2E495E;border-radius: 0.5em;color: white;font-weight: bold;padding: 2px 0.5em;'
+  console.group && console.group ('%cNuxt SSR', ssrLogStyle)
   logs.forEach(logObj => (console[logObj.type] || console.log)(...logObj.args))
   delete NUXT.logs
   console.groupEnd && console.groupEnd()
@@ -55,7 +62,7 @@ const logs = NUXT.logs || []
 // Setup global Vue error handler
 if (!Vue.config.$nuxt) {
   const defaultErrorHandler = Vue.config.errorHandler
-  Vue.config.errorHandler = (err, vm, info, ...rest) => {
+  Vue.config.errorHandler = async (err, vm, info, ...rest) => {
     // Call other handler if exist
     let handled = null
     if (typeof defaultErrorHandler === 'function') {
@@ -71,7 +78,19 @@ if (!Vue.config.$nuxt) {
 
       // Show Nuxt Error Page
       if (nuxtApp && vm.$root[nuxtApp].error && info !== 'render function') {
-        vm.$root[nuxtApp].error(err)
+        const currentApp = vm.$root[nuxtApp]
+
+        // Load error layout
+        let layout = (NuxtError.options || NuxtError).layout
+        if (typeof layout === 'function') {
+          layout = layout(currentApp.context)
+        }
+        if (layout) {
+          await currentApp.loadLayout(layout).catch(() => {})
+        }
+        currentApp.setLayout(layout)
+
+        currentApp.error(err)
       }
     }
 
@@ -93,7 +112,7 @@ Vue.config.$nuxt.$nuxt = true
 const errorHandler = Vue.config.errorHandler || console.error
 
 // Create and mount App
-createApp().then(mountApp).catch(errorHandler)
+createApp(null, NUXT.config).then(mountApp).catch(errorHandler)
 
 function componentOption (component, key, ...args) {
   if (!component || !component.options || !component.options[key]) {
@@ -131,7 +150,7 @@ function mapTransitions (toComponents, to, from) {
   return mergedTransitions
 }
 
-function loadAsyncComponents (to, from, next) {
+async function loadAsyncComponents (to, from, next) {
   // Check if route changed (this._routeChanged), only if the page is not an error (for validate())
   this._routeChanged = Boolean(app.nuxt.err) || from.name !== to.name
   this._paramChanged = !this._routeChanged && from.path !== to.path
@@ -139,6 +158,26 @@ function loadAsyncComponents (to, from, next) {
   this._diffQuery = (this._queryChanged ? getQueryDiff(to.query, from.query) : [])
 
   try {
+    if (this._queryChanged) {
+      const Components = await resolveRouteComponents(
+        to,
+        (Component, instance) => ({ Component, instance })
+      )
+      // Add a marker on each component that it needs to refresh or not
+      const startLoader = Components.some(({ Component, instance }) => {
+        const watchQuery = Component.options.watchQuery
+        if (watchQuery === true) {
+          return true
+        }
+        if (Array.isArray(watchQuery)) {
+          return watchQuery.some(key => this._diffQuery[key])
+        }
+        if (typeof watchQuery === 'function') {
+          return watchQuery.apply(instance, [to.query, from.query])
+        }
+        return false
+      })
+    }
     // Call next()
     next()
   } catch (error) {
@@ -169,10 +208,8 @@ function applySSRData (Component, ssrData) {
 }
 
 // Get matched components
-function resolveComponents (router) {
-  const path = getLocation(router.options.base, router.options.mode)
-
-  return flatMapComponents(router.match(path), async (Component, _, match, key, index) => {
+function resolveComponents (route) {
+  return flatMapComponents(route, async (Component, _, match, key, index) => {
     // If component is not resolved yet, resolve it
     if (typeof Component === 'function' && !Component.options) {
       Component = await Component()
@@ -224,8 +261,10 @@ async function render (to, from, next) {
     return next()
   }
   // Handle first render on SPA mode
+  let spaFallback = false
   if (to === from) {
     _lastPaths = []
+    spaFallback = true
   } else {
     const fromMatches = []
     _lastPaths = getMatchedComponents(from, fromMatches).map((Component, i) => {
@@ -351,7 +390,7 @@ async function render (to, from, next) {
 
     let instances
     // Call asyncData & fetch hooks on components matched by the route.
-    await Promise.all(Components.map((Component, i) => {
+    await Promise.all(Components.map(async (Component, i) => {
       // Check if only children route changed
       Component._path = compile(to.matched[matches[i]].path)(to.params)
       Component._dataRefresh = false
@@ -394,9 +433,10 @@ async function render (to, from, next) {
       // Call asyncData(context)
       if (hasAsyncData) {
         const promise = promisify(Component.options.asyncData, app.context)
-          .then((asyncDataResult) => {
-            applyAsyncData(Component, asyncDataResult)
-          })
+
+        promise.then((asyncDataResult) => {
+          applyAsyncData(Component, asyncDataResult)
+        })
         promises.push(promise)
       }
 
@@ -456,21 +496,28 @@ function normalizeComponents (to, ___) {
   })
 }
 
-function showNextPage (to) {
-  // Hide error component if no error
-  if (this._hadError && this._dateLastError === this.$options.nuxt.dateErr) {
-    this.error()
-  }
-
+function setLayoutForNextPage (to) {
   // Set layout
-  let layout = this.$options.nuxt.err
+  let hasError = Boolean(this.$options.nuxt.err)
+  if (this._hadError && this._dateLastError === this.$options.nuxt.dateErr) {
+    hasError = false
+  }
+  let layout = hasError
     ? (NuxtError.options || NuxtError).layout
     : to.matched[0].components.default.options.layout
 
   if (typeof layout === 'function') {
     layout = layout(app.context)
   }
+
   this.setLayout(layout)
+}
+
+function checkForErrors (app) {
+  // Hide error component if no error
+  if (app._hadError && app._dateLastError === app.$options.nuxt.dateErr) {
+    app.error()
+  }
 }
 
 // When navigating on a different route but the same component is used, Vue.js
@@ -482,6 +529,8 @@ function fixPrepatch (to, ___) {
 
   const instances = getMatchedComponentsInstances(to)
   const Components = getMatchedComponents(to)
+
+  let triggerScroll = false
 
   Vue.nextTick(() => {
     instances.forEach((instance, i) => {
@@ -500,13 +549,18 @@ function fixPrepatch (to, ___) {
           Vue.set(instance.$data, key, newData[key])
         }
 
-        // Ensure to trigger scroll event after calling scrollBehavior
-        window.$nuxt.$nextTick(() => {
-          window.$nuxt.$emit('triggerScroll')
-        })
+        triggerScroll = true
       }
     })
-    showNextPage.call(this, to)
+
+    if (triggerScroll) {
+      // Ensure to trigger scroll event after calling scrollBehavior
+      window.$nuxt.$nextTick(() => {
+        window.$nuxt.$emit('triggerScroll')
+      })
+    }
+
+    checkForErrors(this)
 
     // Hot reloading
     setTimeout(() => hotReloadAPI(this), 100)
@@ -654,6 +708,9 @@ async function mountApp (__app) {
 
     // Add afterEach router hooks
     router.afterEach(normalizeComponents)
+
+    router.afterEach(setLayoutForNextPage.bind(_app))
+
     router.afterEach(fixPrepatch.bind(_app))
 
     // Listen for first Vue update
@@ -667,7 +724,7 @@ async function mountApp (__app) {
   }
 
   // Resolve route components
-  const Components = await Promise.all(resolveComponents(router))
+  const Components = await Promise.all(resolveComponents(app.context.route))
 
   // Enable transitions
   _app.setTransitions = _app.$options.nuxt.setTransitions.bind(_app)
@@ -686,20 +743,25 @@ async function mountApp (__app) {
   router.beforeEach(loadAsyncComponents.bind(_app))
   router.beforeEach(render.bind(_app))
 
-  // If page already is server rendered and it was done on the same route path as client side render
-  if (NUXT.serverRendered && NUXT.routePath === _app.context.route.path) {
-    mount()
-    return
+  // Fix in static: remove trailing slash to force hydration
+  // Full static, if server-rendered: hydrate, to allow custom redirect to generated page
+
+  // Fix in static: remove trailing slash to force hydration
+  if (NUXT.serverRendered && isSamePath(NUXT.routePath, _app.context.route.path)) {
+    return mount()
   }
 
   // First render on client-side
   const clientFirstMount = () => {
     normalizeComponents(router.currentRoute, router.currentRoute)
-    showNextPage.call(_app, router.currentRoute)
+    setLayoutForNextPage.call(_app, router.currentRoute)
+    checkForErrors(_app)
     // Don't call fixPrepatch.call(_app, router.currentRoute, router.currentRoute) since it's first render
     mount()
   }
 
+  // fix: force next tick to avoid having same timestamp when an error happen on spa fallback
+  await new Promise(resolve => setTimeout(resolve, 0))
   render.call(_app, router.currentRoute, router.currentRoute, (path) => {
     // If not redirected
     if (!path) {

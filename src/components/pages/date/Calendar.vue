@@ -42,7 +42,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
-import _ from "lodash";
 
 @Component
 export default class Calendar extends Vue {
@@ -100,13 +99,9 @@ export default class Calendar extends Vue {
    * 日は引数
    */
   isToday(day): boolean {
-    const date = _.concat(
-      this.year,
-      "-",
-      ("00" + this.month).slice(-2),
-      "-",
-      day
-    ).join("");
+    const date = [this.year, "-", ("00" + this.month).slice(-2), "-", day].join(
+      ""
+    );
     if (this.today === date) {
       return true;
     }

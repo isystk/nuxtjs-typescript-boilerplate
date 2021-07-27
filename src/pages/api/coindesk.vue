@@ -23,7 +23,7 @@
                   }}
                 </h3>
                 <div class="float-sm-right">
-                  <PulldownInput
+                  <ElementsInputPulldown
                     name="currencyCode"
                     :default-value="selectedCurrencyCode"
                     :options="
@@ -38,7 +38,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartLineBar
+                  <PagesChartLineBar
                     :chart-data="chartData"
                     :options="chartOptions"
                   />
@@ -57,9 +57,9 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+import Chart from "chart.js";
 
 import moment from "moment";
-import _ from "lodash";
 import { sideMenuModule } from "@/store/sideMenu";
 import {
   currencyModule,
@@ -68,14 +68,10 @@ import {
   Historical
 } from "@/store/currency";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ChartLineBar from "@/components/pages/chart/ChartLineBar.vue";
-import PulldownInput from "@/components/elements/Input/Pulldown.vue";
 
 @Component({
   components: {
-    ContentHeader,
-    ChartLineBar,
-    PulldownInput
+    ContentHeader
   }
 })
 export default class extends Vue {
@@ -109,13 +105,13 @@ export default class extends Vue {
   }
 
   get chartData(): Chart.ChartData | null {
-    if (_.isEmpty(this.currencyData)) {
+    if (!this.currencyData || !this.currencyData.historicals) {
       return null;
     }
-    const lalbels = _.map(this.currencyData.historicals, e => {
+    const lalbels = this.currencyData.historicals.map(e => {
       return moment(e.updated).format("MM月DD日");
     });
-    const datas = _.map(this.currencyData.historicals, e => {
+    const datas = this.currencyData.historicals.map(e => {
       return Math.floor(e.rateFloat);
     });
 
@@ -135,7 +131,7 @@ export default class extends Vue {
   }
 
   get chartOptions(): Chart.ChartOptions {
-    if (_.isEmpty(this.currencyData)) {
+    if (!this.currencyData) {
       return {
         responsive: true,
         maintainAspectRatio: false

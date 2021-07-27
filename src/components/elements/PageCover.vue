@@ -1,38 +1,21 @@
 <template>
-  <div
-    v-if="display"
-    class="page-cover"
-    @click.prevent.stop="() => null"
-  >
-    <div
-      v-if="content.title"
-      class="page-cover-title"
-    >
+  <div v-if="display" class="page-cover" @click.prevent.stop="() => null">
+    <div v-if="content.title" class="page-cover-title">
       {{ content.title }}
     </div>
 
-    <div
-      v-if="content.description"
-      class="page-cover-description"
-    >
+    <div v-if="content.description" class="page-cover-description">
       {{ content.description }}
     </div>
 
-    <div
-      v-if="content.countUp"
-      class="page-cover-countup"
-    >
+    <div v-if="content.countUp" class="page-cover-countup">
       {{ seconds | number2clock }}
     </div>
 
-    <div
-      v-if="content.cancelAction"
-      class="page-cover-cancel"
-    >
-      <div
-        class="btn btn-execute"
-        @click.prevent.stop.once="handleCancel"
-      >{{ content.cancelLabel }}</div>
+    <div v-if="content.cancelAction" class="page-cover-cancel">
+      <div class="btn btn-execute" @click.prevent.stop.once="handleCancel">
+        {{ content.cancelLabel }}
+      </div>
     </div>
     <spinner v-if="content.loading" />
   </div>
@@ -42,7 +25,7 @@ export default {
   props: {
     display: {
       type: Boolean,
-      default: false,
+      default: false
     },
     content: {
       type: Object,
@@ -52,78 +35,86 @@ export default {
         countUp: false,
         loading: true,
         refreshCount: false,
-        cancelLabel: 'キャンセル',
-        cancelAction: () => null,
-      }),
-    },
+        cancelLabel: "キャンセル",
+        cancelAction: () => null
+      })
+    }
   },
   data() {
     return {
       timer: null,
       startTime: null,
-      currentTime: null,
-    }
+      currentTime: null
+    };
   },
   computed: {
-    seconds: function() {
+    seconds() {
       if (!this.currentTime || !this.startTime) {
-        return 0
+        return 0;
       }
 
-      return Math.floor((this.currentTime.getTime() - this.startTime.getTime()) / 1000)
-    },
+      return Math.floor(
+        (this.currentTime.getTime() - this.startTime.getTime()) / 1000
+      );
+    }
   },
   watch: {
     display: {
       immediate: true,
-      handler: function(newDisplay, oldDisplay) {
+      handler(newDisplay, oldDisplay) {
         if (newDisplay === oldDisplay) {
-          return
+          return;
         }
 
         if (newDisplay) {
-          this.startTimer()
+          this.startTimer();
         } else {
-          this.stopTimer()
+          this.stopTimer();
         }
-      },
+      }
     },
     content: {
       immediate: false,
       deep: true,
-      handler: function(newContent, _) {
+      handler(newContent, _) {
         if (newContent.refreshCount) {
-          this.startTimer()
+          this.startTimer();
         }
-      },
-    },
+      }
+    }
   },
   methods: {
-    startTimer: function() {
-      if (typeof this.content.countUp === 'undefined' || !this.content.countUp) {
-        return
+    startTimer() {
+      if (
+        typeof this.content.countUp === "undefined" ||
+        !this.content.countUp
+      ) {
+        return;
       }
 
-      this.startTime = new Date()
-      this.currentTime = new Date()
+      this.startTime = new Date();
+      this.currentTime = new Date();
       if (!this.timer) {
-        this.timer = setInterval(() => this.currentTime = new Date(), 50)
+        this.timer = setInterval(() => (this.currentTime = new Date()), 50);
       }
     },
-    stopTimer: function() {
-      clearInterval(this.timer)
-      this.timer = null
-      this.startTime = null
-      this.currentTime = null
+    stopTimer() {
+      clearInterval(this.timer);
+      this.timer = null;
+      this.startTime = null;
+      this.currentTime = null;
     },
 
-    handleCancel: async function() {
-      this.stopTimer()
+    async handleCancel() {
+      this.stopTimer();
 
-      if (this.content.cancelAction && typeof this.content.cancelAction === 'function') {
-        await this.content.cancelAction()
+      if (
+        this.content.cancelAction &&
+        typeof this.content.cancelAction === "function"
+      ) {
+        await this.content.cancelAction();
       }
-    },
-  },
-}
+    }
+  }
+};
 </script>

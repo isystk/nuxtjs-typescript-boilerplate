@@ -1,13 +1,7 @@
 import Vue from 'vue'
+import { decode, parsePath, withoutBase, withoutTrailingSlash, normalizeURL } from 'ufo'
 
-import {
-  getMatchedComponentsInstances,
-  getChildrenComponentInstancesUsingFetch,
-  promisify,
-  globalHandleError,
-  sanitizeComponent
-} from './utils'
-
+import { getMatchedComponentsInstances, getChildrenComponentInstancesUsingFetch, promisify, globalHandleError, urlJoin, sanitizeComponent } from './utils'
 import NuxtError from '../src/layouts/error.vue'
 
 import NuxtBuildIndicator from './components/nuxt-build-indicator'
@@ -25,17 +19,6 @@ const layouts = { "_default": sanitizeComponent(_6f6c098b),"_loginLayout": sanit
 
 export default {
   render (h, props) {
-    if (this.nuxt.err && NuxtError) {
-      const errorLayout = (NuxtError.options || NuxtError).layout
-      if (errorLayout) {
-        this.setLayout(
-          typeof errorLayout === 'function'
-            ? errorLayout.call(NuxtError, this.context)
-            : errorLayout
-        )
-      }
-    }
-
     const layoutEl = h(this.layout || 'nuxt')
     const templateEl = h('div', {
       domProps: {
@@ -84,9 +67,10 @@ export default {
   },
   created () {
     // Add this.$nuxt in child instances
-    Vue.prototype.$nuxt = this
-    // add to window so we can listen when ready
+    this.$root.$options.$nuxt = this
+
     if (process.client) {
+      // add to window so we can listen when ready
       window.$nuxt = this
 
       this.refreshOnlineStatus()
@@ -100,14 +84,18 @@ export default {
     this.context = this.$options.context
   },
 
+  watch: {
+    'nuxt.err': 'errorChanged'
+  },
+
   computed: {
     isOffline () {
       return !this.isOnline
     },
 
-      isFetching() {
+    isFetching () {
       return this.nbFetching > 0
-    }
+    },
   },
 
   methods: {
@@ -167,6 +155,17 @@ export default {
         this.error(error)
       }
     },
+    errorChanged () {
+      if (this.nuxt.err) {
+        let errorLayout = (NuxtError.options || NuxtError).layout;
+
+        if (typeof errorLayout === 'function') {
+          errorLayout = errorLayout(this.context)
+        }
+
+        this.setLayout(errorLayout)
+      }
+    },
 
     setLayout (layout) {
       if(layout && typeof layout !== 'string') {
@@ -185,6 +184,6 @@ export default {
         layout = 'default'
       }
       return Promise.resolve(layouts['_' + layout])
-    }
+    },
   },
 }

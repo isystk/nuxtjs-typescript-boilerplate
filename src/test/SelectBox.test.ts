@@ -17,16 +17,16 @@ const values: ISelectBox<string>[] = [
   }
 ];
 
-// describe("SelectBox", (): void => {
-//   test("Vueインスタンスが生成されること", (): void => {
-//     const wrapper = mount(PulldownInput);
-//     expect(wrapper.isVueInstance()).toBeTruthy();
-//   });
+describe("SelectBox", (): void => {
+  test("Vueインスタンスが生成されること", (): void => {
+    const wrapper = mount(PulldownInput);
+    expect(wrapper.isVueInstance()).toBeTruthy();
+  });
 
-//   test("propsを受け取れること", (): void => {
-//     const wrapper = shallowMount(PulldownInput, {
-//       propsData: { values }
-//     });
-//     expect(wrapper.findAll(".dropdown-menu a").length).toBe(3);
-//   });
-// });
+  test("propsを受け取れること", (): void => {
+    const wrapper = shallowMount(PulldownInput, {
+      propsData: { values }
+    });
+    expect(wrapper.findAll(".dropdown-menu a").length).toBe(3);
+  });
+});

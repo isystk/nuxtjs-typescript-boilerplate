@@ -77,8 +77,8 @@
                       ElementsInputColor
                     </p>
                     <ElementsInputColor
-                      name="color1"
-                      default-value="#000000" />
+name="color1"
+default-value="#000000" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -100,7 +100,7 @@
                       ElementsInputFile
                     </p>
                     <ElementsInputFile
-                      name="file1" />
+name="file1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -116,14 +116,14 @@
                       ElementsInputImage
                     </p>
                     <ElementsInputImage
-                      name="image1" />
+name="image1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
                       ElementsInputMailAddress
                     </p>
                     <ElementsInputMailAddress
-                      name="mail1" />
+name="mail1" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -140,7 +140,8 @@
                     </p>
                     <ElementsInputPostalCode
                       name="postal"
-                      default-value="040-0063" />
+                      default-value="040-0063"
+                    />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -175,8 +176,8 @@
                       ElementsInputText
                     </p>
                     <ElementsInputText
-                      name="text1"
-                      default-value="hogehoge" />
+name="text1"
+default-value="hogehoge" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
@@ -201,14 +202,14 @@
                       ElementsLabelName
                     </p>
                     <ElementsLabelName
-                      name="やまだ　たろう" />
+name="やまだ　たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
                       ElementsCell
                     </p>
                     <ElementsCell
-                      text="やまだ　たろう" />
+text="やまだ　たろう" />
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">

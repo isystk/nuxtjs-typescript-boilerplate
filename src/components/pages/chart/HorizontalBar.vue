@@ -1,11 +1,11 @@
 <script lang="ts">
 import { Component, Mixins, Prop, Watch } from "vue-property-decorator";
 import Chart from "chart.js";
-import { Doughnut, mixins } from "vue-chartjs";
+import { HorizontalBar as VueHorizontalBart, mixins } from "vue-chartjs";
 
 @Component({})
-export default class ChartDoughnut extends Mixins(
-  Doughnut,
+export default class HorizontalBar extends Mixins(
+  VueHorizontalBart,
   mixins.reactiveProp
 ) {
   @Prop()

@@ -148,10 +148,7 @@ const nuxtConfig: NuxtConfiguration = {
     }
   },
   buildcd: {},
-  buildModules: [
-    "@nuxt/typescript-build",
-    "@nuxt/components"
-  ],
+  buildModules: ["@nuxt/typescript-build", "@nuxt/components"],
   /**
    * Axios module configuration
    */

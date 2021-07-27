@@ -21,7 +21,10 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartPie :chart-data="chartData" :options="chartOptions" />
+                  <PagesChartPie
+                    :chart-data="chartData"
+                    :options="chartOptions"
+                  />
                 </div>
               </div>
             </div>
@@ -37,7 +40,7 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartDoughnut
+                  <PagesChartDoughnut
                     :chart-data="chartData"
                     :options="chartOptions"
                   />
@@ -56,7 +59,10 @@
               </div>
               <div class="card-body">
                 <div class="chart">
-                  <ChartPolar :chart-data="chartData" :options="chartOptions" />
+                  <PagesChartPolar
+                    :chart-data="chartData"
+                    :options="chartOptions"
+                  />
                 </div>
               </div>
             </div>
@@ -134,19 +140,14 @@
 
 <script lang="ts">
 import { Component, Vue, Watch, Mixins } from "vue-property-decorator";
+import Chart from "chart.js";
 
 import { sideMenuModule } from "@/store/sideMenu";
 import ContentHeader from "@/components/pages/ContentHeader.vue";
-import ChartPie from "@/components/pages/chart/ChartPie.vue";
-import ChartDoughnut from "@/components/pages/chart/ChartDoughnut.vue";
-import ChartPolar from "@/components/pages/chart/ChartPolar.vue";
 
 @Component({
   components: {
-    ContentHeader,
-    ChartPie,
-    ChartDoughnut,
-    ChartPolar
+    ContentHeader
   }
 })
 export default class extends Vue {

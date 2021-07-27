@@ -42,7 +42,6 @@
 
 <script lang="ts">
 import { Component, Vue, Prop, PropSync, Watch } from "vue-property-decorator";
-import _ from "lodash";
 
 @Component
 export default class Calendar extends Vue {
