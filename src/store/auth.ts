@@ -210,30 +210,13 @@ export const actions = {
     commit("updateBusyStatus", ["loginCheck", true]);
 
     try {
-      // const {headers, data} = await $axios.post<ILoginCheck>(
-      //   this.$C.API_ENDPOINT.LOGIN_CHECK,
-      //   {},
-      //   {
-      //     cancelToken: cancelToken.getToken(payload)
-      //   } as AxiosRequestConfig
-      // );
-      const { headers, data } = {
-        headers: {
-          "x-powered-by": "Express",
-          "access-control-allow-origin": "http://localhost:3000",
-          "access-control-allow-credentials": "true",
-          "access-control-allow-headers":
-            "origin, x-requested-with, content-type, accept, post-header, common-header, header1, x-authorization-code, X-User-Agent, X-Referer",
-          "access-control-expose-headers": "from-server, x-authorization-code",
-          "content-type": "text/html; charset=utf-8",
-          "content-length": "18",
-          etag: 'W/"12-5Ti4RxX6tW4QHCzTPHbTwIiTtA8"',
-          date: "Thu, 22 Jul 2021 04:01:23 GMT",
-          connection: "keep-alive",
-          "keep-alive": "timeout=5"
-        },
-        data: { loggedIn: false }
-      };
+      const {headers, data} = await $axios.post<ILoginCheck>(
+        this.$C.API_ENDPOINT.LOGIN_CHECK,
+        {},
+        {
+          cancelToken: cancelToken.getToken(payload)
+        } as AxiosRequestConfig
+      );
       const token = headers[this.$C.ACCESS_TOKEN_NAME];
 
       // ログイン状態を更新

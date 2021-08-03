@@ -17,7 +17,7 @@ import ContentHeader from "@/components/pages/ContentHeader.vue";
 })
 export default class extends Vue {
   public mounted(): void {
-    this.$router.replace(this.$C.URL.UI_CAROUSEL);
+    this.$router.replace(this.$C.URL.WIDGETS_CAROUSEL);
   }
 }
 </script>

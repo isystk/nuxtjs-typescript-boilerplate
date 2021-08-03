@@ -99,13 +99,13 @@ export default class Calendar extends Vue {
    * 日は引数
    */
   isToday(day): boolean {
-    const date = _.concat(
+    const date = [
       this.year,
       "-",
       ("00" + this.month).slice(-2),
       "-",
       day
-    ).join("");
+    ].join("");
     if (this.today === date) {
       return true;
     }

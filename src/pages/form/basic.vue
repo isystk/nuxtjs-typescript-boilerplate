@@ -70,6 +70,7 @@
                           })
                         )
                       "
+                      @change="handleElementsInputCheckbox"
                     />
                   </div>
                   <div class="form-group">
@@ -269,6 +270,10 @@ export default class extends Vue {
     } catch (e) {
       this.error = e.message;
     }
+  }
+
+  public handleElementsInputCheckbox(data): void {
+    console.log(data);
   }
 }
 </script>
