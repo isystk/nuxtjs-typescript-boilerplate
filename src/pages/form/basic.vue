@@ -102,6 +102,12 @@
                   </div>
                   <div class="form-group">
                     <p class="font-weight-bold">
+                      ElementsInputImageFile
+                    </p>
+                    <ElementsInputImageFile name="imageFile1" />
+                  </div>
+                  <div class="form-group">
+                    <p class="font-weight-bold">
                       ElementsInputFullName
                     </p>
                     <ElementsInputFullName

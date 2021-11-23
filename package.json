@@ -80,6 +80,7 @@
     "sass-loader": "^7.1.0",
     "ts-jest": "^24.0.2",
     "vue-click-outside": "^1.1.0",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "vuejs-image-base64": "^1.1.0"
   }
 }

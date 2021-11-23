@@ -13,11 +13,11 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_3e926880 from 'nuxt_plugin_plugin_3e926880' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_moment_ad3c54fc from 'nuxt_plugin_moment_ad3c54fc' // Source: ./moment.js (mode: 'all')
-import nuxt_plugin_workbox_3de2ae72 from 'nuxt_plugin_workbox_3de2ae72' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_f1b138f6 from 'nuxt_plugin_metaplugin_f1b138f6' // Source: ./pwa/meta.plugin.js (mode: 'all')
-import nuxt_plugin_axios_fe46d254 from 'nuxt_plugin_axios_fe46d254' // Source: ./axios.js (mode: 'all')
+import nuxt_plugin_plugin_f34cd6d2 from 'nuxt_plugin_plugin_f34cd6d2' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_moment_0fc42d0b from 'nuxt_plugin_moment_0fc42d0b' // Source: ./moment.js (mode: 'all')
+import nuxt_plugin_workbox_b8696fee from 'nuxt_plugin_workbox_b8696fee' // Source: ./workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_407713c8 from 'nuxt_plugin_metaplugin_407713c8' // Source: ./pwa/meta.plugin.js (mode: 'all')
+import nuxt_plugin_axios_6306aba6 from 'nuxt_plugin_axios_6306aba6' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_sanitizehtml_2c7303e8 from 'nuxt_plugin_sanitizehtml_2c7303e8' // Source: ../src/plugins/libraries/sanitize-html.ts (mode: 'all')
 import nuxt_plugin_lodash_53c55d0e from 'nuxt_plugin_lodash_53c55d0e' // Source: ../src/plugins/libraries/lodash.ts (mode: 'all')
 import nuxt_plugin_moment_6a977a7a from 'nuxt_plugin_moment_6a977a7a' // Source: ../src/plugins/libraries/moment.ts (mode: 'all')
@@ -222,24 +222,24 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_3e926880 === 'function') {
-    await nuxt_plugin_plugin_3e926880(app.context, inject)
+  if (typeof nuxt_plugin_plugin_f34cd6d2 === 'function') {
+    await nuxt_plugin_plugin_f34cd6d2(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_moment_ad3c54fc === 'function') {
-    await nuxt_plugin_moment_ad3c54fc(app.context, inject)
+  if (typeof nuxt_plugin_moment_0fc42d0b === 'function') {
+    await nuxt_plugin_moment_0fc42d0b(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_workbox_3de2ae72 === 'function') {
-    await nuxt_plugin_workbox_3de2ae72(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_b8696fee === 'function') {
+    await nuxt_plugin_workbox_b8696fee(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_metaplugin_f1b138f6 === 'function') {
-    await nuxt_plugin_metaplugin_f1b138f6(app.context, inject)
+  if (typeof nuxt_plugin_metaplugin_407713c8 === 'function') {
+    await nuxt_plugin_metaplugin_407713c8(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_fe46d254 === 'function') {
-    await nuxt_plugin_axios_fe46d254(app.context, inject)
+  if (typeof nuxt_plugin_axios_6306aba6 === 'function') {
+    await nuxt_plugin_axios_6306aba6(app.context, inject)
   }
 
   if (typeof nuxt_plugin_sanitizehtml_2c7303e8 === 'function') {

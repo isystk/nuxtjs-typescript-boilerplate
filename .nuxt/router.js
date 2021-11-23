@@ -4,21 +4,21 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _0af73de8 = () => interopDefault(import('../src/pages/api/index.vue' /* webpackChunkName: "pages/api/index" */))
-const _6e29b5ec = () => interopDefault(import('../src/pages/chart/index.vue' /* webpackChunkName: "pages/chart/index" */))
-const _ba537fe8 = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
-const _b2be2a86 = () => interopDefault(import('../src/pages/widgets/index.vue' /* webpackChunkName: "pages/widgets/index" */))
-const _9308d3f8 = () => interopDefault(import('../src/pages/api/coindesk.vue' /* webpackChunkName: "pages/api/coindesk" */))
-const _689f8b53 = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
-const _43f6259e = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
-const _5015792d = () => interopDefault(import('../src/pages/chart/bar.vue' /* webpackChunkName: "pages/chart/bar" */))
-const _2a2337b4 = () => interopDefault(import('../src/pages/chart/circle.vue' /* webpackChunkName: "pages/chart/circle" */))
-const _64aa3cca = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
-const _56fa6620 = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
-const _6db0dd68 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
-const _15d056c5 = () => interopDefault(import('../src/pages/widgets/carousel.vue' /* webpackChunkName: "pages/widgets/carousel" */))
-const _58b34e7b = () => interopDefault(import('../src/pages/widgets/overlay.vue' /* webpackChunkName: "pages/widgets/overlay" */))
-const _306e2dc6 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
+const _ec9c071e = () => interopDefault(import('../src/pages/api/index.vue' /* webpackChunkName: "pages/api/index" */))
+const _292ef635 = () => interopDefault(import('../src/pages/chart/index.vue' /* webpackChunkName: "pages/chart/index" */))
+const _09195aba = () => interopDefault(import('../src/pages/form/index.vue' /* webpackChunkName: "pages/form/index" */))
+const _95518674 = () => interopDefault(import('../src/pages/widgets/index.vue' /* webpackChunkName: "pages/widgets/index" */))
+const _5c1e5edb = () => interopDefault(import('../src/pages/api/coindesk.vue' /* webpackChunkName: "pages/api/coindesk" */))
+const _0e42542a = () => interopDefault(import('../src/pages/auth/sign-in.vue' /* webpackChunkName: "pages/auth/sign-in" */))
+const _2689818c = () => interopDefault(import('../src/pages/auth/sign-off.vue' /* webpackChunkName: "pages/auth/sign-off" */))
+const _625f9094 = () => interopDefault(import('../src/pages/chart/bar.vue' /* webpackChunkName: "pages/chart/bar" */))
+const _dedda606 = () => interopDefault(import('../src/pages/chart/circle.vue' /* webpackChunkName: "pages/chart/circle" */))
+const _8571613e = () => interopDefault(import('../src/pages/chart/line.vue' /* webpackChunkName: "pages/chart/line" */))
+const _11ffa669 = () => interopDefault(import('../src/pages/chart/radar.vue' /* webpackChunkName: "pages/chart/radar" */))
+const _73642002 = () => interopDefault(import('../src/pages/form/basic.vue' /* webpackChunkName: "pages/form/basic" */))
+const _28a4dc1c = () => interopDefault(import('../src/pages/widgets/carousel.vue' /* webpackChunkName: "pages/widgets/carousel" */))
+const _d9c57b78 = () => interopDefault(import('../src/pages/widgets/overlay.vue' /* webpackChunkName: "pages/widgets/overlay" */))
+const _1eb25426 = () => interopDefault(import('../src/pages/index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -33,63 +33,63 @@ export const routerOptions = {
 
   routes: [{
     path: "/api",
-    component: _0af73de8,
+    component: _ec9c071e,
     name: "api"
   }, {
     path: "/chart",
-    component: _6e29b5ec,
+    component: _292ef635,
     name: "chart"
   }, {
     path: "/form",
-    component: _ba537fe8,
+    component: _09195aba,
     name: "form"
   }, {
     path: "/widgets",
-    component: _b2be2a86,
+    component: _95518674,
     name: "widgets"
   }, {
     path: "/api/coindesk",
-    component: _9308d3f8,
+    component: _5c1e5edb,
     name: "api-coindesk"
   }, {
     path: "/auth/sign-in",
-    component: _689f8b53,
+    component: _0e42542a,
     name: "auth-sign-in"
   }, {
     path: "/auth/sign-off",
-    component: _43f6259e,
+    component: _2689818c,
     name: "auth-sign-off"
   }, {
     path: "/chart/bar",
-    component: _5015792d,
+    component: _625f9094,
     name: "chart-bar"
   }, {
     path: "/chart/circle",
-    component: _2a2337b4,
+    component: _dedda606,
     name: "chart-circle"
   }, {
     path: "/chart/line",
-    component: _64aa3cca,
+    component: _8571613e,
     name: "chart-line"
   }, {
     path: "/chart/radar",
-    component: _56fa6620,
+    component: _11ffa669,
     name: "chart-radar"
   }, {
     path: "/form/basic",
-    component: _6db0dd68,
+    component: _73642002,
     name: "form-basic"
   }, {
     path: "/widgets/carousel",
-    component: _15d056c5,
+    component: _28a4dc1c,
     name: "widgets-carousel"
   }, {
     path: "/widgets/overlay",
-    component: _58b34e7b,
+    component: _d9c57b78,
     name: "widgets-overlay"
   }, {
     path: "/",
-    component: _306e2dc6,
+    component: _1eb25426,
     name: "index"
   }],
 
