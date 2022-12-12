@@ -43,7 +43,7 @@
     "cookie-parser": "^1.4.5",
     "core-js": "^2.6.11",
     "cross-env": "^7.0.2",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "js-cookie": "^2.2.1",
     "nuxt": "^2.8.1",
     "nuxt-property-decorator": "^2.5.1",
